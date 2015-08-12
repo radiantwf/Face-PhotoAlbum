@@ -180,7 +180,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <local:PackageSelectStatusToBgPathConverter x:Key="package_stb" />
-    <local:ScenceSelectStatusToBgPathConverter x:Key="scence_stb" />
+    <local:PhotoSelectStatusToBgPathConverter x:Key="photo_stb" />
     <DataTemplate x:Key="PackageTemplate">
         <Grid>
             <Grid.RowDefinitions>
@@ -198,10 +198,10 @@
             <TextBlock Grid.Row="2" Text="{Binding NumStr}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
     </DataTemplate>
-    <DataTemplate x:Key="ScenceTemplate">
+    <DataTemplate x:Key="PhotoTemplate">
         <Border Width="168" Height="170">
             <Border.Background>
-                <ImageBrush ImageSource="{Binding IsSelected, Converter={StaticResource scence_stb}}" />
+                <ImageBrush ImageSource="{Binding IsSelected, Converter={StaticResource photo_stb}}" />
             </Border.Background>
             <Image Source="{Binding ImagePath}" Width="150" Height="150" Stretch="Fill" />
         </Border>

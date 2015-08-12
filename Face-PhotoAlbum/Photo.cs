@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace Face_PhotoAlbum
 {
-    public class Scence : INotifyPropertyChanged
+    public class Photo : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private bool m_isselected;
@@ -35,25 +35,25 @@ namespace Face_PhotoAlbum
             }
         }
 
-        public Scence(string imagepath)
+        public Photo(string imagepath)
         {
             ImagePath = imagepath;
             IsSelected = false;
         }
     }
 
-    public class ScenceSelectStatusToBgPathConverter : IValueConverter
+    public class PhotoSelectStatusToBgPathConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if ((bool)value)
             {
-                return @"/Resources/场景背景selected.png";
+                return @"/Resources/照片背景selected.png";
             }
             else
             {
-                return @"/Resources/场景背景.png";
+                return @"/Resources/照片背景.png";
             }
         }
 
@@ -67,7 +67,7 @@ namespace Face_PhotoAlbum
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string m_imagepath;
-        private int m_scencenum;
+        private int m_photonum;
         private string m_packagename;
         private bool m_isselected;
 
@@ -91,7 +91,7 @@ namespace Face_PhotoAlbum
         {
             get
             {
-                return "共xxx个场景";
+                return "共xxx张照片";
             }
         }
 
@@ -111,11 +111,11 @@ namespace Face_PhotoAlbum
             }
         }
 
-        public Package(string packagename, string imagepath, int scencenum = 0)
+        public Package(string packagename, string imagepath, int photonum = 0)
         {
             m_imagepath = imagepath;
             m_packagename = packagename;
-            m_scencenum = scencenum;
+            m_photonum = photonum;
             IsSelected = false;
         }
 
@@ -127,11 +127,11 @@ namespace Face_PhotoAlbum
         {
             if ((bool)value)
             {
-                return @"/Resources/套系背景selected.png";
+                return @"/Resources/相册背景selected.png";
             }
             else
             {
-                return @"/Resources/套系背景.png";
+                return @"/Resources/相册背景.png";
             }
         }
 
