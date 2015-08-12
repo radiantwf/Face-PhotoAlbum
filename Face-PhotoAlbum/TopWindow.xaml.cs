@@ -37,7 +37,7 @@ namespace Face_PhotoAlbum
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += timer1_Tick;
             timer.Start();
         }
