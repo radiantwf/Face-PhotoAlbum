@@ -1,12 +1,45 @@
 ﻿<Window x:Class="Face_PhotoAlbum.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Face_PhotoAlbum"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300" Loaded="Window_Loaded">
+        Height="694" Width="1054" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="93" />
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel x:Name="Title" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="7,4">
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="0">
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="1" HorizontalAlignment="Right">
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="ShowPanel" Width="1000">
+
+            </WrapPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="3" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="160"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="7,0">
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
