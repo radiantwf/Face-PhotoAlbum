@@ -25,8 +25,42 @@ namespace Face_PhotoAlbum
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            this.DragMove();
         }
+
+        private void btn_close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_min_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
+        }
+        private void btn_quitsys_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void btn_back1_Click(object sender, RoutedEventArgs e)
+        {
+            //ShowPackages();
+        }
+        private void btn_intopackage_Click(object sender, RoutedEventArgs e)
+        {
+            //ShowScences();
+        }
+        private void btn_intoscene_Click(object sender, RoutedEventArgs e)
+        {
+            //ShootWindow win = new ShootWindow();
+            //win.ShowDialog();
+        }
+
+        private void btn_set_Click(object sender, RoutedEventArgs e)
+        {
+            this.menu.IsOpen = true;
+        }
+
     }
 }
