@@ -194,6 +194,11 @@
     <Content Include="Photos\23.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Photos\24.jpg" />
+    <Resource Include="Photos\25.jpg" />
+    <Resource Include="Photos\26.jpg" />
+    <Resource Include="Photos\27.jpg" />
+    <Resource Include="Photos\28.jpg" />
     <Content Include="Photos\3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
