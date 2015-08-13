@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,19 +55,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Fun.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyResDic.xaml">
+    <Page Include="MvvmDemo\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TopWindow.xaml">
+    <Page Include="MvvmDemo\Views\InventoryDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MvvmDemo\Views\InventorySummaryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sources\View\Fun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\View\MyResDic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sources\View\TopWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -74,12 +87,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ImageButton.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="MvvmDemo\Commands\CloseWindowAction.cs" />
+    <Compile Include="MvvmDemo\Commands\CustomDelegateCommand.cs" />
+    <Compile Include="MvvmDemo\Commands\MessageBaseTrigger.cs" />
+    <Compile Include="MvvmDemo\Commands\MessageTriggerBase.cs" />
+    <Compile Include="MvvmDemo\Commands\ShowWindowAction.cs" />
+    <Compile Include="MvvmDemo\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Photo.cs" />
-    <Compile Include="TopWindow.xaml.cs">
+    <Compile Include="MvvmDemo\Model\CustomerModel.cs" />
+    <Compile Include="MvvmDemo\ViewModels\BaseViewModel.cs" />
+    <Compile Include="MvvmDemo\ViewModels\InventoryDetailsViewModel.cs" />
+    <Compile Include="MvvmDemo\ViewModels\InventorySummaryViewModel.cs" />
+    <Compile Include="MvvmDemo\Views\InventoryDetailsView.xaml.cs">
+      <DependentUpon>InventoryDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmDemo\Views\InventorySummaryView.xaml.cs">
+      <DependentUpon>InventorySummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\ViewModel\BaseViewModel.cs" />
+    <Compile Include="Sources\View\ImageButton.cs" />
+    <Compile Include="Sources\View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Model\Photo.cs" />
+    <Compile Include="Sources\View\TopWindow.xaml.cs">
       <DependentUpon>TopWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
