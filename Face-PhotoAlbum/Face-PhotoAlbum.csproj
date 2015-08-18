@@ -101,16 +101,16 @@
     </Compile>
     <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
     <Compile Include="Sources\Base_Mvvm\Views\Commands\CloseCommandBindingProxy.cs" />
-    <Compile Include="Sources\Business\Business1.cs" />
+    <Compile Include="Sources\Models\BLL\Business1.cs" />
     <Compile Include="Sources\Base_Mvvm\Views\Commands\BaseCommandBindingProxy.cs" />
     <Compile Include="Sources\Commons\HiwitLib.cs" />
     <Compile Include="Sources\Commons\MD5Process.cs" />
     <Compile Include="Sources\Commons\StructComversion.cs" />
-    <Compile Include="Sources\Models\FacePhotoAlbumContext.cs" />
-    <Compile Include="Sources\Models\T_Face.cs" />
-    <Compile Include="Sources\Models\T_FaceComparison.cs" />
-    <Compile Include="Sources\Models\T_FaceLabel.cs" />
-    <Compile Include="Sources\Models\T_PhotoInfo.cs" />
+    <Compile Include="Sources\Models\DAL\FacePhotoAlbumContext.cs" />
+    <Compile Include="Sources\Models\DAL\T_Face.cs" />
+    <Compile Include="Sources\Models\DAL\T_FaceComparison.cs" />
+    <Compile Include="Sources\Models\DAL\T_FaceLabel.cs" />
+    <Compile Include="Sources\Models\DAL\T_PhotoInfo.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\ObservableObject.cs" />
     <Compile Include="Sources\ViewModels\ITopWindowViewModel.cs" />
