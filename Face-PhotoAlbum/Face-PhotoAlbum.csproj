@@ -129,6 +129,10 @@
     <Compile Include="MvvmDemo\Views\InventorySummaryView.xaml.cs">
       <DependentUpon>InventorySummaryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sources\Business\Business1.cs" />
+    <Compile Include="Sources\Common\HiwitLib.cs" />
+    <Compile Include="Sources\Common\MD5Process.cs" />
+    <Compile Include="Sources\Common\StructComversion.cs" />
     <Compile Include="Sources\Model\FacePhotoAlbumContext.cs" />
     <Compile Include="Sources\Model\T_Face.cs" />
     <Compile Include="Sources\Model\T_FaceComparison.cs" />
