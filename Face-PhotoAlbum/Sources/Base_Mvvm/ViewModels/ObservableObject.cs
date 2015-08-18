@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
 
-namespace Face_PhotoAlbum.Base.ViewModel {
+namespace Face_PhotoAlbum.ViewModel {
     /// <summary>
     /// 可提示属性更改事件的对象
     /// </summary>

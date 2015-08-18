@@ -79,34 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MvvmDemo2\Resources\ui-login.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MvvmDemo2\Views\Login.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MvvmDemo2\Views\LoginControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MvvmDemo2\Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MvvmDemo\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MvvmDemo\Views\InventoryDetailsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MvvmDemo\Views\InventorySummaryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Sources\Views\Fun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,44 +99,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MvvmDemo2\Models\LoginModel.cs" />
-    <Compile Include="MvvmDemo2\Models\SecureUserModel.cs" />
-    <Compile Include="MvvmDemo2\ViewModels\CommandProxy.cs" />
-    <Compile Include="MvvmDemo2\ViewModels\ILoginViewModel.cs" />
-    <Compile Include="MvvmDemo2\ViewModels\LoginViewModel.cs" />
-    <Compile Include="MvvmDemo2\ViewModels\ObservableObject.cs" />
-    <Compile Include="MvvmDemo2\ViewModels\TipsEventArgs.cs" />
-    <Compile Include="MvvmDemo2\ViewModels\TipsEventHandler.cs" />
-    <Compile Include="MvvmDemo2\Views\BaseCommandBindingProxy.cs" />
-    <Compile Include="MvvmDemo2\Views\CloseCommandBindingProxy.cs" />
-    <Compile Include="MvvmDemo2\Views\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmDemo2\Views\LoginControl.xaml.cs">
-      <DependentUpon>LoginControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmDemo2\Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmDemo2\Views\PasswordBoxHelper.cs" />
-    <Compile Include="MvvmDemo\Commands\CloseWindowAction.cs" />
-    <Compile Include="MvvmDemo\Commands\CustomDelegateCommand.cs" />
-    <Compile Include="MvvmDemo\Commands\MessageBaseTrigger.cs" />
-    <Compile Include="MvvmDemo\Commands\MessageTriggerBase.cs" />
-    <Compile Include="MvvmDemo\Commands\ShowWindowAction.cs" />
-    <Compile Include="MvvmDemo\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmDemo\Model\CustomerModel.cs" />
-    <Compile Include="MvvmDemo\ViewModels\BaseViewModel.cs" />
-    <Compile Include="MvvmDemo\ViewModels\InventoryDetailsViewModel.cs" />
-    <Compile Include="MvvmDemo\ViewModels\InventorySummaryViewModel.cs" />
-    <Compile Include="MvvmDemo\Views\InventoryDetailsView.xaml.cs">
-      <DependentUpon>InventoryDetailsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmDemo\Views\InventorySummaryView.xaml.cs">
-      <DependentUpon>InventorySummaryView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
+    <Compile Include="Sources\Base_Mvvm\Views\Commands\CloseCommandBindingProxy.cs" />
     <Compile Include="Sources\Business\Business1.cs" />
     <Compile Include="Sources\Base_Mvvm\Views\Commands\BaseCommandBindingProxy.cs" />
     <Compile Include="Sources\Commons\HiwitLib.cs" />
@@ -177,6 +113,8 @@
     <Compile Include="Sources\Models\T_PhotoInfo.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\ObservableObject.cs" />
+    <Compile Include="Sources\ViewModels\ITopWindowViewModel.cs" />
+    <Compile Include="Sources\ViewModels\TopWindowViewModel.cs" />
     <Compile Include="Sources\Views\ImageButton.cs" />
     <Compile Include="Sources\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
