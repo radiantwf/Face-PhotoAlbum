@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Face_PhotoAlbum.Sources.Common {
+namespace Face_PhotoAlbum.Common {
     public static class MD5Process {
         public static string GetMD5HashFromFile(string fileName)
         {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Face_PhotoAlbum.Sources.Common {
+namespace Face_PhotoAlbum.Common {
     public class StructComversion {
         //将Byte转换为结构体类型
         public static void StructToBytes(object structObj, byte[] outputBytes, int startIndex, int length)

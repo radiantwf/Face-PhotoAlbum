@@ -1,5 +1,5 @@
-﻿using Face_PhotoAlbum.Sources.Common;
-using Face_PhotoAlbum.Sources.Model;
+﻿using Face_PhotoAlbum.Common;
+using Face_PhotoAlbum.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Face_PhotoAlbum.Sources.Business {
+namespace Face_PhotoAlbum.Business {
    public class Business1 {
         public void Run()
         {

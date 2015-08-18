@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Face_PhotoAlbum.Sources.Common {
+namespace Face_PhotoAlbum.Common {
     public class HiwitLib {
         const string APPIP = "d3527692bc91420089c8caf23c8f68f3";
         const string APPKEY = "MDE5MTE4MzE=";

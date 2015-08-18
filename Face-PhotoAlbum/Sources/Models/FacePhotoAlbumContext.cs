@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Face_PhotoAlbum.Sources.Model {
+namespace Face_PhotoAlbum.Model {
     public class FacePhotoAlbumContext : DbContext {
         public DbSet<T_PhotoInfo> T_PhotoInfo { get; set; }
         public DbSet<T_Face> T_Face { get; set; }

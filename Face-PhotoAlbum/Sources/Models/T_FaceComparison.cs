@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Face_PhotoAlbum.Sources.Model {
+namespace Face_PhotoAlbum.Model {
     public class T_FaceComparison {
         [Key, Column(Order = 0)]
         public int Num { get; set; }

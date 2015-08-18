@@ -107,19 +107,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Sources\View\Fun.xaml">
+    <Page Include="Sources\Views\Fun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\View\MainWindow.xaml">
+    <Page Include="Sources\Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\View\MyResDic.xaml">
+    <Page Include="Sources\Views\MyResDic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Sources\View\TopWindow.xaml">
+    <Page Include="Sources\Views\TopWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -166,21 +166,23 @@
       <DependentUpon>InventorySummaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\Business\Business1.cs" />
-    <Compile Include="Sources\Common\HiwitLib.cs" />
-    <Compile Include="Sources\Common\MD5Process.cs" />
-    <Compile Include="Sources\Common\StructComversion.cs" />
-    <Compile Include="Sources\Model\FacePhotoAlbumContext.cs" />
-    <Compile Include="Sources\Model\T_Face.cs" />
-    <Compile Include="Sources\Model\T_FaceComparison.cs" />
-    <Compile Include="Sources\Model\T_FaceLabel.cs" />
-    <Compile Include="Sources\Model\T_PhotoInfo.cs" />
-    <Compile Include="Sources\ViewModel\BaseViewModel.cs" />
-    <Compile Include="Sources\View\ImageButton.cs" />
-    <Compile Include="Sources\View\MainWindow.xaml.cs">
+    <Compile Include="Sources\Base_Mvvm\Views\Commands\BaseCommandBindingProxy.cs" />
+    <Compile Include="Sources\Commons\HiwitLib.cs" />
+    <Compile Include="Sources\Commons\MD5Process.cs" />
+    <Compile Include="Sources\Commons\StructComversion.cs" />
+    <Compile Include="Sources\Models\FacePhotoAlbumContext.cs" />
+    <Compile Include="Sources\Models\T_Face.cs" />
+    <Compile Include="Sources\Models\T_FaceComparison.cs" />
+    <Compile Include="Sources\Models\T_FaceLabel.cs" />
+    <Compile Include="Sources\Models\T_PhotoInfo.cs" />
+    <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
+    <Compile Include="Sources\Base_Mvvm\ViewModels\ObservableObject.cs" />
+    <Compile Include="Sources\Views\ImageButton.cs" />
+    <Compile Include="Sources\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sources\ViewModel\Photo.cs" />
-    <Compile Include="Sources\View\TopWindow.xaml.cs">
+    <Compile Include="Sources\ViewModels\Photo.cs" />
+    <Compile Include="Sources\Views\TopWindow.xaml.cs">
       <DependentUpon>TopWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -212,7 +214,10 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Sources\Base_Mvvm\Models\" />
+    <Folder Include="Sources\Views\Commands\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\01.png" />
     <Resource Include="Resources\02.png" />
