@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Face_PhotoAlbum.Models {
-    public class PhotoModel : ObservableObject {
+namespace Face_PhotoAlbum.ViewModels {
+    interface IFace_PhotoAlbumViewModel {
     }
 }

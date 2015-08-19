@@ -18,7 +18,7 @@ namespace Face_PhotoAlbum
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Face_PhotoAlbumWindow : Window
     {
         private List<FaceAlbum_old> m_packagelist;
         private List<Photo_old> m_photolist;
@@ -105,7 +105,7 @@ namespace Face_PhotoAlbum
             }
         }
 
-        public MainWindow()
+        public Face_PhotoAlbumWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
