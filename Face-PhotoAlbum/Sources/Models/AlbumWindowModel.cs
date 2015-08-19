@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.Models {
-    public class Face_PhotoAlbumModel : ObservableObject {
+    public class AlbumWindow : ObservableObject {
     }
 }

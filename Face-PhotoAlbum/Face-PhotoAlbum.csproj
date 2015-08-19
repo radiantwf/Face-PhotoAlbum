@@ -79,11 +79,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Sources\Views\AlbumWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sources\Views\Fun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Views\Face_PhotoAlbumWindow.xaml">
+    <Page Include="Sources\Face_PhotoAlbumWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,13 +117,16 @@
     <Compile Include="Sources\Models\DAL\T_PhotoInfo.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
     <Compile Include="Sources\Base_Mvvm\ObservableObject.cs" />
-    <Compile Include="Sources\Models\Face_PhotoAlbumModel.cs" />
-    <Compile Include="Sources\ViewModels\Face_PhotoAlbumViewModel.cs" />
-    <Compile Include="Sources\ViewModels\IFace_PhotoAlbumViewModel.cs" />
+    <Compile Include="Sources\Models\AlbumWindowModel.cs" />
+    <Compile Include="Sources\ViewModels\AlbumWindowViewModel.cs" />
+    <Compile Include="Sources\ViewModels\IAlbumWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\ITopWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\TopWindowViewModel.cs" />
+    <Compile Include="Sources\Views\AlbumWindow.xaml.cs">
+      <DependentUpon>AlbumWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sources\Views\ImageButton.cs" />
-    <Compile Include="Sources\Views\Face_PhotoAlbumWindow.xaml.cs">
+    <Compile Include="Sources\Face_PhotoAlbumWindow.xaml.cs">
       <DependentUpon>Face_PhotoAlbumWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\Photo.cs" />

@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.ViewModels {
-        public class Face_PhotoAlbumViewModel : ObservableObject, IFace_PhotoAlbumViewModel {
-        }
+    interface IAlbumWindowViewModel {
     }
+}
