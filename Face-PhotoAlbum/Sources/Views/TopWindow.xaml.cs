@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Face_PhotoAlbum.Views.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,12 +22,13 @@ namespace Face_PhotoAlbum
     /// </summary>
     public partial class TopWindow : Window
     {
-        private DispatcherTimer timer;
-
         public TopWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            // 如果不添加这行代码，则退出按钮是不可用的，因为内置的Close命令是没有实现的，要自己实现
+            this.CommandBindings.Add(new CloseCommandBindingProxy(this));
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -34,16 +36,8 @@ namespace Face_PhotoAlbum
             if (e.ChangedButton == MouseButton.Left) this.DragMove();
         }
 
-        private void Window_ContentRendered(object sender, EventArgs e)
+        private void TopWindowViewModel_HasWaited(object sender, EventArgs e)
         {
-            timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += timer1_Tick;
-            timer.Start();
-        }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            timer.Stop();
             this.DialogResult = true;
             this.Close();
         }
