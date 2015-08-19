@@ -26,9 +26,6 @@ namespace Face_PhotoAlbum
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            // 如果不添加这行代码，则退出按钮是不可用的，因为内置的Close命令是没有实现的，要自己实现
-            this.CommandBindings.Add(new CloseCommandBindingProxy(this));
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

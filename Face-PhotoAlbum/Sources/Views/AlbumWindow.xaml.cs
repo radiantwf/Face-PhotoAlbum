@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Face_PhotoAlbum.Views.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,9 @@ namespace Face_PhotoAlbum.Views {
         public AlbumWindow()
         {
             InitializeComponent();
+
+            this.CommandBindings.Add(new CloseCommandBindingProxy(this));
+            this.CommandBindings.Add(new MinimizedCommandBindingProxy(this));
         }
     }
 }

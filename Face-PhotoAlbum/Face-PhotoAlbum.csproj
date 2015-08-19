@@ -108,7 +108,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
-    <Compile Include="Sources\Base_Mvvm\Views\Commands\CloseCommandBindingProxy.cs" />
+    <Compile Include="Sources\Views\Commands\CloseCommandBindingProxy.cs" />
     <Compile Include="Sources\Face_PhotoAlbumWindow.xaml.cs">
       <DependentUpon>Face_PhotoAlbumWindow.xaml</DependentUpon>
     </Compile>
@@ -134,6 +134,7 @@
     </Compile>
     <Compile Include="Sources\ImageButton.cs" />
     <Compile Include="Sources\Photo.cs" />
+    <Compile Include="Sources\Views\Commands\MinimizedCommandBindingProxy.cs" />
     <Compile Include="Sources\Views\ImageButton.cs" />
     <Compile Include="Sources\Views\TopWindow.xaml.cs">
       <DependentUpon>TopWindow.xaml</DependentUpon>
@@ -169,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sources\Base_Mvvm\Models\" />
-    <Folder Include="Sources\Views\Commands\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\01.png" />
