@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace Face_PhotoAlbum
 {
-    public class Photo : INotifyPropertyChanged
+    public class Photo_old : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private bool m_isselected;
@@ -35,7 +35,7 @@ namespace Face_PhotoAlbum
             }
         }
 
-        public Photo(string imagepath)
+        public Photo_old(string imagepath)
         {
             ImagePath = imagepath;
             IsSelected = false;
@@ -62,7 +62,7 @@ namespace Face_PhotoAlbum
             throw new NotImplementedException();
         }
     }
-    public class Package : INotifyPropertyChanged
+    public class FaceAlbum_old : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -111,7 +111,7 @@ namespace Face_PhotoAlbum
             }
         }
 
-        public Package(string packagename, string imagepath, int photonum = 0)
+        public FaceAlbum_old(string packagename, string imagepath, int photonum = 0)
         {
             m_imagepath = imagepath;
             m_packagename = packagename;

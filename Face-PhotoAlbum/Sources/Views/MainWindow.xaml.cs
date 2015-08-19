@@ -20,40 +20,40 @@ namespace Face_PhotoAlbum
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Package> m_packagelist;
-        private List<Photo> m_photolist;
+        private List<FaceAlbum_old> m_packagelist;
+        private List<Photo_old> m_photolist;
         private List<UserControl> m_packagectllist;
         private List<UserControl> m_photoctllist;
-        private Package m_selectedpackage;
-        private Photo m_selectedphoto;
+        private FaceAlbum_old m_selectedpackage;
+        private Photo_old m_selectedphoto;
 
         private void InitPackageList()
         {
-            m_packagelist = new List<Package>();
-            m_packagelist.Add(new Package("秋景1", "/Photos/1.jpg"));
-            m_packagelist.Add(new Package("秋景2", "/Photos/2.jpg"));
-            m_packagelist.Add(new Package("秋景3", "/Photos/3.jpg"));
-            m_packagelist.Add(new Package("秋景4", "/Photos/4.jpg"));
-            m_packagelist.Add(new Package("秋景5", "/Photos/5.jpg"));
-            m_packagelist.Add(new Package("秋景6", "/Photos/6.jpg"));
-            m_packagelist.Add(new Package("秋景7", "/Photos/7.jpg"));
-            m_packagelist.Add(new Package("秋景8", "/Photos/8.jpg"));
-            m_packagelist.Add(new Package("秋景9", "/Photos/9.jpg"));
-            m_packagelist.Add(new Package("秋景10", "/Photos/10.jpg"));
-            m_packagelist.Add(new Package("秋景11", "/Photos/11.jpg"));
-            m_packagelist.Add(new Package("秋景12", "/Photos/12.jpg"));
-            m_packagelist.Add(new Package("秋景13", "/Photos/13.jpg"));
-            m_packagelist.Add(new Package("秋景14", "/Photos/14.jpg"));
-            m_packagelist.Add(new Package("秋景15", "/Photos/15.jpg"));
-            m_packagelist.Add(new Package("秋景16", "/Photos/16.jpg"));
-            m_packagelist.Add(new Package("秋景17", "/Photos/17.jpg"));
+            m_packagelist = new List<FaceAlbum_old>();
+            m_packagelist.Add(new FaceAlbum_old("秋景1", "/Photos/1.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景2", "/Photos/2.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景3", "/Photos/3.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景4", "/Photos/4.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景5", "/Photos/5.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景6", "/Photos/6.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景7", "/Photos/7.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景8", "/Photos/8.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景9", "/Photos/9.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景10", "/Photos/10.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景11", "/Photos/11.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景12", "/Photos/12.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景13", "/Photos/13.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景14", "/Photos/14.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景15", "/Photos/15.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景16", "/Photos/16.jpg"));
+            m_packagelist.Add(new FaceAlbum_old("秋景17", "/Photos/17.jpg"));
         }
         //初始化套系控件列表
         private void InitPackageCtlList()
         {
             InitPackageList();
             m_packagectllist = new List<UserControl>();
-            foreach (Package temp in m_packagelist)
+            foreach (FaceAlbum_old temp in m_packagelist)
             {
                 UserControl tempctl = new UserControl();
                 tempctl.Margin = new Thickness(10, 10, 10, 10);
@@ -69,23 +69,23 @@ namespace Face_PhotoAlbum
         //初始化照片列表
         private void InitPhotoList()
         {
-            m_photolist = new List<Photo>();
-            m_photolist.Add(new Photo("/Photos/1.jpg"));
-            m_photolist.Add(new Photo("/Photos/2.jpg"));
-            m_photolist.Add(new Photo("/Photos/3.jpg"));
-            m_photolist.Add(new Photo("/Photos/4.jpg"));
-            m_photolist.Add(new Photo("/Photos/5.jpg"));
-            m_photolist.Add(new Photo("/Photos/6.jpg"));
-            m_photolist.Add(new Photo("/Photos/7.jpg"));
-            m_photolist.Add(new Photo("/Photos/8.jpg"));
-            m_photolist.Add(new Photo("/Photos/9.jpg"));
-            m_photolist.Add(new Photo("/Photos/10.jpg"));
-            m_photolist.Add(new Photo("/Photos/11.jpg"));
-            m_photolist.Add(new Photo("/Photos/12.jpg"));
-            m_photolist.Add(new Photo("/Photos/13.jpg"));
-            m_photolist.Add(new Photo("/Photos/14.jpg"));
-            m_photolist.Add(new Photo("/Photos/15.jpg"));
-            m_photolist.Add(new Photo("/Photos/16.jpg"));
+            m_photolist = new List<Photo_old>();
+            m_photolist.Add(new Photo_old("/Photos/1.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/2.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/3.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/4.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/5.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/6.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/7.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/8.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/9.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/10.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/11.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/12.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/13.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/14.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/15.jpg"));
+            m_photolist.Add(new Photo_old("/Photos/16.jpg"));
         }
         //初始化照片控件列表
         private void InitPhotoCtlList()
@@ -93,7 +93,7 @@ namespace Face_PhotoAlbum
             InitPhotoList();
 
             m_photoctllist = new List<UserControl>();
-            foreach (Photo temp in m_photolist)
+            foreach (Photo_old temp in m_photolist)
             {
                 UserControl tempctl = new UserControl();
                 tempctl.Margin = new Thickness(15, 15, 15, 15);
@@ -161,7 +161,7 @@ namespace Face_PhotoAlbum
         //单击了单个套系
         void packagectl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Package selectedpackage = (Package)((UserControl)sender).Content;
+            FaceAlbum_old selectedpackage = (FaceAlbum_old)((UserControl)sender).Content;
             m_selectedpackage.IsSelected = false;
             selectedpackage.IsSelected = true;
             m_selectedpackage = selectedpackage;
@@ -170,7 +170,7 @@ namespace Face_PhotoAlbum
         //单击了单个照片
         void photoctl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Photo selectedphoto = (Photo)((UserControl)sender).Content;
+            Photo_old selectedphoto = (Photo_old)((UserControl)sender).Content;
             m_selectedphoto.IsSelected = false;
             selectedphoto.IsSelected = true;
             m_selectedphoto = selectedphoto;

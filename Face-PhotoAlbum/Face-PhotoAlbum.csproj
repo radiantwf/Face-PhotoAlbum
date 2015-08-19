@@ -112,7 +112,9 @@
     <Compile Include="Sources\Models\DAL\T_FaceLabel.cs" />
     <Compile Include="Sources\Models\DAL\T_PhotoInfo.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
-    <Compile Include="Sources\Base_Mvvm\ViewModels\ObservableObject.cs" />
+    <Compile Include="Sources\Base_Mvvm\ObservableObject.cs" />
+    <Compile Include="Sources\Models\FaceAlbumModel.cs" />
+    <Compile Include="Sources\Models\PhotoModel.cs" />
     <Compile Include="Sources\ViewModels\ITopWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\TopWindowViewModel.cs" />
     <Compile Include="Sources\Views\ImageButton.cs" />
