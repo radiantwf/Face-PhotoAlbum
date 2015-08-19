@@ -91,7 +91,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Views\MyResDic.xaml">
+    <Page Include="Sources\MyResDic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -125,7 +125,7 @@
     <Compile Include="Sources\Views\AlbumWindow.xaml.cs">
       <DependentUpon>AlbumWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sources\Views\ImageButton.cs" />
+    <Compile Include="Sources\ImageButton.cs" />
     <Compile Include="Sources\Face_PhotoAlbumWindow.xaml.cs">
       <DependentUpon>Face_PhotoAlbumWindow.xaml</DependentUpon>
     </Compile>
