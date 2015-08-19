@@ -79,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Sources\Face_PhotoAlbumWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sources\Views\AlbumWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,13 +91,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Face_PhotoAlbumWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Sources\MyResDic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sources\Views\MyScrollViewerControlTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sources\Views\TopWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +109,9 @@
     </Compile>
     <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
     <Compile Include="Sources\Base_Mvvm\Views\Commands\CloseCommandBindingProxy.cs" />
+    <Compile Include="Sources\Face_PhotoAlbumWindow.xaml.cs">
+      <DependentUpon>Face_PhotoAlbumWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sources\Models\BLL\Business1.cs" />
     <Compile Include="Sources\Base_Mvvm\Views\Commands\BaseCommandBindingProxy.cs" />
     <Compile Include="Sources\Commons\HiwitLib.cs" />
@@ -126,10 +133,8 @@
       <DependentUpon>AlbumWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\ImageButton.cs" />
-    <Compile Include="Sources\Face_PhotoAlbumWindow.xaml.cs">
-      <DependentUpon>Face_PhotoAlbumWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Sources\Photo.cs" />
+    <Compile Include="Sources\Views\ImageButton.cs" />
     <Compile Include="Sources\Views\TopWindow.xaml.cs">
       <DependentUpon>TopWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
