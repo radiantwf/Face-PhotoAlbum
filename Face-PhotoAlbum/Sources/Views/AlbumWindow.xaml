@@ -3,11 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Face_PhotoAlbum" 
         xmlns:cmd="clr-namespace:Face_PhotoAlbum.Views.Commands" 
-        Height="694" Width="1054" Icon="../../Resources/icon.png" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
-    <Window.Background>
+        Height="694" Width="1054" Icon="../../Resources/icon.png" WindowStyle="None" AllowsTransparency="True">
+
+        <Window.Background>
         <ImageBrush ImageSource="../../Resources/mybg.png" />
     </Window.Background>
-
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="taskBar" 
+                         Description="Taskbar Items Sample">
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+    
     <Grid HorizontalAlignment="Left" Width="1054">
         <Grid.RowDefinitions>
             <RowDefinition Height="93" />
@@ -18,7 +24,7 @@
         <Grid Grid.Row="0">
             <StackPanel x:Name="Title2" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="7,4">
                 <local:ImageButton x:Name="btn_close" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="../../Resources/关闭.png" Template="{StaticResource ImageButtonTemplate}" Command="ApplicationCommands.Close"/>
-                <local:ImageButton x:Name="btn_min" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="../../Resources/最小化.png" Template="{StaticResource ImageButtonTemplate}" Command="{Binding MinimizedCommand}"/>
+                <local:ImageButton x:Name="btn_min" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="../../Resources/最小化.png" Template="{StaticResource ImageButtonTemplate}" Command="cmd:MinimizedCommandBindingProxy.MinimizedCommand"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">

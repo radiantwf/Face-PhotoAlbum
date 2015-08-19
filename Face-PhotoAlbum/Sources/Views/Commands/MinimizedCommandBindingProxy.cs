@@ -11,9 +11,7 @@ namespace Face_PhotoAlbum.Views.Commands {
         private Window window;
         private CommandBinding _CommandBinding;
 
-        private WindowState lastWindowState;
-
-        public ICommand MinimizedCommand
+        public static ICommand MinimizedCommand
         {
             private set;
             get;
@@ -36,17 +34,7 @@ namespace Face_PhotoAlbum.Views.Commands {
 
         void CommandExecuted(object target, ExecutedRoutedEventArgs e)
         {
-            WindowState state = this.window.WindowState;
-            if (state != WindowState.Minimized)
-            {
-                lastWindowState = state;
-                this.window.WindowState = WindowState.Minimized;
-            }
-            else
-            {
-                this.window.WindowState = lastWindowState;
-                lastWindowState = WindowState.Minimized;
-            }
+            this.window.WindowState = WindowState.Minimized;
         }
 
         void CommandCanExecute(object sender, CanExecuteRoutedEventArgs e)

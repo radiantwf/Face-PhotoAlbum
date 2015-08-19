@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Automation.Peers;
 
 namespace Face_PhotoAlbum.Views {
     /// <summary>
@@ -20,10 +21,11 @@ namespace Face_PhotoAlbum.Views {
     public partial class AlbumWindow : Window {
         public AlbumWindow()
         {
-            InitializeComponent();
-
             this.CommandBindings.Add(new CloseCommandBindingProxy(this));
             this.CommandBindings.Add(new MinimizedCommandBindingProxy(this));
+
+            InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
     }
 }
