@@ -1,6 +1,4 @@
-﻿using Face_PhotoAlbum.ViewModel;
-using Face_PhotoAlbum.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

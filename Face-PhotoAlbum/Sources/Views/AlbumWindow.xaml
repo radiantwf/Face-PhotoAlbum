@@ -8,11 +8,6 @@
         <Window.Background>
         <ImageBrush ImageSource="../../Resources/mybg.png" />
     </Window.Background>
-    <Window.TaskbarItemInfo>
-        <TaskbarItemInfo x:Name="taskBar" 
-                         Description="Taskbar Items Sample">
-        </TaskbarItemInfo>
-    </Window.TaskbarItemInfo>
     
     <Grid HorizontalAlignment="Left" Width="1054">
         <Grid.RowDefinitions>
