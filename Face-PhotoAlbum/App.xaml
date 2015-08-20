@@ -8,8 +8,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Sources/Views/Fun.xaml"/>
-                <!--<ResourceDictionary Source="Sources/Views/MyScrollViewerControlTemplate.xaml"/>-->
-                <ResourceDictionary Source="Sources/MyResDic.xaml"/>
+                <ResourceDictionary Source="Sources/Views/MyButtonControlTemplate.xaml"/>
+                <ResourceDictionary Source="Sources/Views/MyScrollViewerControlTemplate.xaml"/>
+                <!--<ResourceDictionary Source="Sources/MyResDic.xaml"/>-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

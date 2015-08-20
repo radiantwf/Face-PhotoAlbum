@@ -37,7 +37,7 @@ namespace Face_PhotoAlbum.ViewModels {
         {
             DispatcherTimer timer = new DispatcherTimer();
 
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Interval = TimeSpan.FromSeconds(0);
             timer.Tick += (o, a) =>
             {
                 timer.Stop();

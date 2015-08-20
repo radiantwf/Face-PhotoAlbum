@@ -29,6 +29,9 @@
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard  Storyboard="{StaticResource OnLoaded}"/>
         </EventTrigger>
+        <!--<EventTrigger RoutedEvent=>
+            --><!--<i:InvokeCommandAction Command="{Binding Waiting, Mode=OneWay}"/>--><!--
+        </EventTrigger>-->
     </Window.Triggers>
 
     <Window.DataContext>

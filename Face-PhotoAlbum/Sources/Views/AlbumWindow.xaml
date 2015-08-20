@@ -5,7 +5,7 @@
         xmlns:cmd="clr-namespace:Face_PhotoAlbum.Views.Commands" 
         Height="694" Width="1054" Icon="../../Resources/icon.png" WindowStyle="None" AllowsTransparency="True">
 
-        <Window.Background>
+    <Window.Background>
         <ImageBrush ImageSource="../../Resources/mybg.png" />
     </Window.Background>
     <Window.TaskbarItemInfo>
@@ -13,7 +13,7 @@
                          Description="Taskbar Items Sample">
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
-    
+
     <Grid HorizontalAlignment="Left" Width="1054">
         <Grid.RowDefinitions>
             <RowDefinition Height="93" />
@@ -23,13 +23,27 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel x:Name="Title2" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="7,4">
-                <local:ImageButton x:Name="btn_close" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="../../Resources/关闭.png" Template="{StaticResource ImageButtonTemplate}" Command="ApplicationCommands.Close"/>
-                <local:ImageButton x:Name="btn_min" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="../../Resources/最小化.png" Template="{StaticResource ImageButtonTemplate}" Command="cmd:MinimizedCommandBindingProxy.MinimizedCommand"/>
+                <Button x:Name="btn_close" Width="27" Height="26" VerticalAlignment="Top" Template="{StaticResource ButtonTemplate}" Command="ApplicationCommands.Close">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../../Resources/关闭.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="btn_min" Width="27" Height="26" VerticalAlignment="Top" Template="{StaticResource ButtonTemplate}" Command="cmd:MinimizedCommandBindingProxy.MinimizedCommand">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../../Resources/最小化.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
+                    </Button.Background>
+                </Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="0">
-                <local:ImageButton x:Name="btn_back1" Width="80" Height="28" Margin="10,0" ImgPath="../../Resources/返回.png" Template="{StaticResource ImageButtonTemplate}"/>
+                <Button x:Name="btn_back2" Width="80" Height="28" Margin="10,0" Template="{StaticResource ButtonTemplate}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../../Resources/返回.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
+                    </Button.Background>
+                </Button>
+
                 <Border x:Name="border_taoxi" Width="140" Height="28">
                     <Border.Background>
                         <ImageBrush ImageSource="../../Resources/01.png" />
@@ -44,7 +58,11 @@
                 </Border>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="1" HorizontalAlignment="Right">
-                <local:ImageButton x:Name="btn_quitsys" Width="100" Height="24" ImgPath="../../Resources/退出系统.png" Template="{StaticResource ImageButtonTemplate}" Command="ApplicationCommands.Close" Margin="10,0"  />
+                <Button x:Name="btn_quitsys" Width="100" Height="24" Command="ApplicationCommands.Close" Margin="10,0" Template="{StaticResource ButtonTemplate}" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Face-PhotoAlbum;component/Resources/退出系统.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
+                    </Button.Background>
+                </Button>
             </StackPanel>
         </Grid>
 
@@ -60,12 +78,17 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="7,0">
-                <local:ImageButton x:Name="btn_addpackage" Width="112" Height="43" ImgPath="../../Resources/添加.png" Template="{StaticResource ImageButtonTemplate}" Margin="10,8" />
-                <local:ImageButton x:Name="btn_delpackage" Width="112" Height="43" ImgPath="../../Resources/删除.png" Template="{StaticResource ImageButtonTemplate}" Margin="0,8"/>
-            </StackPanel>
-            <local:ImageButton Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" ImgPath="../../Resources/进入套系.png" Template="{StaticResource ImageButtonTemplate}"/>
-            <local:ImageButton Grid.Column="2" x:Name="btn_intoscene" Width="132" Height="43" ImgPath="../../Resources/进入场景.png" Template="{StaticResource ImageButtonTemplate}"/>
+
+            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}">
+                <Button.Background>
+                    <ImageBrush ImageSource="../../Resources/进入套系.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
+                </Button.Background>
+            </Button>
+            <Button Grid.Column="2" x:Name="btn_intoscene" Width="132" Height="43" Template="{StaticResource ButtonTemplate}">
+                <Button.Background>
+                    <ImageBrush ImageSource="../../Resources/进入场景.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
+                </Button.Background>
+            </Button>
         </Grid>
     </Grid>
 </Window>
