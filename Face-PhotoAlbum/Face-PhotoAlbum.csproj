@@ -112,6 +112,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
+    <Compile Include="Sources\ViewModels\FaceAlbumViewModel.cs" />
+    <Compile Include="Sources\ViewModels\PhotoViewModel.cs" />
     <Compile Include="Sources\Views\Commands\CloseCommandBindingProxy.cs" />
     <Compile Include="Sources\Face_PhotoAlbumWindow.xaml.cs">
       <DependentUpon>Face_PhotoAlbumWindow.xaml</DependentUpon>

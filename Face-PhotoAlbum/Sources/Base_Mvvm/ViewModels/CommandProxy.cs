@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Face_PhotoAlbum.ViewModel {
+namespace Face_PhotoAlbum.ViewModels {
     /// <summary>
     /// 命令代理
     /// </summary>
