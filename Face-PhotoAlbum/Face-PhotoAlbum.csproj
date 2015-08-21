@@ -112,6 +112,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
+    <Compile Include="Sources\ViewModels\AlbumWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\FaceAlbumViewModel.cs" />
     <Compile Include="Sources\ViewModels\PhotoViewModel.cs" />
     <Compile Include="Sources\Views\Commands\CloseCommandBindingProxy.cs" />
@@ -131,7 +132,6 @@
     <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
     <Compile Include="Sources\Base_Mvvm\ObservableObject.cs" />
     <Compile Include="Sources\Models\AlbumWindowModel.cs" />
-    <Compile Include="Sources\ViewModels\AlbumWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\IAlbumWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\ITopWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\TopWindowViewModel.cs" />

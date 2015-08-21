@@ -9,6 +9,7 @@ using System.Windows.Input;
 namespace Face_PhotoAlbum.ViewModels {
     interface IAlbumWindowViewModel {
         ObservableCollection<FaceAlbumViewModel> FaceAlbums { get; set; }
-        ICommand AddFaceAlbum { get; }
+        ICommand SelectFaceAlbumCommand { get; }
+        ICommand EnterFaceAlbumCommand { get; }
     }
 }

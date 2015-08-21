@@ -7,20 +7,42 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
-    public class AlbumWindow : ObservableObject, IAlbumWindowViewModel {
+    public class AlbumWindow : ObservableObject/*, IAlbumWindowViewModel*/ {
         private ObservableCollection<FaceAlbumViewModel> _FaceAlbums;
-        private ICommand _AddFaceAlbumCommand;
+
+        private ICommand _SelectFaceAlbumCommand;
+        private ICommand _EnterFaceAlbumCommand;
+
         public ObservableCollection<FaceAlbumViewModel> FaceAlbums { get; set; }
-        public ICommand AddFaceAlbum
+        public ICommand SelectFaceAlbumCommand
         {
             get
             {
-                if (this._AddFaceAlbumCommand == null)
+                if (this._SelectFaceAlbumCommand == null)
                 {
-                    //this._AddFaceAlbum = new CommandProxy(WaitingAction);
+                    this._SelectFaceAlbumCommand = new CommandProxy(SelectFaceAlbum);
                 }
-                return this._AddFaceAlbumCommand;
+                return this._SelectFaceAlbumCommand;
             }
         }
+        public ICommand EnterFaceAlbumCommand
+        {
+            get
+            {
+                if (this._EnterFaceAlbumCommand == null)
+                {
+                    this._EnterFaceAlbumCommand = new CommandProxy(EnterFaceAlbum);
+                }
+                return this._EnterFaceAlbumCommand;
+            }
+        }
+
+        private void SelectFaceAlbum(object parameter)
+        {
+        }
+        private void EnterFaceAlbum(object parameter)
+        {
+        }
+
     }
 }
