@@ -124,8 +124,8 @@ namespace Face_PhotoAlbum.Business {
                         newRow.RectRight = right;
                         newRow.RectTop = top;
                         newRow.RectBottom = bottom;
-                        newRow.ConfirmLabelNum = -1;
-                        newRow.PossibleLabelNum = -1;
+                        newRow.ConfirmAlbumNum = -1;
+                        newRow.PossibleAlbumNum = -1;
 
                         //定义切割矩形
                         var cut = new Int32Rect(left, top, right - left, bottom - top);

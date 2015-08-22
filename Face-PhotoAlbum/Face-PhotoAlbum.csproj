@@ -79,10 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Sources\Face_PhotoAlbumWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Sources\Views\AlbumWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -90,10 +86,6 @@
     <Page Include="Sources\Views\Fun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Sources\MyResDic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Sources\Views\MyButtonControlTemplate.xaml">
       <SubType>Designer</SubType>
@@ -112,13 +104,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
-    <Compile Include="Sources\ViewModels\AlbumWindowViewModel.cs" />
-    <Compile Include="Sources\ViewModels\FaceAlbumViewModel.cs" />
-    <Compile Include="Sources\ViewModels\PhotoViewModel.cs" />
+    <Compile Include="Sources\Models\AlbumWindowModel\FaceAlbumModel.cs" />
+    <Compile Include="Sources\ViewModels\AlbumWindowViewModel\AlbumWindowViewModel.cs" />
+    <Compile Include="Sources\ViewModels\AlbumWindowViewModel\FaceAlbumViewModel.cs" />
+    <Compile Include="Sources\ViewModels\AlbumWindowViewModel\PhotoViewModel.cs" />
     <Compile Include="Sources\Views\Commands\CloseCommandBindingProxy.cs" />
-    <Compile Include="Sources\Face_PhotoAlbumWindow.xaml.cs">
-      <DependentUpon>Face_PhotoAlbumWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Sources\Models\BLL\Business1.cs" />
     <Compile Include="Sources\Base_Mvvm\Views\Commands\BaseCommandBindingProxy.cs" />
     <Compile Include="Sources\Commons\HiwitLib.cs" />
@@ -127,19 +117,17 @@
     <Compile Include="Sources\Models\DAL\FacePhotoAlbumContext.cs" />
     <Compile Include="Sources\Models\DAL\T_Face.cs" />
     <Compile Include="Sources\Models\DAL\T_FaceComparison.cs" />
-    <Compile Include="Sources\Models\DAL\T_FaceLabel.cs" />
+    <Compile Include="Sources\Models\DAL\T_AlbumLabel.cs" />
     <Compile Include="Sources\Models\DAL\T_PhotoInfo.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
     <Compile Include="Sources\Base_Mvvm\ObservableObject.cs" />
-    <Compile Include="Sources\Models\AlbumWindowModel.cs" />
-    <Compile Include="Sources\ViewModels\IAlbumWindowViewModel.cs" />
-    <Compile Include="Sources\ViewModels\ITopWindowViewModel.cs" />
-    <Compile Include="Sources\ViewModels\TopWindowViewModel.cs" />
+    <Compile Include="Sources\Models\AlbumWindowModel\AlbumWindowModel.cs" />
+    <Compile Include="Sources\ViewModels\AlbumWindowViewModel\IAlbumWindowViewModel.cs" />
+    <Compile Include="Sources\ViewModels\TopWindowViewModel\ITopWindowViewModel.cs" />
+    <Compile Include="Sources\ViewModels\TopWindowViewModel\TopWindowViewModel.cs" />
     <Compile Include="Sources\Views\AlbumWindow.xaml.cs">
       <DependentUpon>AlbumWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sources\ImageButton.cs" />
-    <Compile Include="Sources\Photo.cs" />
     <Compile Include="Sources\Views\Commands\MinimizedCommandBindingProxy.cs" />
     <Compile Include="Sources\Views\ImageButton.cs" />
     <Compile Include="Sources\Views\TopWindow.xaml.cs">

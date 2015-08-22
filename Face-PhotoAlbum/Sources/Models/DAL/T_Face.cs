@@ -16,8 +16,8 @@ namespace Face_PhotoAlbum.Model {
         public string FaceFileName { get; set; }
         public string FaceFilePath { get; set; }
         public byte[] FeatureData { get; set; }
-        public int ConfirmLabelNum { get; set; }
-        public int PossibleLabelNum { get; set; }
+        public int ConfirmAlbumNum { get; set; }
+        public int PossibleAlbumNum { get; set; }
         [DefaultValue(0)]
         public int Status { get; set; }
         public DateTime UpdateTime { get; set; }

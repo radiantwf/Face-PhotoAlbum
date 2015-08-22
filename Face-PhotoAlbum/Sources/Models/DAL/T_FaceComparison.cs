@@ -12,6 +12,7 @@ namespace Face_PhotoAlbum.Model {
         public int PhotoNum2 { get; set; }
         public int SequenceNum2 { get; set; }
         public float Score { get; set; }
+        public int Status { get; set; }
         public DateTime UpdateTime { get; set; }
     }
 }

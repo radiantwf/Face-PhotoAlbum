@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.Models {
-    public class AlbumWindow : ObservableObject {
+    public class AlbumWindowModel : ObservableObject {
+
+
+
+
+
     }
 }
