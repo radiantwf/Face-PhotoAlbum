@@ -7,6 +7,6 @@ using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
     interface ITopWindowViewModel {
-        ICommand Waiting { get; }
+        ICommand WaitingCommand { get; }
     }
 }

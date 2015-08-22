@@ -21,7 +21,7 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="ContentRendered">
-            <i:InvokeCommandAction Command="{Binding Waiting, Mode=OneWay}"/>
+            <i:InvokeCommandAction Command="{Binding WaitingCommand, Mode=OneWay}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     

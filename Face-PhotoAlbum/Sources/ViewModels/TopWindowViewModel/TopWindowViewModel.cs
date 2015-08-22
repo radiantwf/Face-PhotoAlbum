@@ -8,36 +8,30 @@ using System.Windows.Threading;
 
 namespace Face_PhotoAlbum.ViewModels {
     public class TopWindowViewModel : ObservableObject, ITopWindowViewModel {
-        private ICommand _LoginCommand;
+        private ICommand _WaitingCommand;
 
         public event EventHandler HasWaited;
 
-        protected virtual void OnWaited()
-        {
+        protected virtual void OnWaited() {
             var handler = this.HasWaited;
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
 
-        public ICommand Waiting
-        {
-            get
-            {
-                if (this._LoginCommand == null)
-                {
-                    this._LoginCommand = new CommandProxy(WaitingAction);
+        public ICommand WaitingCommand {
+            get {
+                if (this._WaitingCommand == null) {
+                    this._WaitingCommand = new CommandProxy(WaitingAction);
                 }
-                return this._LoginCommand;
+                return this._WaitingCommand;
             }
         }
 
-        private void WaitingAction(object parameter)
-        {
+        private void WaitingAction(object parameter) {
             DispatcherTimer timer = new DispatcherTimer();
 
             timer.Interval = TimeSpan.FromSeconds(0);
-            timer.Tick += (o, a) =>
-            {
+            timer.Tick += (o, a) => {
                 timer.Stop();
                 OnWaited();
 
