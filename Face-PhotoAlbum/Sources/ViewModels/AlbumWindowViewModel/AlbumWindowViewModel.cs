@@ -1,5 +1,4 @@
 ﻿using Face_PhotoAlbum.Models;
-using Face_PhotoAlbum.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

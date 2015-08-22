@@ -45,13 +45,13 @@ namespace Face_PhotoAlbum.Models {
         public static ObservableCollection<FaceAlbumModel> GetFaceAlbumList() {
             ObservableCollection<FaceAlbumModel> list = new ObservableCollection<FaceAlbumModel>();
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
-            context.T_AlbumLabel.OrderBy(p=>p.AlbumNum).ToList().ForEach(row => {
+            context.T_AlbumLabel.OrderBy(p => p.AlbumNum).ToList().ForEach(row => {
                 FaceAlbumModel faceAlbum = new FaceAlbumModel();
                 faceAlbum.AlbumNum = row.AlbumNum;
                 faceAlbum._AlbumLabel = row.AlbumLabel;
                 faceAlbum.CoverImage = row.CoverImage;
                 faceAlbum._IsSelected = false;
-                context.T_Face.Where(p=>p.ConfirmAlbumNum == row.AlbumNum).GroupBy(p => p.PhotoNum).Count();
+                faceAlbum.ImageCount = context.T_Face.Where(p => p.ConfirmAlbumNum == row.AlbumNum || p.PossibleAlbumNum.Split(',').Contains(row.AlbumNum.ToString())).GroupBy(p => p.PhotoNum).Count();
 
             });
 

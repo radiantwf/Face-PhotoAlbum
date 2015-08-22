@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
-namespace Face_PhotoAlbum.ViewModel {
+namespace Face_PhotoAlbum.ViewModels {
     public class FaceAlbumViewModel : ObservableObject {
         public int FaceAlbumName { get; set; }
         public byte[] CoverImage { get; set; }
@@ -38,5 +39,21 @@ namespace Face_PhotoAlbum.ViewModel {
         //    return list;
         //}
         //#endregion
+    }
+
+    public class FaceAlbumSelectStatusToBgPathConverter : IValueConverter {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            if ((bool)value) {
+                return @"/Resources/场景背景selected.png";
+            }
+            else {
+                return @"/Resources/场景背景.png";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            throw new NotImplementedException();
+        }
     }
 }
