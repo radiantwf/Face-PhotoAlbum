@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -47,7 +48,8 @@ namespace Face_PhotoAlbum.ViewModels {
                 FaceAlbumViewModel faceViewModel = new FaceAlbumViewModel();
                 faceViewModel._AlbumLabel = row.AlbumLabel;
                 faceViewModel.AlbumNum = row.AlbumNum;
-                faceViewModel.CoverImage = row.CoverImage == null ? File.ReadAllBytes(@"Resources\未知.png") : row.CoverImage;
+                Uri uri = new Uri("pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/未知.png");
+                faceViewModel.CoverImage = row.CoverImage == null ? File.ReadAllBytes(uri.LocalPath) : row.CoverImage;
                 faceViewModel.ImageCount = row.ImageCount;
                 faceViewModel.IsSelected = false;
                 list.Add(faceViewModel);

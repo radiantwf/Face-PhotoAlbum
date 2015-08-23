@@ -258,9 +258,7 @@
     <Content Include="Photos\23.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\未知.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Resource Include="Resources\未知.png" />
     <Resource Include="Photos\24.jpg" />
     <Resource Include="Photos\25.jpg" />
     <Resource Include="Photos\26.jpg" />
