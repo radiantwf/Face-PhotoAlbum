@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Face_PhotoAlbum.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,12 +9,22 @@ using System.Windows.Data;
 
 namespace Face_PhotoAlbum.ViewModels {
     public class FaceAlbumViewModel : ObservableObject {
-        public int FaceAlbumName { get; set; }
-        public byte[] CoverImage { get; set; }
-        public byte[] ImageCount { get; set; }
-
+        private string _AlbumLabel;
         private bool _IsSelected = false;
 
+        public int AlbumNum { get; private set; }
+        public byte[] CoverImage { get; private set; }
+        public int ImageCount { get; private set; }
+
+        public string AlbumLabel {
+            get {
+                return _AlbumLabel;
+            }
+            set {
+                _AlbumLabel = value;
+                RaisePropertyChanged(() => AlbumLabel);
+            }
+        }
         public bool IsSelected
         {
             get
@@ -27,18 +38,25 @@ namespace Face_PhotoAlbum.ViewModels {
             }
         }
 
-        //#region 模拟数据获取
-        ///// <summary>
-        ///// 模拟测试数据
-        ///// </summary>
-        ///// <returns></returns>
-        //public static ObservableCollection<FaceAlbumViewModel> GetFaceAlbumList()
-        //{
-        //    ObservableCollection<FaceAlbumViewModel> list = new ObservableCollection<FaceAlbumViewModel>();
-
-        //    return list;
-        //}
-        //#endregion
+        #region 数据获取
+        /// <summary>
+        /// 模拟测试数据
+        /// </summary>
+        /// <returns></returns>
+        public static ObservableCollection<FaceAlbumViewModel> ConvertToViewModelDataList(IEnumerable<FaceAlbumModel> model) {
+            ObservableCollection<FaceAlbumViewModel> list = new ObservableCollection<FaceAlbumViewModel>();
+            model.ToList().ForEach(row => {
+                FaceAlbumViewModel faceViewModel = new FaceAlbumViewModel();
+                faceViewModel._AlbumLabel = row.AlbumLabel;
+                faceViewModel.AlbumNum = row.AlbumNum;
+                faceViewModel.CoverImage = row.CoverImage;
+                faceViewModel.ImageCount = row.ImageCount;
+                faceViewModel.IsSelected = false;
+            });
+            
+            return list;
+        }
+        #endregion
     }
 
     public class FaceAlbumSelectStatusToBgPathConverter : IValueConverter {

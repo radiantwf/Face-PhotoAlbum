@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Face_PhotoAlbum.Views;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
