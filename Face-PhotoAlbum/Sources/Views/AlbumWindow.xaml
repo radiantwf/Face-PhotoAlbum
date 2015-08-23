@@ -9,10 +9,12 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding WaitingCommand}" CommandParameter="AlbumWindow1"/>
-            <!--<i:InvokeCommandAction Command="{Binding WaitingCommand, Mode=OneWay}"/>-->
+            <i:InvokeCommandAction Command="{Binding ReadFaceAlbumsCommand, Mode=OneWay}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Window.DataContext>
+        <vm:AlbumWindowViewModel/>
+    </Window.DataContext>
     
     <Window.Background>
         <ImageBrush ImageSource="../../Resources/mybg.png" />

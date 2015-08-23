@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
-    public class AlbumWindow : ObservableObject, IAlbumWindowViewModel {
+    public class AlbumWindowViewModel : ObservableObject, IAlbumWindowViewModel {
         private ObservableCollection<FaceAlbumViewModel> _FaceAlbums;
 
         private AlbumWindowModel model = new AlbumWindowModel();
