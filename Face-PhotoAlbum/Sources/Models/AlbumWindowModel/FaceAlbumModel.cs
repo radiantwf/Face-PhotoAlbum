@@ -31,18 +31,26 @@ namespace Face_PhotoAlbum.Models {
         /// 模拟测试数据
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<FaceAlbumModel> GetFaceAlbumList() {
-            IEnumerable<FaceAlbumModel> list = new ObservableCollection<FaceAlbumModel>();
-            FacePhotoAlbumContext context = new FacePhotoAlbumContext();
-            context.T_AlbumLabel.OrderBy(p => p.AlbumNum).ToList().ForEach(row => {
-                FaceAlbumModel faceAlbum = new FaceAlbumModel();
-                faceAlbum.AlbumNum = row.AlbumNum;
-                faceAlbum._AlbumLabel = row.AlbumLabel;
-                faceAlbum.CoverImage = row.CoverImage;
-                faceAlbum.ImageCount = context.T_Face.Where(p => p.ConfirmAlbumNum == row.AlbumNum || p.PossibleAlbumNum.Split(',').Contains(row.AlbumNum.ToString())).GroupBy(p => p.PhotoNum).Count();
-            });
+        public static IList<FaceAlbumModel> GetFaceAlbumList() {
+            try {
 
-            return list;
+                IList<FaceAlbumModel> list = new ObservableCollection<FaceAlbumModel>();
+                FacePhotoAlbumContext context = new FacePhotoAlbumContext();
+                context.T_AlbumLabel.OrderBy(p => p.AlbumNum).ToList().ForEach(row => {
+                    FaceAlbumModel faceAlbum = new FaceAlbumModel();
+                    faceAlbum.AlbumNum = row.AlbumNum;
+                    faceAlbum._AlbumLabel = row.AlbumLabel;
+                    faceAlbum.CoverImage = row.CoverImage;
+                    string strAlbumNum = row.AlbumNum.ToString();
+                    faceAlbum.ImageCount = context.T_Face.Where(p => p.ConfirmAlbumNum == row.AlbumNum || p.PossibleAlbumNum.StartsWith(strAlbumNum + ",") || p.PossibleAlbumNum.EndsWith("," + strAlbumNum ) || p.PossibleAlbumNum.Contains(","+strAlbumNum + ",")).GroupBy(p => p.PhotoNum).Count();
+                    list.Add(faceAlbum);
+                });
+
+                return list;
+            }
+            catch (Exception){
+                throw;
+            }
         }
         #endregion
     }

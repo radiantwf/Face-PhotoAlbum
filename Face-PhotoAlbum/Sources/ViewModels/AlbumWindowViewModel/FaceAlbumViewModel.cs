@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,14 +26,11 @@ namespace Face_PhotoAlbum.ViewModels {
                 RaisePropertyChanged(() => AlbumLabel);
             }
         }
-        public bool IsSelected
-        {
-            get
-            {
+        public bool IsSelected {
+            get {
                 return _IsSelected;
             }
-            set
-            {
+            set {
                 _IsSelected = value;
                 RaisePropertyChanged(() => IsSelected);
             }
@@ -49,11 +47,12 @@ namespace Face_PhotoAlbum.ViewModels {
                 FaceAlbumViewModel faceViewModel = new FaceAlbumViewModel();
                 faceViewModel._AlbumLabel = row.AlbumLabel;
                 faceViewModel.AlbumNum = row.AlbumNum;
-                faceViewModel.CoverImage = row.CoverImage;
+                faceViewModel.CoverImage = row.CoverImage == null ? File.ReadAllBytes(@"Resources\未知.png") : row.CoverImage;
                 faceViewModel.ImageCount = row.ImageCount;
                 faceViewModel.IsSelected = false;
+                list.Add(faceViewModel);
             });
-            
+
             return list;
         }
         #endregion
@@ -63,10 +62,10 @@ namespace Face_PhotoAlbum.ViewModels {
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
             if ((bool)value) {
-                return @"/Resources/场景背景selected.png";
+                return @"../../../Resources/场景背景selected.png";
             }
             else {
-                return @"/Resources/场景背景.png";
+                return @"../../../Resources/场景背景.png";
             }
         }
 
