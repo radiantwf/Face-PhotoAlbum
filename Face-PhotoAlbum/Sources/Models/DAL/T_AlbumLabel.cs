@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Face_PhotoAlbum.Model {
+namespace Face_PhotoAlbum.Models {
     public class T_AlbumLabel {
         [Key, Column(Order = 0)]
         public int AlbumNum { get; set; }

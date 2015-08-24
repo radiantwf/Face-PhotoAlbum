@@ -1,5 +1,4 @@
 ﻿using Face_PhotoAlbum.Common;
-using Face_PhotoAlbum.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Face_PhotoAlbum.Business {
+namespace Face_PhotoAlbum.Models {
     public class Business1 {
         public void Run() {
             ProcessPhoto();
