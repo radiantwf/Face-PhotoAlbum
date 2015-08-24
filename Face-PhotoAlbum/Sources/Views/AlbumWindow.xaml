@@ -15,7 +15,7 @@
     <Window.DataContext>
         <vm:AlbumWindowViewModel/>
     </Window.DataContext>
-    
+
     <Window.Background>
         <ImageBrush ImageSource="../../Resources/mybg.png" />
     </Window.Background>
@@ -24,7 +24,7 @@
                          Description="Taskbar Items Sample">
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
-    
+
     <Grid HorizontalAlignment="Left" Width="1054">
         <Grid.RowDefinitions>
             <RowDefinition Height="93" />
@@ -79,14 +79,16 @@
 
         <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto">
 
-            <ItemsControl ItemsSource="{Binding FaceAlbums}">
-                    <ItemsPanelTemplate>
+            <ItemsControl ItemsSource="{Binding FaceAlbums, Mode=TwoWay}">
+                <ItemsControl.Template>
+                    <ControlTemplate>
                         <WrapPanel>
-                            <!--<local:AlbumContainer />-->
+                            <local:AlbumContainer />
                         </WrapPanel>
-                    </ItemsPanelTemplate>
+                    </ControlTemplate>
+                </ItemsControl.Template>
             </ItemsControl>
-            
+
             <!--<ItemsControl ItemsSource="{Binding FaceAlbums}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

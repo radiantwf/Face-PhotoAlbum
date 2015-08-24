@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
     public class AlbumWindowViewModel : ObservableObject, IAlbumWindowViewModel {
-        private ObservableCollection<FaceAlbumViewModel> _FaceAlbums;
+        private ObservableCollection<FaceAlbumViewModel> _FaceAlbums = null;
 
         private AlbumWindowModel model = new AlbumWindowModel();
         private ICommand _ReadFaceAlbumsCommand;
@@ -57,7 +57,7 @@ namespace Face_PhotoAlbum.ViewModels {
                 var modelData = model.GetFaceAlbumList();
                 FaceAlbums = FaceAlbumViewModel.ConvertToViewModelDataList(modelData);
             }
-            catch {
+            catch(Exception ex) {
                 throw;
             }
         }

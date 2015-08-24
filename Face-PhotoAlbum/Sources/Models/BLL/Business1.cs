@@ -12,27 +12,24 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Face_PhotoAlbum.Business {
-   public class Business1 {
-        public void Run()
-        {
+    public class Business1 {
+        public void Run() {
             ProcessPhoto();
             ProcessFace();
             ProcessComparision();
+            ProcessAlbum();
         }
 
-        public void ProcessPhoto()
-        {
+        public void ProcessPhoto() {
             var searchPattern = new Regex(@"$(?<=\.(jpg|png|bmp))", RegexOptions.IgnoreCase);
             var files = Directory.EnumerateFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos"), "*.*", SearchOption.AllDirectories).Where(p => searchPattern.IsMatch(p));
 
             IList<T_PhotoInfo> delRows = new List<T_PhotoInfo>();
 
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
-            context.T_PhotoInfo.ToList().ForEach(p =>
-            {
+            context.T_PhotoInfo.ToList().ForEach(p => {
                 string fileName = Path.Combine(p.FilePath, p.FileName);
-                if (!files.Any(name => name.ToLower() == fileName.ToLower()))
-                {
+                if (!files.Any(name => name.ToLower() == fileName.ToLower())) {
                     p.Status = 99;
                     p.UpdateTime = DateTime.Now;
                 }
@@ -42,24 +39,20 @@ namespace Face_PhotoAlbum.Business {
             if (context.T_PhotoInfo.Count() > 0)
                 photoNum = context.T_PhotoInfo.Max(p => p.PhotoNum);
 
-            files.ToList().ForEach(file =>
-            {
+            files.ToList().ForEach(file => {
                 string md5 = MD5Process.GetMD5HashFromFile(file);
                 var rows = context.T_PhotoInfo.Where(p => (p.FilePath + "\\" + p.FileName).ToLower() == file.ToLower() && p.Status != 99);
 
                 int count = rows.Count();
-                if (count != 0)
-                {
+                if (count != 0) {
                     var row = rows.First();
-                    if (row.MD5 != md5)
-                    {
+                    if (row.MD5 != md5) {
                         row.MD5 = md5;
                         row.Status = 0;
                         row.UpdateTime = DateTime.Now;
                     }
                 }
-                else if (count == 0)
-                {
+                else if (count == 0) {
                     var newRow = new T_PhotoInfo();
                     newRow.FileName = Path.GetFileName(file);
                     newRow.FilePath = Path.GetDirectoryName(file);
@@ -73,8 +66,7 @@ namespace Face_PhotoAlbum.Business {
             context.SaveChanges();
         }
 
-        public void ProcessFace()
-        {
+        public void ProcessFace() {
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
             var delPhotoInfoRows = context.T_PhotoInfo.Where(p => p.Status == 99);
             delPhotoInfoRows.ToList()
@@ -84,8 +76,7 @@ namespace Face_PhotoAlbum.Business {
             int ret = HiwitLib.InitSDK(AppDomain.CurrentDomain.BaseDirectory);
 
             var photoInfoRows = context.T_PhotoInfo.Where(p => p.Status == 0);
-            photoInfoRows.ToList().ForEach(photoInfoRow =>
-            {
+            photoInfoRows.ToList().ForEach(photoInfoRow => {
                 string photoFilePath = Path.Combine(photoInfoRow.FilePath, photoInfoRow.FileName);
 
                 byte[] byteImage = File.ReadAllBytes(photoFilePath);
@@ -95,13 +86,11 @@ namespace Face_PhotoAlbum.Business {
                     faceRegion[i].faceVertex = new HiwitLib.HIWITPoint[4];
                 ret = HiwitLib.FaceDetect(byteImage, faceRegion, ref faceNumber, 0, 0, null);
                 if (ret != HiwitLib.HIWIT_ERR_NONE) throw new ArgumentException("FaceDetect fail:" + ret);
-                if (faceNumber == 0)
-                {
+                if (faceNumber == 0) {
                     photoInfoRow.Status = 2;
                     photoInfoRow.UpdateTime = DateTime.Now;
                 }
-                else
-                {
+                else {
                     BitmapImage sourceImage = new BitmapImage();
                     sourceImage.BeginInit();
                     sourceImage.UriSource = new Uri(photoFilePath);
@@ -110,8 +99,7 @@ namespace Face_PhotoAlbum.Business {
                     int imageHeight = sourceImage.PixelHeight;
                     int bitsPerPixel = sourceImage.Format.BitsPerPixel;
 
-                    for (int i = 0; i < faceNumber; i++)
-                    {
+                    for (int i = 0; i < faceNumber; i++) {
                         int left = (int)faceRegion[i].faceVertex.Min(p => p.x);
                         int right = (int)faceRegion[i].faceVertex.Max(p => p.x);
                         int top = (int)faceRegion[i].faceVertex.Min(p => p.y);
@@ -155,16 +143,14 @@ namespace Face_PhotoAlbum.Business {
                         faceInfo.mouthContour = new HiwitLib.HIWITPoint[22];
                         faceInfo.noseContour = new HiwitLib.HIWITPoint[13];
                         ret = HiwitLib.FaceAlignmentFromFaceRegion(byteImage, faceRegion[i], ref faceInfo);
-                        if (ret == HiwitLib.HIWIT_ERR_NONE)
-                        {
+                        if (ret == HiwitLib.HIWIT_ERR_NONE) {
                             int size = Marshal.SizeOf(faceInfo);
                             byte[] byteFaceInfo = new byte[size];
                             StructComversion.StructToBytes(faceInfo, byteFaceInfo, 0, size);
                             newRow.Status = 0;
                             newRow.FeatureData = byteFaceInfo;
                         }
-                        else
-                        {
+                        else {
                             newRow.FeatureData = new byte[0];
                             newRow.Status = 2;
                         }
@@ -180,15 +166,13 @@ namespace Face_PhotoAlbum.Business {
             HiwitLib.UnInitSDK();
         }
 
-        public void ProcessComparision()
-        {
+        public void ProcessComparision() {
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
             List<T_Face> comparingRows = context.T_Face.Where(p => p.Status == 0).ToList();
             List<T_Face> comparedRows = context.T_Face.Where(p => p.Status == 1).ToList();
 
             int ret = HiwitLib.InitSDK(AppDomain.CurrentDomain.BaseDirectory);
-            comparingRows.ForEach(comparingRow =>
-            {
+            comparingRows.ForEach(comparingRow => {
                 //string probeFileName = Path.Combine(comparingRow.FaceFilePath, comparingRow.FaceFileName);
                 var photoInfo = context.T_PhotoInfo.Where(p => p.PhotoNum == comparingRow.PhotoNum).First();
                 string probeFileName = Path.Combine(photoInfo.FilePath, photoInfo.FileName);
@@ -196,10 +180,8 @@ namespace Face_PhotoAlbum.Business {
                 byte[] probeImage = File.ReadAllBytes(probeFileName);
                 HiwitLib.HIWITFaceInfo? probeInfo = comparingRow.FeatureData.Length == 0 ? null : (HiwitLib.HIWITFaceInfo?)StructComversion.BytesToStruct(comparingRow.FeatureData, 0, typeof(HiwitLib.HIWITFaceInfo));
 
-                comparedRows.ForEach(comparedRow =>
-                {
-                    if (comparedRow.PhotoNum != comparingRow.PhotoNum)
-                    {
+                comparedRows.ForEach(comparedRow => {
+                    if (comparedRow.PhotoNum != comparingRow.PhotoNum) {
                         //string galleryFileName = Path.Combine(comparedRow.FaceFilePath, comparedRow.FaceFileName);
                         photoInfo = context.T_PhotoInfo.Where(p => p.PhotoNum == comparedRow.PhotoNum).First();
                         string galleryFileName = Path.Combine(photoInfo.FilePath, photoInfo.FileName);
@@ -232,5 +214,18 @@ namespace Face_PhotoAlbum.Business {
             HiwitLib.UnInitSDK();
         }
 
+        public void ProcessAlbum() {
+            FacePhotoAlbumContext context = new FacePhotoAlbumContext();
+            context.T_FaceComparison.Where(row => row.Score >= 0.45 && row.Status == 0).OrderByDescending(row => row.Score)
+                .ToList().ForEach(row => {
+                    int PhotoNum1 = row.PhotoNum1;
+                    int SequenceNum1 = row.SequenceNum1;
+                    int PhotoNum2 = row.PhotoNum2;
+                    int SequenceNum2 = row.SequenceNum2;
+
+                    var face = context.T_Face.Where(p => p.PhotoNum == PhotoNum2 && p.SequenceNum == SequenceNum2).First();
+                });
+            return;
+        }
     }
 }

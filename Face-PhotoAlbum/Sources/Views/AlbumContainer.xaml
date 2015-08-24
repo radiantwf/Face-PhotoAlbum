@@ -6,4 +6,7 @@
              xmlns:local="clr-namespace:Face_PhotoAlbum.Views"
              xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
              mc:Ignorable="d" Margin="10" ContentTemplate="{Binding Mode=OneWay, Source={StaticResource AlbumTemplate}}" >
+    <UserControl.DataContext>
+        <vm:AlbumWindowViewModel/>
+    </UserControl.DataContext>
 </UserControl>
