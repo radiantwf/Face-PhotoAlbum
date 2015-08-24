@@ -13,8 +13,8 @@ namespace Face_PhotoAlbum.Models {
         /// <returns></returns>
         public IEnumerable<FaceAlbumModel> GetFaceAlbumList() {
 
-            Business1 bll = new Business1();
-            bll.Run();
+            //Business1 bll = new Business1();
+            //bll.Run();
             return FaceAlbumModel.GetFaceAlbumList();
         }
 

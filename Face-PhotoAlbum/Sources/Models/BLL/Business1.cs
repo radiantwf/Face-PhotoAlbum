@@ -13,26 +13,41 @@ using System.Windows.Media.Imaging;
 namespace Face_PhotoAlbum.Models {
     public class Business1 {
         public void Run() {
-            ProcessPhoto();
-            ProcessFace();
-            ProcessComparision();
+
+            //ProcessPhoto();
+            //ProcessFace();
+            //ProcessComparision();
             ProcessAlbum();
+            //DeleteInvalidData();
+        }
+        private void DeleteInvalidData() {
+            FacePhotoAlbumContext context = new FacePhotoAlbumContext();
+            foreach (var row in context.T_PhotoInfo.Where(p => p.Status == 99)) {
+                context.T_PhotoInfo.Remove(row);
+            }
+            foreach (var row in context.T_Face.Where(p => p.Status == 99)) {
+                context.T_Face.Remove(row);
+            }
+            foreach (var row in context.T_FaceComparison.Where(p => p.Status == 99)) {
+                context.T_FaceComparison.Remove(row);
+            }
+            context.SaveChanges();
         }
 
-        public void ProcessPhoto() {
+        private void ProcessPhoto() {
             var searchPattern = new Regex(@"$(?<=\.(jpg|png|bmp))", RegexOptions.IgnoreCase);
             var files = Directory.EnumerateFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos"), "*.*", SearchOption.AllDirectories).Where(p => searchPattern.IsMatch(p));
 
             IList<T_PhotoInfo> delRows = new List<T_PhotoInfo>();
 
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
-            context.T_PhotoInfo.ToList().ForEach(p => {
+            foreach (T_PhotoInfo p in context.T_PhotoInfo.Where(p => p.Status != 99)) {
                 string fileName = Path.Combine(p.FilePath, p.FileName);
                 if (!files.Any(name => name.ToLower() == fileName.ToLower())) {
                     p.Status = 99;
                     p.UpdateTime = DateTime.Now;
                 }
-            });
+            }
 
             int photoNum = 0;
             if (context.T_PhotoInfo.Count() > 0)
@@ -65,12 +80,15 @@ namespace Face_PhotoAlbum.Models {
             context.SaveChanges();
         }
 
-        public void ProcessFace() {
+        private void ProcessFace() {
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
-            var delPhotoInfoRows = context.T_PhotoInfo.Where(p => p.Status == 99);
-            delPhotoInfoRows.ToList()
-                .ForEach(photoInfoRow => context.T_Face.Where(faceRow => faceRow.PhotoNum == photoInfoRow.PhotoNum && faceRow.Status != 99).ToList()
-                .ForEach(faceRow => faceRow.Status = 99));
+            foreach (var row in context.T_PhotoInfo.Where(p => p.Status == 99).Join(context.T_Face.Where(q => q.Status != 99)
+                , p => new { PhotoNum = p.PhotoNum }
+                , q => new { PhotoNum = q.PhotoNum }
+                , (p, q) => new { T_FaceComparison = p, T_Face = q })) {
+                row.T_Face.Status = 99;
+            }
+
 
             int ret = HiwitLib.InitSDK(AppDomain.CurrentDomain.BaseDirectory);
 
@@ -165,7 +183,7 @@ namespace Face_PhotoAlbum.Models {
             HiwitLib.UnInitSDK();
         }
 
-        public void ProcessComparision() {
+        private void ProcessComparision() {
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
             List<T_Face> comparingRows = context.T_Face.Where(p => p.Status == 0).ToList();
             List<T_Face> comparedRows = context.T_Face.Where(p => p.Status == 1).ToList();
@@ -213,18 +231,114 @@ namespace Face_PhotoAlbum.Models {
             HiwitLib.UnInitSDK();
         }
 
-        public void ProcessAlbum() {
+        private void ProcessAlbum() {
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
-            context.T_FaceComparison.Where(row => row.Score >= 0.45 && row.Status == 0).OrderByDescending(row => row.Score)
-                .ToList().ForEach(row => {
-                    int PhotoNum1 = row.PhotoNum1;
-                    int SequenceNum1 = row.SequenceNum1;
-                    int PhotoNum2 = row.PhotoNum2;
-                    int SequenceNum2 = row.SequenceNum2;
+            SetConfirmFaceAlbum(context);
+            CreateNewFaceAlbum(context);
+            SetPossibleAlbumNum(context);
+            SetNotMatchData(context);
+        }
 
-                    var face = context.T_Face.Where(p => p.PhotoNum == PhotoNum2 && p.SequenceNum == SequenceNum2).First();
-                });
-            return;
+        private void SetConfirmFaceAlbum(FacePhotoAlbumContext context) {
+            var pRows = context.T_FaceComparison.Where(p => p.Score >= 0.45 && p.Status == 0).OrderByDescending(p => p.Score);
+            var qRows = context.T_Face.Where(face => face.Status == 1 && face.ConfirmAlbumNum != -1);
+            var ret = pRows.Join(qRows
+              , p => new { PhotoNum = p.PhotoNum1, SequenceNum = p.SequenceNum1 }
+              , q => new { PhotoNum = q.PhotoNum, SequenceNum = q.SequenceNum }
+              , (p, q) => new { T_FaceComparison = p, T_Face = q, AnotherPhotoNum = p.PhotoNum2, AnotherSequenceNum = p.SequenceNum2 }).Union(pRows.Join(qRows
+              , p => new { PhotoNum = p.PhotoNum2, SequenceNum = p.SequenceNum2 }
+              , q => new { PhotoNum = q.PhotoNum, SequenceNum = q.SequenceNum }
+              , (p, q) => new { T_FaceComparison = p, T_Face = q, AnotherPhotoNum = p.PhotoNum1, AnotherSequenceNum = p.SequenceNum1 }));
+            if (ret.Count() == 0)
+                return;
+
+            ret.ToList().ForEach(p => {
+                var writingRow = context.T_Face.Where(q => q.PhotoNum == p.AnotherPhotoNum && q.SequenceNum == p.AnotherSequenceNum).First();
+                writingRow.ConfirmAlbumNum = p.T_Face.ConfirmAlbumNum;
+                writingRow.PossibleAlbumNum = "-1";
+                writingRow.UpdateTime = DateTime.Now;
+                p.T_FaceComparison.Status = 1;
+                p.T_FaceComparison.UpdateTime = DateTime.Now;
+            });
+            context.SaveChanges();
+
+            SetConfirmFaceAlbum(context);
+        }
+        private void CreateNewFaceAlbum(FacePhotoAlbumContext context) {
+            var pRows = context.T_FaceComparison.Where(p => p.Score >= 0.45 && p.Status == 0).OrderByDescending(p => p.Score);
+            var qRows = context.T_Face.Where(face => face.Status == 1 && face.ConfirmAlbumNum == -1);
+            var ret = pRows.Join(qRows
+              , p => new { PhotoNum = p.PhotoNum1, SequenceNum = p.SequenceNum1 }
+              , q => new { PhotoNum = q.PhotoNum, SequenceNum = q.SequenceNum }
+              , (p, q) => new { T_FaceComparison = p, T_Face = q, AnotherPhotoNum = p.PhotoNum2, AnotherSequenceNum = p.SequenceNum2 }).Union(pRows.Join(qRows
+              , p => new { PhotoNum = p.PhotoNum2, SequenceNum = p.SequenceNum2 }
+              , q => new { PhotoNum = q.PhotoNum, SequenceNum = q.SequenceNum }
+              , (p, q) => new { T_FaceComparison = p, T_Face = q, AnotherPhotoNum = p.PhotoNum1, AnotherSequenceNum = p.SequenceNum1 }));
+            if (ret.Count() == 0)
+                return;
+            var row = ret.First();
+            string AlbumName = string.Empty;
+            for (int i = 1; ; i++) {
+                AlbumName = "自定义" + i.ToString();
+                if (context.T_AlbumLabel.Where(p => p.AlbumLabel == AlbumName).Count() == 0)
+                    break;
+            }
+            T_AlbumLabel albumLabelRow = new T_AlbumLabel();
+            albumLabelRow.AlbumNum = context.T_AlbumLabel.Max(p => p.AlbumNum) + 1;
+            albumLabelRow.AlbumLabel = AlbumName;
+            albumLabelRow.UpdateTime = DateTime.Now;
+            albumLabelRow.CoverImage = File.ReadAllBytes(Path.Combine(row.T_Face.FaceFilePath, row.T_Face.FaceFileName));
+            context.T_AlbumLabel.Add(albumLabelRow);
+
+            var writingRow = context.T_Face.Where(q => q.PhotoNum == row.T_Face.PhotoNum && q.SequenceNum == row.T_Face.SequenceNum).First();
+            writingRow.ConfirmAlbumNum = albumLabelRow.AlbumNum;
+            writingRow.PossibleAlbumNum = "-1";
+            writingRow.UpdateTime = DateTime.Now;
+
+            context.SaveChanges();
+
+            SetConfirmFaceAlbum(context);
+            CreateNewFaceAlbum(context);
+        }
+        private void SetPossibleAlbumNum(FacePhotoAlbumContext context) {
+            var pRows = context.T_FaceComparison.Where(p => p.Score < 0.45 && p.Score >= 0.4 && p.Status == 0).OrderByDescending(p => p.Score);
+            var qRows = context.T_Face.Where(face => face.Status == 1 && face.ConfirmAlbumNum != -1);
+            var ret = pRows.Join(qRows
+              , p => new { PhotoNum = p.PhotoNum1, SequenceNum = p.SequenceNum1 }
+              , q => new { PhotoNum = q.PhotoNum, SequenceNum = q.SequenceNum }
+              , (p, q) => new { T_FaceComparison = p, T_Face = q, AnotherPhotoNum = p.PhotoNum2, AnotherSequenceNum = p.SequenceNum2 }).Union(pRows.Join(qRows
+              , p => new { PhotoNum = p.PhotoNum2, SequenceNum = p.SequenceNum2 }
+              , q => new { PhotoNum = q.PhotoNum, SequenceNum = q.SequenceNum }
+              , (p, q) => new { T_FaceComparison = p, T_Face = q, AnotherPhotoNum = p.PhotoNum1, AnotherSequenceNum = p.SequenceNum1 }));
+            if (ret.Count() == 0)
+                return;
+
+            foreach (var p in ret) {
+                var writingRow = context.T_Face.Where(q => q.PhotoNum == p.AnotherPhotoNum && q.SequenceNum == p.AnotherSequenceNum).First();
+                if (writingRow.ConfirmAlbumNum != -1)
+                    continue;
+                if (writingRow.PossibleAlbumNum == "-1") {
+                    writingRow.PossibleAlbumNum = p.T_Face.ConfirmAlbumNum.ToString();
+                }
+                else {
+                    if (!writingRow.PossibleAlbumNum.Split(',').Contains(p.T_Face.ConfirmAlbumNum.ToString())) {
+                        writingRow.PossibleAlbumNum += "," + p.T_Face.ConfirmAlbumNum.ToString();
+                    }
+                }
+                writingRow.UpdateTime = DateTime.Now;
+                p.T_FaceComparison.Status = 1;
+                p.T_FaceComparison.UpdateTime = DateTime.Now;
+                context.SaveChanges();
+            }
+        }
+
+        private void SetNotMatchData(FacePhotoAlbumContext context) {
+            var pRows = context.T_FaceComparison.Where(p => p.Score < 0.4);
+            foreach (var p in pRows) {
+                p.Status = 1;
+                p.UpdateTime = DateTime.Now;
+            }
+            context.SaveChanges();
         }
     }
 }
