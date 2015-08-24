@@ -152,12 +152,14 @@
     </ControlTemplate>
 
     <vm:FaceAlbumSelectStatusToBgPathConverter x:Key="album_stb" />
+    <vm:FaceAlbumNullImageToResourceImageConverter x:Key="album_ntr" />
+    
     <DataTemplate x:Key="AlbumTemplate">
         <Border Width="168" Height="170">
             <Border.Background>
                 <ImageBrush ImageSource="{Binding IsSelected, Converter={StaticResource album_stb}}" />
             </Border.Background>
-            <Image Source="{Binding CoverImage}" Width="150" Height="150" Stretch="Fill" />
+            <Image Source="{Binding CoverImage, Converter={StaticResource album_ntr}}" Width="150" Height="150" Stretch="Fill" />
         </Border>
     </DataTemplate>
 

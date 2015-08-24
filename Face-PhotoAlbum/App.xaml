@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Face_PhotoAlbum"
              StartupUri="Sources/Views/AlbumWindow.xaml" Startup="Application_Startup">
-             <!--StartupUri="Sources/Views/AlbumWindow.xaml" Startup="Application_Startup">-->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Sources/Views/Fun.xaml"/>
-                <ResourceDictionary Source="Sources/Views/MyButtonControlTemplate.xaml"/>
-                <ResourceDictionary Source="Sources/Views/MyScrollViewerControlTemplate.xaml"/>
-                <!--<ResourceDictionary Source="Sources/MyResDic.xaml"/>-->
+                <ResourceDictionary Source="Sources/Views/StaticResources/Fun.xaml"/>
+                <ResourceDictionary Source="Sources/Views/StaticResources/MyButtonControlTemplate.xaml"/>
+                <ResourceDictionary Source="Sources/Views/StaticResources/MyScrollViewerControlTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

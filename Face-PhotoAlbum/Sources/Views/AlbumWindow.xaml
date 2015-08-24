@@ -79,14 +79,22 @@
 
         <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto">
 
-            <ItemsControl ItemsSource="{Binding FaceAlbumViewModel}" Width="1000">
+            <ItemsControl ItemsSource="{Binding FaceAlbums}">
+                    <ItemsPanelTemplate>
+                        <WrapPanel>
+                            <!--<local:AlbumContainer />-->
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+            </ItemsControl>
+            
+            <!--<ItemsControl ItemsSource="{Binding FaceAlbums}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <local:AlbumContainer>
                         </local:AlbumContainer>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            </ItemsControl>-->
         </ScrollViewer>
 
         <Grid Grid.Row="3" VerticalAlignment="Top">

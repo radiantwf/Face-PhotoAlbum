@@ -53,15 +53,27 @@ namespace Face_PhotoAlbum.ViewModels {
         }
 
         private void ReadFaceAlbums(object parameter) {
-            var modelData = model.GetFaceAlbumList();
-            FaceAlbums = FaceAlbumViewModel.ConvertToViewModelDataList(modelData);
+            try {
+                var modelData = model.GetFaceAlbumList();
+                FaceAlbums = FaceAlbumViewModel.ConvertToViewModelDataList(modelData);
+            }
+            catch {
+                throw;
+            }
         }
         private void SelectFaceAlbum(object parameter) {
-
+            try {
+            }
+            catch {
+                throw;
+            }
         }
         private void EnterFaceAlbum(object parameter) {
-
+            try {
+            }
+            catch {
+                throw;
+            }
         }
-
     }
 }

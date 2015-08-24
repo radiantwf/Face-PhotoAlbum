@@ -87,15 +87,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Views\Fun.xaml">
+    <Page Include="Sources\Views\StaticResources\Fun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Views\MyButtonControlTemplate.xaml">
+    <Page Include="Sources\Views\StaticResources\MyButtonControlTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Views\MyScrollViewerControlTemplate.xaml">
+    <Page Include="Sources\Views\StaticResources\MyScrollViewerControlTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
