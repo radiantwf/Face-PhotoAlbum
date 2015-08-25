@@ -13,12 +13,11 @@ using System.Windows.Media.Imaging;
 namespace Face_PhotoAlbum.Models {
     public class Business1 {
         public void Run() {
-
-            //ProcessPhoto();
-            //ProcessFace();
-            //ProcessComparision();
+            ProcessPhoto();
+            ProcessFace();
+            ProcessComparision();
             ProcessAlbum();
-            //DeleteInvalidData();
+            DeleteInvalidData();
         }
         private void DeleteInvalidData() {
             FacePhotoAlbumContext context = new FacePhotoAlbumContext();
@@ -102,7 +101,8 @@ namespace Face_PhotoAlbum.Models {
                 for (int i = 0; i < faceNumber; i++)
                     faceRegion[i].faceVertex = new HiwitLib.HIWITPoint[4];
                 ret = HiwitLib.FaceDetect(byteImage, faceRegion, ref faceNumber, 0, 0, null);
-                if (ret != HiwitLib.HIWIT_ERR_NONE) throw new ArgumentException("FaceDetect fail:" + ret);
+                if (ret != HiwitLib.HIWIT_ERR_NONE)
+                    throw new ArgumentException("FaceDetect fail:" + ret);
                 if (faceNumber == 0) {
                     photoInfoRow.Status = 2;
                     photoInfoRow.UpdateTime = DateTime.Now;
