@@ -208,7 +208,8 @@ namespace Face_PhotoAlbum.Models {
 
                         float score = 0;
                         ret = HiwitLib.FaceVerify(probeImage, galleryImage, ref score, probeInfo, galleryInfo);
-                        if (ret != HiwitLib.HIWIT_ERR_NONE) throw new ArgumentException("FaV fail:" + ret);
+                        if (ret != HiwitLib.HIWIT_ERR_NONE)
+                            throw new ArgumentException("FaV fail:" + ret);
 
                         context.T_FaceComparison.Where(p => (p.PhotoNum1 == comparingRow.PhotoNum && p.SequenceNum1 == comparingRow.SequenceNum && p.PhotoNum2 == comparedRow.PhotoNum && p.PhotoNum2 == comparedRow.SequenceNum)
                         || (p.PhotoNum1 == comparedRow.PhotoNum && p.SequenceNum1 == comparedRow.SequenceNum && p.PhotoNum2 == comparingRow.PhotoNum && p.PhotoNum2 == comparingRow.SequenceNum)).ToList()
