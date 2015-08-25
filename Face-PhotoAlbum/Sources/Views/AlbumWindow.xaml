@@ -78,26 +78,15 @@
         </Grid>
 
         <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto">
-
-            <ItemsControl ItemsSource="{Binding FaceAlbums, Mode=TwoWay}">
-                <ItemsControl.Template>
+            <ItemsControl ItemsSource="{Binding FaceAlbums}">
+                <!--<ItemsControl.Template>
                     <ControlTemplate>
-                        <WrapPanel>
-                            <local:AlbumContainer />
-                        </WrapPanel>
+                        <local:AlbumContainer/>
                     </ControlTemplate>
-                </ItemsControl.Template>
+                </ItemsControl.Template>-->
             </ItemsControl>
-
-            <!--<ItemsControl ItemsSource="{Binding FaceAlbums}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:AlbumContainer>
-                        </local:AlbumContainer>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>-->
         </ScrollViewer>
+
 
         <Grid Grid.Row="3" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>

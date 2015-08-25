@@ -13,10 +13,15 @@ namespace Face_PhotoAlbum.ViewModels {
     public class FaceAlbumViewModel : ObservableObject {
         private string _AlbumLabel;
         private bool _IsSelected = false;
+        private int _ImageCount;
 
         public int AlbumNum { get; private set; }
         public byte[] CoverImage { get; private set; }
-        public int ImageCount { get; private set; }
+        public string ImageCountStr {
+            get {
+                return "共有" + _ImageCount.ToString() + "张照片";
+            }
+        }
 
         public string AlbumLabel {
             get {
@@ -45,11 +50,13 @@ namespace Face_PhotoAlbum.ViewModels {
         public static ObservableCollection<FaceAlbumViewModel> ConvertToViewModelDataList(IEnumerable<FaceAlbumModel> model) {
             ObservableCollection<FaceAlbumViewModel> list = new ObservableCollection<FaceAlbumViewModel>();
             model.ToList().ForEach(row => {
+                if (row.AlbumNum == 0)
+                    return;
                 FaceAlbumViewModel faceViewModel = new FaceAlbumViewModel();
                 faceViewModel._AlbumLabel = row.AlbumLabel;
                 faceViewModel.AlbumNum = row.AlbumNum;
                 faceViewModel.CoverImage = row.CoverImage;
-                faceViewModel.ImageCount = row.ImageCount;
+                faceViewModel._ImageCount = row.ImageCount;
                 faceViewModel.IsSelected = false;
                 list.Add(faceViewModel);
             });
@@ -64,10 +71,12 @@ namespace Face_PhotoAlbum.ViewModels {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
             try {
                 if ((bool)value) {
-                    return @"../../../Resources/场景背景selected.png";
+                    //return @"../../../Resources/场景背景selected.png";
+                    return @"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景selected.png";
                 }
                 else {
-                    return @"../../../Resources/场景背景.png";
+                    //return @"../../../Resources/场景背景.png";
+                    return @"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景.png";
                 }
             }
             catch {
