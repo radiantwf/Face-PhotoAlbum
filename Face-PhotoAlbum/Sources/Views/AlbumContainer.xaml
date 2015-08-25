@@ -6,9 +6,6 @@
              xmlns:local="clr-namespace:Face_PhotoAlbum.Views"
              xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
              mc:Ignorable="d" Margin="10" ContentTemplate="{DynamicResource AlbumTemplate}">
-    <UserControl.DataContext>
-        <vm:AlbumWindowViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <vm:FaceAlbumSelectStatusToBgPathConverter x:Key="album_stb" />
         <vm:FaceAlbumNullImageToResourceImageConverter x:Key="album_ntr" />
@@ -23,11 +20,11 @@
                     <Border.Background>
                         <ImageBrush ImageSource="{Binding IsSelected,Converter={StaticResource album_stb}}" />
                     </Border.Background>
-                    <Image Source="{Binding CoverImage,Converter={StaticResource album_stb}}" Width="150" Height="150" Stretch="Fill" Margin="13,13" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <!--<Image Source="{Binding CoverImage, Converter={StaticResource album_stb}}" Width="150" Height="150" Stretch="Fill" Margin="13,13" HorizontalAlignment="Left" VerticalAlignment="Top" />-->
+                    <Image Source="{Binding CoverImage}" Width="150" Height="150" Stretch="Fill" Margin="13,13" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 </Border>
-                <TextBlock Grid.Row="1" Text="{Binding FaceAlbums/AlbumLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" />
-                <TextBlock Grid.Row="2" Text="{Binding FaceAlbums/ImageCountStr}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="2" Text="123456" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="1" Text="{Binding AlbumLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" />
+                <TextBlock Grid.Row="2" Text="{Binding ImageCountStr}" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>

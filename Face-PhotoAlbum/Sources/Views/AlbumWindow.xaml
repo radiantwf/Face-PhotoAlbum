@@ -24,7 +24,6 @@
                          Description="Taskbar Items Sample">
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
-
     <Grid HorizontalAlignment="Left" Width="1054">
         <Grid.RowDefinitions>
             <RowDefinition Height="93" />
@@ -76,17 +75,21 @@
                 </Button>
             </StackPanel>
         </Grid>
-
+        
         <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding FaceAlbums}">
-                <!--<ItemsControl.Template>
-                    <ControlTemplate>
-                        <local:AlbumContainer/>
-                    </ControlTemplate>
-                </ItemsControl.Template>-->
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:AlbumContainer Content="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-
 
         <Grid Grid.Row="3" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>

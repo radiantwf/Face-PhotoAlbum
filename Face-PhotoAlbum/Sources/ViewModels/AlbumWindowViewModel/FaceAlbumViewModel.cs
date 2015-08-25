@@ -50,8 +50,6 @@ namespace Face_PhotoAlbum.ViewModels {
         public static ObservableCollection<FaceAlbumViewModel> ConvertToViewModelDataList(IEnumerable<FaceAlbumModel> model) {
             ObservableCollection<FaceAlbumViewModel> list = new ObservableCollection<FaceAlbumViewModel>();
             model.ToList().ForEach(row => {
-                if (row.AlbumNum == 0)
-                    return;
                 FaceAlbumViewModel faceViewModel = new FaceAlbumViewModel();
                 faceViewModel._AlbumLabel = row.AlbumLabel;
                 faceViewModel.AlbumNum = row.AlbumNum;
@@ -72,11 +70,11 @@ namespace Face_PhotoAlbum.ViewModels {
             try {
                 if ((bool)value) {
                     //return @"../../../Resources/场景背景selected.png";
-                    return @"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景selected.png";
+                    return new Uri(@"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景selected.png");
                 }
                 else {
                     //return @"../../../Resources/场景背景.png";
-                    return @"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景.png";
+                    return new Uri(@"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景.png");
                 }
             }
             catch {
@@ -93,7 +91,7 @@ namespace Face_PhotoAlbum.ViewModels {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
             try {
                 if (value == null) {
-                    return new Uri("pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/未知.png"); ;
+                    return new Uri(@"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/未知.png");
                 }
                 else {
                     return value;
