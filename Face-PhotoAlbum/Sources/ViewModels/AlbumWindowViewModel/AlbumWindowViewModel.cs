@@ -124,4 +124,24 @@ namespace Face_PhotoAlbum.ViewModels {
             throw new NotImplementedException();
         }
     }
+    public class ContentTypeToBackButtonEnableFlgConverter : IValueConverter {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            try {
+                if ((AlbumWindowViewModel.ContentType)value == AlbumWindowViewModel.ContentType.Photo) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            catch {
+                throw;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -7,6 +7,7 @@
         xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
         Height="694" Width="1054" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
+        <vm:ContentTypeToBackButtonEnableFlgConverter x:Key="ContentTypeToBackButtonEnableFlgConverter"/>
         <vm:ContentTypeToFaceAlbumsShownFlgConverter x:Key="ContentTypeToFaceAlbumsShownFlgConverter"/>
         <vm:ContentTypeToPhotosShownFlgConverter x:Key="ContentTypeToPhotosShownFlgConverter"/>
     </Window.Resources>
@@ -52,7 +53,7 @@
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="0">
-                <Button x:Name="btn_back2" Width="80" Height="28" Margin="10,0" Template="{StaticResource ButtonTemplate}">
+                <Button x:Name="btn_back2" Width="80" Height="28" Margin="10,0" Template="{StaticResource ButtonTemplate}" IsEnabled="{Binding CurrentContentType, Converter={StaticResource ContentTypeToBackButtonEnableFlgConverter}}">
                     <Button.Background>
                         <ImageBrush ImageSource="../../Resources/返回.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
                     </Button.Background>
@@ -64,7 +65,7 @@
                     </Border.Background>
                     <TextBlock x:Name="tb_xiangce" Text="人脸相册" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
                 </Border>
-                <Border x:Name="border_zhaopian" Width="140" Height="28">
+                <Border x:Name="border_zhaopian" Width="140" Height="28" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
                     <Border.Background>
                         <ImageBrush ImageSource="../../Resources/02.png" />
                     </Border.Background>
@@ -117,12 +118,12 @@
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}">
+            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToFaceAlbumsShownFlgConverter}}">
                 <Button.Background>
                     <ImageBrush ImageSource="../../Resources/进入套系.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
                 </Button.Background>
             </Button>
-            <Button Grid.Column="2" x:Name="btn_intoscene" Width="132" Height="43" Template="{StaticResource ButtonTemplate}">
+            <Button Grid.Column="2" x:Name="btn_intoscene" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
                 <Button.Background>
                     <ImageBrush ImageSource="../../Resources/进入场景.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
                 </Button.Background>

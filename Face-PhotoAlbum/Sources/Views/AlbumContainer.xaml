@@ -9,7 +9,7 @@
              mc:Ignorable="d" Margin="10" ContentTemplate="{DynamicResource AlbumTemplate}">
 
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseLeftButtonUp">
+        <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding SelectAlbumCommand}"/>
         </i:EventTrigger>
         <i:EventTrigger EventName="PreviewMouseDoubleClick">
