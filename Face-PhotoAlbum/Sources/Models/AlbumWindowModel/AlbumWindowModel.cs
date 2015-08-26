@@ -17,6 +17,10 @@ namespace Face_PhotoAlbum.Models {
             //bll.Run();
             return FaceAlbumModel.GetFaceAlbumList();
         }
+        public IEnumerable<PhotoModel> GetPhotoList(int albumNum) {
+
+            return PhotoModel.GetPhotoList(albumNum);
+        }
 
     }
 }

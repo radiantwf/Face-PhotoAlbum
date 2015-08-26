@@ -8,12 +8,54 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
     public class FaceAlbumViewModel : ObservableObject {
         private string _AlbumLabel;
         private bool _IsSelected = false;
         private int _ImageCount;
+        private static ObservableCollection<FaceAlbumViewModel> _FaceAlbumViewModelList;
+        private ICommand _SelectAlbumCommand;
+        public ICommand SelectAlbumCommand {
+            get {
+                if (this._SelectAlbumCommand == null) {
+                    this._SelectAlbumCommand = new CommandProxy(SelectAlbum);
+                }
+                return this._SelectAlbumCommand;
+            }
+        }
+        private ICommand _EnterAlbumCommand;
+        public ICommand EnterAlbumCommand {
+            get {
+                if (this._EnterAlbumCommand == null) {
+                    this._EnterAlbumCommand = new CommandProxy(EnterAlbum);
+                }
+                return this._EnterAlbumCommand;
+            }
+        }
+        private void SelectAlbum(object parameter) {
+            try {
+                foreach (var Element in _FaceAlbumViewModelList) {
+                    if (Element != this && Element.IsSelected) {
+                        Element.IsSelected = false;
+                    }
+                }
+                IsSelected = true;
+            }
+            catch(Exception ex) {
+                throw;
+            }
+        }
+        private void EnterAlbum(object parameter) {
+            try {
+                var albumWindowViewModel = parameter as AlbumWindowViewModel;
+                //albumWindowViewModel.ReadPhotosCommand(AlbumNum);
+            }
+            catch(Exception ex) {
+                throw;
+            }
+        }
 
         public int AlbumNum { get; private set; }
         public byte[] CoverImage { get; private set; }
@@ -37,6 +79,8 @@ namespace Face_PhotoAlbum.ViewModels {
                 return _IsSelected;
             }
             set {
+                if (_IsSelected == value)
+                    return;
                 _IsSelected = value;
                 RaisePropertyChanged(() => IsSelected);
             }
@@ -44,11 +88,11 @@ namespace Face_PhotoAlbum.ViewModels {
 
         #region 数据获取
         /// <summary>
-        /// 模拟测试数据
+        /// 数据获取
         /// </summary>
         /// <returns></returns>
         public static ObservableCollection<FaceAlbumViewModel> ConvertToViewModelDataList(IEnumerable<FaceAlbumModel> model) {
-            ObservableCollection<FaceAlbumViewModel> list = new ObservableCollection<FaceAlbumViewModel>();
+            _FaceAlbumViewModelList = new ObservableCollection<FaceAlbumViewModel>();
             model.ToList().ForEach(row => {
                 FaceAlbumViewModel faceViewModel = new FaceAlbumViewModel();
                 faceViewModel._AlbumLabel = row.AlbumLabel;
@@ -56,10 +100,10 @@ namespace Face_PhotoAlbum.ViewModels {
                 faceViewModel.CoverImage = row.CoverImage;
                 faceViewModel._ImageCount = row.ImageCount;
                 faceViewModel.IsSelected = false;
-                list.Add(faceViewModel);
+                _FaceAlbumViewModelList.Add(faceViewModel);
             });
 
-            return list;
+            return _FaceAlbumViewModelList;
         }
         #endregion
     }

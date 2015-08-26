@@ -10,7 +10,6 @@ namespace Face_PhotoAlbum.Models {
     public class FaceAlbumModel : ObservableObject {
         private string _AlbumLabel;
 
-
         public int AlbumNum { get; private set; }
         public byte[] CoverImage { get; private set; }
         public int ImageCount { get; private set; }
@@ -28,7 +27,7 @@ namespace Face_PhotoAlbum.Models {
 
         #region 数据获取
         /// <summary>
-        /// 模拟测试数据
+        /// 数据获取
         /// </summary>
         /// <returns></returns>
         public static IList<FaceAlbumModel> GetFaceAlbumList() {

@@ -6,6 +6,10 @@
         xmlns:cmd="clr-namespace:Face_PhotoAlbum.Views.Commands" 
         xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
         Height="694" Width="1054" WindowStyle="None" AllowsTransparency="True">
+    <Window.Resources>
+        <vm:ContentTypeToFaceAlbumsShownFlgConverter x:Key="ContentTypeToFaceAlbumsShownFlgConverter"/>
+        <vm:ContentTypeToPhotosShownFlgConverter x:Key="ContentTypeToPhotosShownFlgConverter"/>
+    </Window.Resources>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -24,7 +28,7 @@
                          Description="Taskbar Items Sample">
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
-    <Grid HorizontalAlignment="Left" Width="1054">
+    <Grid HorizontalAlignment="Left" Width="1054" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToFaceAlbumsShownFlgConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="93" />
             <RowDefinition Height="40"/>
@@ -54,17 +58,17 @@
                     </Button.Background>
                 </Button>
 
-                <Border x:Name="border_taoxi" Width="140" Height="28">
+                <Border x:Name="border_xiangce" Width="140" Height="28">
                     <Border.Background>
                         <ImageBrush ImageSource="../../Resources/01.png" />
                     </Border.Background>
-                    <TextBlock x:Name="tb_taoxi" Text="套系列表" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="tb_xiangce" Text="人脸相册" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
                 </Border>
-                <Border x:Name="border_changjing" Width="140" Height="28">
+                <Border x:Name="border_zhaopian" Width="140" Height="28">
                     <Border.Background>
                         <ImageBrush ImageSource="../../Resources/02.png" />
                     </Border.Background>
-                    <TextBlock x:Name="tb_changjing" Text="照片列表" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="tb_zhaopian" Text="照片列表" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
                 </Border>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="1" HorizontalAlignment="Right">
@@ -75,17 +79,32 @@
                 </Button>
             </StackPanel>
         </Grid>
-        
-        <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto">
+
+        <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToFaceAlbumsShownFlgConverter}}">
             <ItemsControl ItemsSource="{Binding FaceAlbums}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
+                        <WrapPanel Orientation="Horizontal"  Width="1000"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <local:AlbumContainer Content="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
+            <ItemsControl ItemsSource="{Binding Photos}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"  Width="1000"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:PhotoContainer Content="{Binding}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
