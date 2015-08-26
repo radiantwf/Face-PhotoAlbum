@@ -69,12 +69,10 @@ namespace Face_PhotoAlbum.ViewModels {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
             try {
                 if ((bool)value) {
-                    //return @"../../../Resources/场景背景selected.png";
-                    return new Uri(@"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景selected.png");
+                    return @"/Resources/相册背景selected.png";
                 }
                 else {
-                    //return @"../../../Resources/场景背景.png";
-                    return new Uri(@"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/场景背景.png");
+                    return @"/Resources/相册背景.png";
                 }
             }
             catch {
@@ -91,7 +89,7 @@ namespace Face_PhotoAlbum.ViewModels {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
             try {
                 if (value == null) {
-                    return new Uri(@"pack://application:,,,/" + Assembly.GetExecutingAssembly().GetName().Name + ";component/Resources/未知.png");
+                    return @"/Resources/未知.png";
                 }
                 else {
                     return value;
