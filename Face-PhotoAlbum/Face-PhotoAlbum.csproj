@@ -112,11 +112,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sources\Base_Mvvm\ViewModels\TipsEvent.cs" />
-    <Compile Include="Sources\Models\AlbumWindowModel\FaceAlbumModel.cs" />
-    <Compile Include="Sources\Models\AlbumWindowModel\PhotoModel.cs" />
+    <Compile Include="Sources\Models\AlbumWindowModel\AlbumContainerModel.cs" />
+    <Compile Include="Sources\Models\AlbumWindowModel\PhotoContainerModel.cs" />
     <Compile Include="Sources\ViewModels\AlbumWindowViewModel\AlbumWindowViewModel.cs" />
-    <Compile Include="Sources\ViewModels\AlbumWindowViewModel\FaceAlbumViewModel.cs" />
-    <Compile Include="Sources\ViewModels\AlbumWindowViewModel\PhotoViewModel.cs" />
+    <Compile Include="Sources\ViewModels\AlbumContainerViewModel\AlbumContainerViewModel.cs" />
+    <Compile Include="Sources\ViewModels\PhotoContainerViewModel\PhotoContainerViewModel.cs" />
     <Compile Include="Sources\Views\AlbumContainer.xaml.cs">
       <DependentUpon>AlbumContainer.xaml</DependentUpon>
     </Compile>

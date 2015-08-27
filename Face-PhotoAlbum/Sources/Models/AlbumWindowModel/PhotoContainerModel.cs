@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.Models {
-    public class PhotoModel : ObservableObject {
+    public class PhotoContainerModel : ObservableObject {
 
 
         #region 数据获取
@@ -14,10 +14,10 @@ namespace Face_PhotoAlbum.Models {
         /// 数据获取
         /// </summary>
         /// <returns></returns>
-        public static IList<PhotoModel> GetPhotoList(int AlbumNum) {
+        public static IList<PhotoContainerModel> GetPhotoList(int AlbumNum) {
             try {
 
-                IList<PhotoModel> list = new ObservableCollection<PhotoModel>();
+                IList<PhotoContainerModel> list = new ObservableCollection<PhotoContainerModel>();
                 FacePhotoAlbumContext context = new FacePhotoAlbumContext();
                 //var tmp = context.T_PhotoInfo.Join(context.T_Face.Join())
                 return list;

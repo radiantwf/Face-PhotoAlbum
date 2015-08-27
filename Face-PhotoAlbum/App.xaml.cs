@@ -7,8 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Face_PhotoAlbum
-{
+namespace Face_PhotoAlbum {
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>

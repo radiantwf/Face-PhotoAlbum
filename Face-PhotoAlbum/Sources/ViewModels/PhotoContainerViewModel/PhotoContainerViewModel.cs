@@ -9,9 +9,9 @@ using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
-    public class PhotoViewModel : ObservableObject {
+    public class PhotoContainerViewModel : ObservableObject {
         private bool _IsSelected = false;
-        private static ObservableCollection<PhotoViewModel> _PhotoViewModelList;
+        private static ObservableCollection<PhotoContainerViewModel> _PhotoViewModelList;
         private ICommand _SelectPhotoCommand;
 
         public ICommand SelectPhotoCommand {
@@ -53,8 +53,8 @@ namespace Face_PhotoAlbum.ViewModels {
         /// 数据获取
         /// </summary>
         /// <returns></returns>
-        public static ObservableCollection<PhotoViewModel> ConvertToViewModelDataList(IEnumerable<PhotoModel> model) {
-            _PhotoViewModelList = new ObservableCollection<PhotoViewModel>();
+        public static ObservableCollection<PhotoContainerViewModel> ConvertToViewModelDataList(IEnumerable<PhotoContainerModel> model) {
+            _PhotoViewModelList = new ObservableCollection<PhotoContainerViewModel>();
             //model.ToList().ForEach(row => {
             //    PhotoViewModel faceViewModel = new PhotoViewModel();
             //    faceViewModel._AlbumLabel = row.AlbumLabel;

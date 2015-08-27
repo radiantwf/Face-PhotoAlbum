@@ -11,8 +11,8 @@ using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
     public class AlbumWindowViewModel : ObservableObject, IAlbumWindowViewModel {
-        private ObservableCollection<FaceAlbumViewModel> _FaceAlbums = null;
-        private ObservableCollection<PhotoViewModel> _Photos = null;
+        private ObservableCollection<AlbumContainerViewModel> _FaceAlbums = null;
+        private ObservableCollection<PhotoContainerViewModel> _Photos = null;
         public enum ContentType { FaceAlbum,Photo}
         public ContentType _CurrentContentType = ContentType.FaceAlbum;
 
@@ -29,7 +29,7 @@ namespace Face_PhotoAlbum.ViewModels {
                 RaisePropertyChanged(() => CurrentContentType);
             }
         }
-        public ObservableCollection<FaceAlbumViewModel> FaceAlbums {
+        public ObservableCollection<AlbumContainerViewModel> FaceAlbums {
             get {
                 return _FaceAlbums;
             }
@@ -38,7 +38,7 @@ namespace Face_PhotoAlbum.ViewModels {
                 RaisePropertyChanged(() => FaceAlbums);
             }
         }
-        public ObservableCollection<PhotoViewModel> Photos {
+        public ObservableCollection<PhotoContainerViewModel> Photos {
             get {
                 return _Photos;
             }
@@ -68,7 +68,7 @@ namespace Face_PhotoAlbum.ViewModels {
         private void ReadFaceAlbums(object parameter) {
             try {
                 var modelData = model.GetFaceAlbumList();
-                FaceAlbums = FaceAlbumViewModel.ConvertToViewModelDataList(modelData);
+                FaceAlbums = AlbumContainerViewModel.ConvertToViewModelDataList(modelData);
             }
             catch (Exception ex) {
                 throw;
@@ -77,7 +77,7 @@ namespace Face_PhotoAlbum.ViewModels {
         private void ReadPhotos(object parameter) {
             try {
                 var modelData = model.GetPhotoList((int)parameter);
-                Photos = PhotoViewModel.ConvertToViewModelDataList(modelData);
+                Photos = PhotoContainerViewModel.ConvertToViewModelDataList(modelData);
             }
             catch (Exception ex) {
                 throw;

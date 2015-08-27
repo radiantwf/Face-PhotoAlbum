@@ -11,15 +11,15 @@ namespace Face_PhotoAlbum.Models {
         /// 获取相册数据
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<FaceAlbumModel> GetFaceAlbumList() {
+        public IEnumerable<AlbumContainerModel> GetFaceAlbumList() {
 
             //Business1 bll = new Business1();
             //bll.Run();
-            return FaceAlbumModel.GetFaceAlbumList();
+            return AlbumContainerModel.GetFaceAlbumList();
         }
-        public IEnumerable<PhotoModel> GetPhotoList(int albumNum) {
+        public IEnumerable<PhotoContainerModel> GetPhotoList(int albumNum) {
 
-            return PhotoModel.GetPhotoList(albumNum);
+            return PhotoContainerModel.GetPhotoList(albumNum);
         }
 
     }

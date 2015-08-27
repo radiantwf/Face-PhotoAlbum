@@ -11,11 +11,11 @@ using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
-    public class FaceAlbumViewModel : ObservableObject {
+    public class AlbumContainerViewModel : ObservableObject {
         private string _AlbumLabel;
         private bool _IsSelected = false;
         private int _ImageCount;
-        private static ObservableCollection<FaceAlbumViewModel> _FaceAlbumViewModelList;
+        private static ObservableCollection<AlbumContainerViewModel> _FaceAlbumViewModelList;
         private ICommand _SelectAlbumCommand;
         public ICommand SelectAlbumCommand {
             get {
@@ -91,10 +91,10 @@ namespace Face_PhotoAlbum.ViewModels {
         /// 数据获取
         /// </summary>
         /// <returns></returns>
-        public static ObservableCollection<FaceAlbumViewModel> ConvertToViewModelDataList(IEnumerable<FaceAlbumModel> model) {
-            _FaceAlbumViewModelList = new ObservableCollection<FaceAlbumViewModel>();
+        public static ObservableCollection<AlbumContainerViewModel> ConvertToViewModelDataList(IEnumerable<AlbumContainerModel> model) {
+            _FaceAlbumViewModelList = new ObservableCollection<AlbumContainerViewModel>();
             model.ToList().ForEach(row => {
-                FaceAlbumViewModel faceViewModel = new FaceAlbumViewModel();
+                AlbumContainerViewModel faceViewModel = new AlbumContainerViewModel();
                 faceViewModel._AlbumLabel = row.AlbumLabel;
                 faceViewModel.AlbumNum = row.AlbumNum;
                 faceViewModel.CoverImage = row.CoverImage;

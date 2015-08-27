@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.Models {
-    public class FaceAlbumModel : ObservableObject {
+    public class AlbumContainerModel : ObservableObject {
         private string _AlbumLabel;
 
         public int AlbumNum { get; private set; }
@@ -30,13 +30,13 @@ namespace Face_PhotoAlbum.Models {
         /// 数据获取
         /// </summary>
         /// <returns></returns>
-        public static IList<FaceAlbumModel> GetFaceAlbumList() {
+        public static IList<AlbumContainerModel> GetFaceAlbumList() {
             try {
 
-                IList<FaceAlbumModel> list = new ObservableCollection<FaceAlbumModel>();
+                IList<AlbumContainerModel> list = new ObservableCollection<AlbumContainerModel>();
                 FacePhotoAlbumContext context = new FacePhotoAlbumContext();
                 context.T_AlbumLabel.OrderBy(p => p.AlbumNum).ToList().ForEach(row => {
-                    FaceAlbumModel faceAlbum = new FaceAlbumModel();
+                    AlbumContainerModel faceAlbum = new AlbumContainerModel();
                     faceAlbum.AlbumNum = row.AlbumNum;
                     faceAlbum._AlbumLabel = row.AlbumLabel;
                     faceAlbum.CoverImage = row.CoverImage;
