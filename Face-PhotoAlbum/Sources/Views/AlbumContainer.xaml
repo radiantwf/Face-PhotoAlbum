@@ -12,7 +12,7 @@
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding SelectAlbumCommand}"/>
         </i:EventTrigger>
-        <i:EventTrigger EventName="PreviewMouseDoubleClick">
+        <i:EventTrigger EventName="MouseDoubleClick">
             <i:InvokeCommandAction Command="{Binding EnterAlbumCommand}" CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AlbumWindow}}}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>

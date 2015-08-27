@@ -6,13 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" x:Class="Face_PhotoAlbum.Views.TopWindow"
     xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
-    Title="Window1" 
+    Title="Face-PhotoAlbum" 
     Height="500" 
     Width="500" 
     Background="Transparent"
     AllowsTransparency="True" 
     WindowStyle="None" 
-    MouseDown="Window_MouseDown">
+    MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="OnLoaded" RepeatBehavior="Forever" AutoReverse="True">
             <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(BlurEffect.Radius)"  Storyboard.TargetName="FunGrid" BeginTime="00:00:00" From="0" To="10" Duration="00:00:01.5"/>

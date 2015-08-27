@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:Face_PhotoAlbum.Views" 
         xmlns:cmd="clr-namespace:Face_PhotoAlbum.Views.Commands" 
         xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
-        Height="694" Width="1054" WindowStyle="None" AllowsTransparency="True">
+        Height="694" Width="1054" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Title="Face-PhotoAlbum">
     <Window.Resources>
         <vm:ContentTypeToBackButtonEnableFlgConverter x:Key="ContentTypeToBackButtonEnableFlgConverter"/>
         <vm:ContentTypeToFaceAlbumsShownFlgConverter x:Key="ContentTypeToFaceAlbumsShownFlgConverter"/>
@@ -15,6 +15,9 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding ReadFaceAlbumsCommand, Mode=OneWay}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="cmd:MoveCommandBindingProxy.MoveCommand"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.DataContext>

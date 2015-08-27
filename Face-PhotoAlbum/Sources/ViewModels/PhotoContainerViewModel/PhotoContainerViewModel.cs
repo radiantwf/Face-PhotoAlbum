@@ -22,6 +22,9 @@ namespace Face_PhotoAlbum.ViewModels {
                 return this._SelectPhotoCommand;
             }
         }
+        public int PhotoNum { private set; get; }
+        public string ImagePath { private set; get; }
+
         private void SelectPhoto(object parameter) {
             try {
                 foreach (var Element in _PhotoViewModelList) {
@@ -55,15 +58,13 @@ namespace Face_PhotoAlbum.ViewModels {
         /// <returns></returns>
         public static ObservableCollection<PhotoContainerViewModel> ConvertToViewModelDataList(IEnumerable<PhotoContainerModel> model) {
             _PhotoViewModelList = new ObservableCollection<PhotoContainerViewModel>();
-            //model.ToList().ForEach(row => {
-            //    PhotoViewModel faceViewModel = new PhotoViewModel();
-            //    faceViewModel._AlbumLabel = row.AlbumLabel;
-            //    faceViewModel.AlbumNum = row.AlbumNum;
-            //    faceViewModel.CoverImage = row.CoverImage;
-            //    faceViewModel._ImageCount = row.ImageCount;
-            //    faceViewModel.IsSelected = false;
-            //    _PhotoViewModelList.Add(faceViewModel);
-            //});
+            model.ToList().ForEach(row => {
+                PhotoContainerViewModel photoViewModel = new PhotoContainerViewModel();
+                photoViewModel.PhotoNum = row.PhotoNum;
+                photoViewModel.ImagePath = row.ImagePath;
+                photoViewModel.IsSelected = false;
+                _PhotoViewModelList.Add(photoViewModel);
+            });
 
             return _PhotoViewModelList;
         }

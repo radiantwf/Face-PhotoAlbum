@@ -9,7 +9,6 @@ namespace Face_PhotoAlbum.Views {
     public partial class TopWindow : Window {
         public TopWindow() {
             InitializeComponent();
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) {

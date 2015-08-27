@@ -13,12 +13,23 @@ namespace Face_PhotoAlbum.ViewModels {
     public class AlbumWindowViewModel : ObservableObject, IAlbumWindowViewModel {
         private ObservableCollection<AlbumContainerViewModel> _FaceAlbums = null;
         private ObservableCollection<PhotoContainerViewModel> _Photos = null;
-        public enum ContentType { FaceAlbum,Photo}
+        private int _CurrentAlbumNum = -1;
+
+        public enum ContentType { FaceAlbum, Photo }
         public ContentType _CurrentContentType = ContentType.FaceAlbum;
 
         private AlbumWindowModel model = new AlbumWindowModel();
         private ICommand _ReadFaceAlbumsCommand;
-        private ICommand _ReadPhotosCommand;
+
+        public int CurrentAlbumNum {
+            get {
+                return _CurrentAlbumNum;
+            }
+            set {
+                _CurrentAlbumNum = value;
+                RaisePropertyChanged(() => CurrentAlbumNum);
+            }
+        }
 
         public ContentType CurrentContentType {
             get {
@@ -56,14 +67,6 @@ namespace Face_PhotoAlbum.ViewModels {
                 return this._ReadFaceAlbumsCommand;
             }
         }
-        public ICommand ReadPhotosCommand {
-            get {
-                if (this._ReadPhotosCommand == null) {
-                    this._ReadPhotosCommand = new CommandProxy(ReadPhotos);
-                }
-                return this._ReadPhotosCommand;
-            }
-        }
 
         private void ReadFaceAlbums(object parameter) {
             try {
@@ -74,9 +77,9 @@ namespace Face_PhotoAlbum.ViewModels {
                 throw;
             }
         }
-        private void ReadPhotos(object parameter) {
+        public void ReadPhotos(int AlbumNum) {
             try {
-                var modelData = model.GetPhotoList((int)parameter);
+                var modelData = model.GetPhotoList(AlbumNum);
                 Photos = PhotoContainerViewModel.ConvertToViewModelDataList(modelData);
             }
             catch (Exception ex) {

@@ -12,9 +12,9 @@ namespace Face_PhotoAlbum.Views {
         {
             this.CommandBindings.Add(new CloseCommandBindingProxy(this));
             this.CommandBindings.Add(new MinimizedCommandBindingProxy(this));
+            this.CommandBindings.Add(new MoveCommandBindingProxy(this));
 
             InitializeComponent();
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
     }
 }

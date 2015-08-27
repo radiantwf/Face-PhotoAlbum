@@ -25,15 +25,6 @@ namespace Face_PhotoAlbum.ViewModels {
                 return this._SelectAlbumCommand;
             }
         }
-        private ICommand _EnterAlbumCommand;
-        public ICommand EnterAlbumCommand {
-            get {
-                if (this._EnterAlbumCommand == null) {
-                    this._EnterAlbumCommand = new CommandProxy(EnterAlbum);
-                }
-                return this._EnterAlbumCommand;
-            }
-        }
         private void SelectAlbum(object parameter) {
             try {
                 foreach (var Element in _FaceAlbumViewModelList) {
@@ -43,16 +34,33 @@ namespace Face_PhotoAlbum.ViewModels {
                 }
                 IsSelected = true;
             }
-            catch(Exception ex) {
+            catch (Exception ex) {
                 throw;
             }
         }
-        private void EnterAlbum(object parameter) {
-            try {
-                var albumWindowViewModel = parameter as AlbumWindowViewModel;
-                //albumWindowViewModel.ReadPhotosCommand(AlbumNum);
+
+        private ICommand _EnterAlbumCommand;
+        public ICommand EnterAlbumCommand
+        {
+            get
+            {
+                if (this._EnterAlbumCommand == null)
+                {
+                    this._EnterAlbumCommand = new CommandProxy(EnterAlbum);
+                }
+                return this._EnterAlbumCommand;
             }
-            catch(Exception ex) {
+        }
+        private void EnterAlbum(object parameter)
+        {
+            try
+            {
+                var albumWindowViewModel = parameter as AlbumWindowViewModel;
+                albumWindowViewModel.ReadPhotos(AlbumNum);
+                albumWindowViewModel.CurrentContentType = AlbumWindowViewModel.ContentType.Photo;
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
         }

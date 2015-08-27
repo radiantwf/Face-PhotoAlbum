@@ -14,7 +14,7 @@
                 <Border.Background>
                     <ImageBrush ImageSource="{Binding IsSelected, Converter={StaticResource photo_stb}}" />
                 </Border.Background>
-                <Image Source="{Binding PhotoImage}" Width="150" Height="150" Stretch="Uniform" />
+                <Image Source="{Binding ImagePath}" Width="150" Height="150" Stretch="Uniform" />
             </Border>
         </DataTemplate>
     </UserControl.Resources>
