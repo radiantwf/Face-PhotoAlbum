@@ -1,10 +1,11 @@
-﻿<Window x:Name="AlbumWindow1" x:Class="Face_PhotoAlbum.Views.AlbumWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Face_PhotoAlbum.Views" 
         xmlns:cmd="clr-namespace:Face_PhotoAlbum.Views.Commands" 
         xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="AlbumWindow1" x:Class="Face_PhotoAlbum.Views.AlbumWindow"
         Height="694" Width="1054" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Title="Face-PhotoAlbum">
     <Window.Resources>
         <vm:ContentTypeToBackButtonEnableFlgConverter x:Key="ContentTypeToBackButtonEnableFlgConverter"/>
@@ -29,10 +30,9 @@
     </Window.Background>
     <Window.TaskbarItemInfo>
         <TaskbarItemInfo x:Name="taskBar" 
-                         Description="Taskbar Items Sample">
-        </TaskbarItemInfo>
+                         Description="Taskbar Items Sample"/>
     </Window.TaskbarItemInfo>
-    <Grid HorizontalAlignment="Left" Width="1054" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToFaceAlbumsShownFlgConverter}}">
+    <Grid HorizontalAlignment="Left" Width="1054">
         <Grid.RowDefinitions>
             <RowDefinition Height="93" />
             <RowDefinition Height="40"/>
@@ -56,7 +56,7 @@
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="0">
-                <Button x:Name="btn_back2" Width="80" Height="28" Margin="10,0" Template="{StaticResource ButtonTemplate}" IsEnabled="{Binding CurrentContentType, Converter={StaticResource ContentTypeToBackButtonEnableFlgConverter}}">
+                <Button x:Name="btn_back2" Width="80" Height="28" Margin="10,0" Template="{StaticResource ButtonTemplate}" IsEnabled="{Binding CurrentContentType, Converter={StaticResource ContentTypeToBackButtonEnableFlgConverter}}" Command="{Binding BackToAlbumsCommand, Mode=OneWay}">
                     <Button.Background>
                         <ImageBrush ImageSource="../../Resources/返回.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
                     </Button.Background>
@@ -66,13 +66,13 @@
                     <Border.Background>
                         <ImageBrush ImageSource="../../Resources/01.png" />
                     </Border.Background>
-                    <TextBlock x:Name="tb_xiangce" Text="人脸相册" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="tb_xiangce" Text="人脸相册" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"/>
                 </Border>
                 <Border x:Name="border_zhaopian" Width="140" Height="28" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
                     <Border.Background>
                         <ImageBrush ImageSource="../../Resources/02.png" />
                     </Border.Background>
-                    <TextBlock x:Name="tb_zhaopian" Text="照片列表" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="tb_zhaopian" Text="照片列表" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"/>
                 </Border>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="1" HorizontalAlignment="Right">
@@ -85,7 +85,7 @@
         </Grid>
 
         <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToFaceAlbumsShownFlgConverter}}">
-            <ItemsControl ItemsSource="{Binding FaceAlbums}">
+            <ItemsControl x:Name="itemsControl1" ItemsSource="{Binding FaceAlbums}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"  Width="1000"/>
@@ -98,9 +98,9 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        
+
         <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
-            <ItemsControl ItemsSource="{Binding Photos}">
+            <ItemsControl x:Name="itemsControl2" ItemsSource="{Binding Photos}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"  Width="1000"/>
@@ -121,14 +121,9 @@
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToFaceAlbumsShownFlgConverter}}">
+            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Command="{Binding SearchPhotosCommand, Mode=OneWay}">
                 <Button.Background>
                     <ImageBrush ImageSource="../../Resources/进入套系.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
-                </Button.Background>
-            </Button>
-            <Button Grid.Column="2" x:Name="btn_intoscene" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
-                <Button.Background>
-                    <ImageBrush ImageSource="../../Resources/进入场景.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
                 </Button.Background>
             </Button>
         </Grid>

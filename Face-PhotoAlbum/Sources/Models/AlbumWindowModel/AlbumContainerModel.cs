@@ -41,7 +41,8 @@ namespace Face_PhotoAlbum.Models {
                     faceAlbum._AlbumLabel = row.AlbumLabel;
                     faceAlbum.CoverImage = row.CoverImage;
                     string strAlbumNum = row.AlbumNum.ToString();
-                    faceAlbum.ImageCount = context.T_Face.Where(p => p.ConfirmAlbumNum == row.AlbumNum || p.PossibleAlbumNum.StartsWith(strAlbumNum + ",") || p.PossibleAlbumNum.EndsWith("," + strAlbumNum ) || p.PossibleAlbumNum.Contains(","+strAlbumNum + ",")).GroupBy(p => p.PhotoNum).Count();
+                    faceAlbum.ImageCount = context.T_Face.Where(p => p.ConfirmAlbumNum == row.AlbumNum).GroupBy(p => p.PhotoNum).Count();
+                    //faceAlbum.ImageCount = context.T_Face.Where(p => p.ConfirmAlbumNum == row.AlbumNum || p.PossibleAlbumNum.StartsWith(strAlbumNum + ",") || p.PossibleAlbumNum.EndsWith("," + strAlbumNum ) || p.PossibleAlbumNum.Contains(","+strAlbumNum + ",")).GroupBy(p => p.PhotoNum).Count();
                     list.Add(faceAlbum);
                 });
 

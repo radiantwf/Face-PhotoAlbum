@@ -11,7 +11,10 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Face_PhotoAlbum.Models {
-    public class Business1 {
+    public class SearchPhotosBLL {
+        const float CONFIRM_MATCH_THRESHOLD = 0.6f;
+        const float POSSIBLE_MATCH_THRESHOLD = 0.4f;
+
         public void Run() {
             ProcessPhoto();
             ProcessFace();
@@ -241,7 +244,7 @@ namespace Face_PhotoAlbum.Models {
         }
 
         private void SetConfirmFaceAlbum(FacePhotoAlbumContext context) {
-            var pRows = context.T_FaceComparison.Where(p => p.Score >= 0.45 && p.Status == 0).OrderByDescending(p => p.Score);
+            var pRows = context.T_FaceComparison.Where(p => p.Score >= CONFIRM_MATCH_THRESHOLD && p.Status == 0).OrderByDescending(p => p.Score);
             var qRows = context.T_Face.Where(face => face.Status == 1 && face.ConfirmAlbumNum != -1);
             var ret = pRows.Join(qRows
               , p => new { PhotoNum = p.PhotoNum1, SequenceNum = p.SequenceNum1 }
@@ -266,7 +269,7 @@ namespace Face_PhotoAlbum.Models {
             SetConfirmFaceAlbum(context);
         }
         private void CreateNewFaceAlbum(FacePhotoAlbumContext context) {
-            var pRows = context.T_FaceComparison.Where(p => p.Score >= 0.45 && p.Status == 0).OrderByDescending(p => p.Score);
+            var pRows = context.T_FaceComparison.Where(p => p.Score >= CONFIRM_MATCH_THRESHOLD && p.Status == 0).OrderByDescending(p => p.Score);
             var qRows = context.T_Face.Where(face => face.Status == 1 && face.ConfirmAlbumNum == -1);
             var ret = pRows.Join(qRows
               , p => new { PhotoNum = p.PhotoNum1, SequenceNum = p.SequenceNum1 }
@@ -302,7 +305,7 @@ namespace Face_PhotoAlbum.Models {
             CreateNewFaceAlbum(context);
         }
         private void SetPossibleAlbumNum(FacePhotoAlbumContext context) {
-            var pRows = context.T_FaceComparison.Where(p => p.Score < 0.45 && p.Score >= 0.4 && p.Status == 0).OrderByDescending(p => p.Score);
+            var pRows = context.T_FaceComparison.Where(p => p.Score < CONFIRM_MATCH_THRESHOLD && p.Score >= POSSIBLE_MATCH_THRESHOLD && p.Status == 0).OrderByDescending(p => p.Score);
             var qRows = context.T_Face.Where(face => face.Status == 1 && face.ConfirmAlbumNum != -1);
             var ret = pRows.Join(qRows
               , p => new { PhotoNum = p.PhotoNum1, SequenceNum = p.SequenceNum1 }
@@ -334,7 +337,7 @@ namespace Face_PhotoAlbum.Models {
         }
 
         private void SetNotMatchData(FacePhotoAlbumContext context) {
-            var pRows = context.T_FaceComparison.Where(p => p.Score < 0.4);
+            var pRows = context.T_FaceComparison.Where(p => p.Score < POSSIBLE_MATCH_THRESHOLD);
             foreach (var p in pRows) {
                 p.Status = 1;
                 p.UpdateTime = DateTime.Now;

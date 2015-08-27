@@ -20,16 +20,8 @@ namespace Face_PhotoAlbum.ViewModels {
 
         private AlbumWindowModel model = new AlbumWindowModel();
         private ICommand _ReadFaceAlbumsCommand;
-
-        public int CurrentAlbumNum {
-            get {
-                return _CurrentAlbumNum;
-            }
-            set {
-                _CurrentAlbumNum = value;
-                RaisePropertyChanged(() => CurrentAlbumNum);
-            }
-        }
+        private ICommand _BackToAlbumsCommand;
+        private ICommand _SearchPhotosCommand;
 
         public ContentType CurrentContentType {
             get {
@@ -37,6 +29,8 @@ namespace Face_PhotoAlbum.ViewModels {
             }
             set {
                 _CurrentContentType = value;
+                if (_CurrentContentType == ContentType.FaceAlbum)
+                    _CurrentAlbumNum = -1;
                 RaisePropertyChanged(() => CurrentContentType);
             }
         }
@@ -67,7 +61,22 @@ namespace Face_PhotoAlbum.ViewModels {
                 return this._ReadFaceAlbumsCommand;
             }
         }
-
+        public ICommand BackToAlbumsCommand {
+            get {
+                if (this._BackToAlbumsCommand == null) {
+                    this._BackToAlbumsCommand = new CommandProxy(BackToAlbums);
+                }
+                return this._BackToAlbumsCommand;
+            }
+        }
+        public ICommand SearchPhotosCommand {
+            get {
+                if (this._SearchPhotosCommand == null) {
+                    this._SearchPhotosCommand = new CommandProxy(SearchPhotos);
+                }
+                return this._SearchPhotosCommand;
+            }
+        }
         private void ReadFaceAlbums(object parameter) {
             try {
                 var modelData = model.GetFaceAlbumList();
@@ -77,8 +86,29 @@ namespace Face_PhotoAlbum.ViewModels {
                 throw;
             }
         }
+        private void SearchPhotos(object parameter) {
+            try {
+                SearchPhotosBLL bll = new SearchPhotosBLL();
+                bll.Run();
+                ReadFaceAlbums(null);
+                if (_CurrentAlbumNum != -1)
+                    ReadPhotos(_CurrentAlbumNum);
+            }
+            catch (Exception ex) {
+                throw;
+            }
+        }
+        private void BackToAlbums(object parameter) {
+            try {
+                CurrentContentType = ContentType.FaceAlbum;
+            }
+            catch (Exception ex) {
+                throw;
+            }
+        }
         public void ReadPhotos(int AlbumNum) {
             try {
+                _CurrentAlbumNum = AlbumNum;
                 var modelData = model.GetPhotoList(AlbumNum);
                 Photos = PhotoContainerViewModel.ConvertToViewModelDataList(modelData);
             }

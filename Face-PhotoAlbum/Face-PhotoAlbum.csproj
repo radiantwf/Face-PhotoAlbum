@@ -121,7 +121,7 @@
       <DependentUpon>AlbumContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\Views\Commands\CloseCommandBindingProxy.cs" />
-    <Compile Include="Sources\Models\BLL\Business1.cs" />
+    <Compile Include="Sources\Models\BLL\SearchPhotosBLL.cs" />
     <Compile Include="Sources\Base_Mvvm\Views\Commands\BaseCommandBindingProxy.cs" />
     <Compile Include="Sources\Commons\HiwitLib.cs" />
     <Compile Include="Sources\Commons\MD5Process.cs" />

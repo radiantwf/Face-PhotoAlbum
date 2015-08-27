@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Face_PhotoAlbum.ViewModels {
             }
         }
         public int PhotoNum { private set; get; }
-        public string ImagePath { private set; get; }
+        public byte[] Image { private set; get; }
 
         private void SelectPhoto(object parameter) {
             try {
@@ -61,7 +62,7 @@ namespace Face_PhotoAlbum.ViewModels {
             model.ToList().ForEach(row => {
                 PhotoContainerViewModel photoViewModel = new PhotoContainerViewModel();
                 photoViewModel.PhotoNum = row.PhotoNum;
-                photoViewModel.ImagePath = row.ImagePath;
+                photoViewModel.Image = File.ReadAllBytes(row.ImagePath);
                 photoViewModel.IsSelected = false;
                 _PhotoViewModelList.Add(photoViewModel);
             });
