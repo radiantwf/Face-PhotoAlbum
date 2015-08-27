@@ -11,6 +11,7 @@ using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
     public class PhotoContainerViewModel : ObservableObject {
+
         private bool _IsSelected = false;
         private static ObservableCollection<PhotoContainerViewModel> _PhotoViewModelList;
         private ICommand _SelectPhotoCommand;
@@ -25,6 +26,7 @@ namespace Face_PhotoAlbum.ViewModels {
         }
         public int PhotoNum { private set; get; }
         public byte[] Image { private set; get; }
+        public PhotoContainerModel.MatchTypeType MatchType { private set; get; }
 
         private void SelectPhoto(object parameter) {
             try {
@@ -63,6 +65,7 @@ namespace Face_PhotoAlbum.ViewModels {
                 PhotoContainerViewModel photoViewModel = new PhotoContainerViewModel();
                 photoViewModel.PhotoNum = row.PhotoNum;
                 photoViewModel.Image = File.ReadAllBytes(row.ImagePath);
+                photoViewModel.MatchType = row.MatchType;
                 photoViewModel.IsSelected = false;
                 _PhotoViewModelList.Add(photoViewModel);
             });

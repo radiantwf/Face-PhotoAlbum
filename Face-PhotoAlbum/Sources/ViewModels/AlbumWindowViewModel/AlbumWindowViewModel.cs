@@ -14,7 +14,8 @@ namespace Face_PhotoAlbum.ViewModels {
         private ObservableCollection<AlbumContainerViewModel> _FaceAlbums = null;
         private ObservableCollection<PhotoContainerViewModel> _Photos = null;
         private int _CurrentAlbumNum = -1;
-
+        private string _CurrentAlbumName = string.Empty;
+        
         public enum ContentType { FaceAlbum, Photo }
         public ContentType _CurrentContentType = ContentType.FaceAlbum;
 
@@ -29,9 +30,17 @@ namespace Face_PhotoAlbum.ViewModels {
             }
             set {
                 _CurrentContentType = value;
-                if (_CurrentContentType == ContentType.FaceAlbum)
+                if (_CurrentContentType == ContentType.FaceAlbum) {
                     _CurrentAlbumNum = -1;
+                    _CurrentAlbumName = string.Empty;
+                }
                 RaisePropertyChanged(() => CurrentContentType);
+                RaisePropertyChanged(() => AlbumLabelContext);
+            }
+        }
+        public string AlbumLabelContext {
+            get {
+                return _CurrentContentType == ContentType.FaceAlbum ? "人脸相册" : "相册（" + _CurrentAlbumName + "）";
             }
         }
         public ObservableCollection<AlbumContainerViewModel> FaceAlbums {
@@ -50,6 +59,46 @@ namespace Face_PhotoAlbum.ViewModels {
             set {
                 _Photos = value;
                 RaisePropertyChanged(() => Photos);
+                RaisePropertyChanged(() => ComfirmMatchPhotos);
+                RaisePropertyChanged(() => PossibleMatchPhotos);
+                RaisePropertyChanged(() => UnknownPhotos);
+                RaisePropertyChanged(() => ComfirmMatchPhotosShownFlg);
+                RaisePropertyChanged(() => PossibleMatchShownFlg);
+                RaisePropertyChanged(() => UnknownShownFlg);
+            }
+        }
+        public List<PhotoContainerViewModel> ComfirmMatchPhotos {
+            get {
+                var list = _Photos == null ? null : _Photos.Where(p => p.MatchType == PhotoContainerModel.MatchTypeType.Confirm).ToList();
+                return list;
+            }
+        }
+        public List<PhotoContainerViewModel> PossibleMatchPhotos {
+            get {
+                var list = _Photos == null ? null : _Photos.Where(p => p.MatchType == PhotoContainerModel.MatchTypeType.Possible).ToList();
+                return list;
+            }
+        }
+        public List<PhotoContainerViewModel> UnknownPhotos {
+            get {
+                var list = _Photos == null ? null : _Photos.Where(p => p.MatchType == PhotoContainerModel.MatchTypeType.Unknown).ToList();
+                return list;
+            }
+        }
+
+        public bool ComfirmMatchPhotosShownFlg {
+            get {
+                return ComfirmMatchPhotos == null || ComfirmMatchPhotos.Count() == 0 ? false : true;
+            }
+        }
+        public bool PossibleMatchShownFlg {
+            get {
+                return PossibleMatchPhotos == null || PossibleMatchPhotos.Count() == 0 ? false : true;
+            }
+        }
+        public bool UnknownShownFlg {
+            get {
+                return UnknownPhotos != null && UnknownPhotos.Count() == _Photos.Count() ? true : false;
             }
         }
 
@@ -92,7 +141,7 @@ namespace Face_PhotoAlbum.ViewModels {
                 bll.Run();
                 ReadFaceAlbums(null);
                 if (_CurrentAlbumNum != -1)
-                    ReadPhotos(_CurrentAlbumNum);
+                    ReadPhotos(_CurrentAlbumNum, _CurrentAlbumName);
             }
             catch (Exception ex) {
                 throw;
@@ -106,9 +155,10 @@ namespace Face_PhotoAlbum.ViewModels {
                 throw;
             }
         }
-        public void ReadPhotos(int AlbumNum) {
+        public void ReadPhotos(int AlbumNum,string AlbumName) {
             try {
                 _CurrentAlbumNum = AlbumNum;
+                _CurrentAlbumName = AlbumName;
                 var modelData = model.GetPhotoList(AlbumNum);
                 Photos = PhotoContainerViewModel.ConvertToViewModelDataList(modelData);
             }
@@ -122,6 +172,26 @@ namespace Face_PhotoAlbum.ViewModels {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
             try {
                 if ((AlbumWindowViewModel.ContentType)value == AlbumWindowViewModel.ContentType.FaceAlbum) {
+                    return System.Windows.Visibility.Visible;
+                }
+                else {
+                    return System.Windows.Visibility.Collapsed;
+                }
+            }
+            catch {
+                throw;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+    public class BoolToControlShownFlgConverter : IValueConverter {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
+            try {
+                if ((bool)value) {
                     return System.Windows.Visibility.Visible;
                 }
                 else {

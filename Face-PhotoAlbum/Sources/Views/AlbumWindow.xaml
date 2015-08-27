@@ -11,6 +11,7 @@
         <vm:ContentTypeToBackButtonEnableFlgConverter x:Key="ContentTypeToBackButtonEnableFlgConverter"/>
         <vm:ContentTypeToFaceAlbumsShownFlgConverter x:Key="ContentTypeToFaceAlbumsShownFlgConverter"/>
         <vm:ContentTypeToPhotosShownFlgConverter x:Key="ContentTypeToPhotosShownFlgConverter"/>
+        <vm:BoolToControlShownFlgConverter x:Key="BoolToControlShownFlgConverter"/>
     </Window.Resources>
 
     <i:Interaction.Triggers>
@@ -66,7 +67,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="../../Resources/01.png" />
                     </Border.Background>
-                    <TextBlock x:Name="tb_xiangce" Text="人脸相册" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"/>
+                    <TextBlock x:Name="tb_xiangce" Text="{Binding AlbumLabelContext}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"/>
                 </Border>
                 <Border x:Name="border_zhaopian" Width="140" Height="28" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
                     <Border.Background>
@@ -100,28 +101,67 @@
         </ScrollViewer>
 
         <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto" Visibility="{Binding CurrentContentType, Converter={StaticResource ContentTypeToPhotosShownFlgConverter}}">
-            <ItemsControl x:Name="itemsControl2" ItemsSource="{Binding Photos}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"  Width="1000"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:PhotoContainer Content="{Binding}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="0"/>
+                    <RowDefinition MinHeight="0"/>
+                    <RowDefinition MinHeight="0"/>
+                    <RowDefinition MinHeight="0"/>
+                    <RowDefinition MinHeight="0"/>
+                    <RowDefinition MinHeight="0"/>
+                </Grid.RowDefinitions>
+                <Label Content="确定"  Foreground="#FF6C0606" FontSize="20" FontWeight="Bold" Margin="15,0,0,0" Grid.Row="0" Visibility="{Binding ComfirmMatchPhotosShownFlg, Converter={StaticResource BoolToControlShownFlgConverter}, Mode=OneWay}"/>
+                <ItemsControl x:Name="itemsControl2" ItemsSource="{Binding ComfirmMatchPhotos}" Grid.Row="1" Visibility="{Binding ComfirmMatchPhotosShownFlg, Converter={StaticResource BoolToControlShownFlgConverter}, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"  Width="993"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:PhotoContainer Content="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Label Content="可能"  Foreground="#FF6C0606" FontSize="20" FontWeight="Bold" Margin="15,0,0,0" Grid.Row="2" Visibility="{Binding PossibleMatchShownFlg, Converter={StaticResource BoolToControlShownFlgConverter}, Mode=OneWay}"/>
+                <ItemsControl x:Name="itemsControl3" ItemsSource="{Binding PossibleMatchPhotos}" Grid.Row="3" Visibility="{Binding PossibleMatchShownFlg, Converter={StaticResource BoolToControlShownFlgConverter}, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"  Width="993"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:PhotoContainer Content="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!--<Label Content="未知"  Foreground="#FF6C0606" FontSize="20" FontWeight="Bold" Margin="15,0,0,0" Grid.Row="4" Visibility="{Binding UnknownShownFlg, Converter={StaticResource BoolToControlShownFlgConverter}, Mode=OneWay}"/>-->
+                <ItemsControl x:Name="itemsControl4" ItemsSource="{Binding UnknownPhotos}" Grid.Row="5" Visibility="{Binding UnknownShownFlg, Converter={StaticResource BoolToControlShownFlgConverter}, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"  Width="993"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:PhotoContainer Content="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
         </ScrollViewer>
 
-        <Grid Grid.Row="3" VerticalAlignment="Top">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Command="{Binding SearchPhotosCommand, Mode=OneWay}">
+            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Command="{Binding SearchPhotosCommand, Mode=OneWay}" Margin="0,0,0,10">
                 <Button.Background>
                     <ImageBrush ImageSource="../../Resources/进入套系.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
                 </Button.Background>

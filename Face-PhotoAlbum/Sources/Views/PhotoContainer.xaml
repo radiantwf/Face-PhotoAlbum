@@ -17,11 +17,11 @@
     <UserControl.Resources>
         <vm:PhotoSelectStatusToBgPathConverter x:Key="photo_stb" />
         <DataTemplate x:Key="PhotoTemplate">
-            <Border Width="180" Height="170">
+            <Border Width="311" Height="216">
                 <Border.Background>
                     <ImageBrush ImageSource="{Binding IsSelected, Converter={StaticResource photo_stb}}" />
                 </Border.Background>
-                <Image Source="{Binding Image}" Width="150" Height="150" Stretch="Uniform" />
+                <Image Source="{Binding Image}" Width="291" Height="196" Stretch="Uniform" />
             </Border>
         </DataTemplate>
     </UserControl.Resources>

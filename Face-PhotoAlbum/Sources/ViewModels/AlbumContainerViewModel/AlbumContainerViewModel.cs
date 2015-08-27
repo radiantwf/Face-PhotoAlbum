@@ -40,27 +40,21 @@ namespace Face_PhotoAlbum.ViewModels {
         }
 
         private ICommand _EnterAlbumCommand;
-        public ICommand EnterAlbumCommand
-        {
-            get
-            {
-                if (this._EnterAlbumCommand == null)
-                {
+        public ICommand EnterAlbumCommand {
+            get {
+                if (this._EnterAlbumCommand == null) {
                     this._EnterAlbumCommand = new CommandProxy(EnterAlbum);
                 }
                 return this._EnterAlbumCommand;
             }
         }
-        private void EnterAlbum(object parameter)
-        {
-            try
-            {
+        private void EnterAlbum(object parameter) {
+            try {
                 var albumWindowViewModel = parameter as AlbumWindowViewModel;
-                albumWindowViewModel.ReadPhotos(AlbumNum);
+                albumWindowViewModel.ReadPhotos(AlbumNum, _AlbumLabel);
                 albumWindowViewModel.CurrentContentType = AlbumWindowViewModel.ContentType.Photo;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 throw;
             }
         }
@@ -69,7 +63,7 @@ namespace Face_PhotoAlbum.ViewModels {
         public byte[] CoverImage { get; private set; }
         public string ImageCountStr {
             get {
-                return "共有" + _ImageCount.ToString() + "张照片";
+                return AlbumNum != 0 ? "共有" + _ImageCount.ToString() + "张照片" : null;
             }
         }
 
