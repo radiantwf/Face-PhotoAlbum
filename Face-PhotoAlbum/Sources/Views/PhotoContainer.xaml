@@ -3,10 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
              xmlns:local="clr-namespace:Face_PhotoAlbum.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" Margin="10" ContentTemplate="{DynamicResource PhotoTemplate}">
+
+    <UserControl.Resources>
+        <vm:PhotoSelectStatusToBgPathConverter x:Key="photo_stb" />
+        <DataTemplate x:Key="PhotoTemplate">
+            <Border Width="168" Height="170">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding IsSelected, Converter={StaticResource photo_stb}}" />
+                </Border.Background>
+                <Image Source="{Binding PhotoImage}" Width="150" Height="150" Stretch="Uniform" />
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
-            
+
     </Grid>
 </UserControl>

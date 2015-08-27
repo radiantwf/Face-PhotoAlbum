@@ -31,7 +31,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="{Binding IsSelected,Converter={StaticResource album_stb}}" />
                     </Border.Background>
-                    <Image Source="{Binding CoverImage, Converter={StaticResource album_ntr}}" Width="150" Height="150" Stretch="Fill" Margin="13,13" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <Image Source="{Binding CoverImage, Converter={StaticResource album_ntr}}" Width="150" Height="150" Stretch="Uniform" Margin="13,13" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 </Border>
                 <TextBlock Grid.Row="1" Text="{Binding AlbumLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" />
                 <TextBlock Grid.Row="2" Text="{Binding ImageCountStr}" HorizontalAlignment="Center" VerticalAlignment="Center" />
