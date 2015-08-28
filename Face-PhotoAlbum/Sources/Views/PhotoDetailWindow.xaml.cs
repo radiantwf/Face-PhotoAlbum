@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Face_PhotoAlbum.Sources.Views {
+namespace Face_PhotoAlbum.Views {
     /// <summary>
     /// PhotoDetailWindow.xaml 的交互逻辑
     /// </summary>
