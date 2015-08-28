@@ -14,6 +14,10 @@
         <vm:BoolToControlShownFlgConverter x:Key="BoolToControlShownFlgConverter"/>
     </Window.Resources>
 
+    <Window.Effect>
+        <DropShadowEffect
+                ShadowDepth="1" Color="#FF424040" />
+    </Window.Effect>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding ReadFaceAlbumsCommand, Mode=OneWay}"/>
@@ -161,9 +165,9 @@
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Command="{Binding SearchPhotosCommand, Mode=OneWay}" Margin="0,0,0,10">
+            <Button Grid.Column="2" Width="132" Height="43" Template="{StaticResource ButtonTemplate}" Command="{Binding SearchPhotosCommand, Mode=OneWay}" Margin="0,0,0,10">
                 <Button.Background>
-                    <ImageBrush ImageSource="../../Resources/进入套系.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
+                    <ImageBrush ImageSource="../../Resources/照片搜索.png" Stretch="UniformToFill" Viewbox="0,0,0.25,1"/>
                 </Button.Background>
             </Button>
         </Grid>

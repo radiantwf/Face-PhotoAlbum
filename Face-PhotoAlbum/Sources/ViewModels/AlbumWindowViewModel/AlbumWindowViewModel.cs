@@ -40,7 +40,7 @@ namespace Face_PhotoAlbum.ViewModels {
         }
         public string AlbumLabelContext {
             get {
-                return _CurrentContentType == ContentType.FaceAlbum ? "人脸相册" : "相册（" + _CurrentAlbumName + "）";
+                return _CurrentContentType == ContentType.FaceAlbum ? "相册封面" : "相册（" + _CurrentAlbumName + "）";
             }
         }
         public ObservableCollection<AlbumContainerViewModel> FaceAlbums {
