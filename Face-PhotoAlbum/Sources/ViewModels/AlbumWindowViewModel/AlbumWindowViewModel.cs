@@ -19,6 +19,13 @@ namespace Face_PhotoAlbum.ViewModels {
         public enum ContentType { FaceAlbum, Photo }
         public ContentType _CurrentContentType = ContentType.FaceAlbum;
 
+        public event EventHandler ShowPhotoDetailWindowEventHandler;
+        protected virtual void OnShowPhotoDetailWindow() {
+            var handler = this.ShowPhotoDetailWindowEventHandler;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+
         private AlbumWindowModel model = new AlbumWindowModel();
         private ICommand _ReadFaceAlbumsCommand;
         private ICommand _BackToAlbumsCommand;

@@ -27,7 +27,8 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.DataContext>
-        <vm:AlbumWindowViewModel/>
+        <vm:AlbumWindowViewModel
+            ShowPhotoDetailWindowEventHandler="AlbumContainerViewModel_OnShowPhotoDetailWindow" />
     </Window.DataContext>
 
     <Window.Background>

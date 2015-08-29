@@ -15,6 +15,7 @@ namespace Face_PhotoAlbum.ViewModels {
         private bool _IsSelected = false;
         private static ObservableCollection<PhotoContainerViewModel> _PhotoViewModelList;
         private ICommand _SelectPhotoCommand;
+        private ICommand _EnterPhotoCommand;
 
         public ICommand SelectPhotoCommand {
             get {
@@ -24,6 +25,17 @@ namespace Face_PhotoAlbum.ViewModels {
                 return this._SelectPhotoCommand;
             }
         }
+
+        public ICommand EnterPhotoCommand {
+            get {
+                if (this._EnterPhotoCommand == null) {
+                    this._EnterPhotoCommand = new CommandProxy(EnterPhoto);
+                }
+                return this._EnterPhotoCommand;
+            }
+        }
+
+        
         public int PhotoNum { private set; get; }
         public byte[] Image { private set; get; }
         public PhotoContainerModel.MatchTypeType MatchType { private set; get; }
@@ -36,6 +48,14 @@ namespace Face_PhotoAlbum.ViewModels {
                     }
                 }
                 IsSelected = true;
+            }
+            catch (Exception ex) {
+                throw;
+            }
+        }
+        private void EnterPhoto(object parameter) {
+            try {
+
             }
             catch (Exception ex) {
                 throw;

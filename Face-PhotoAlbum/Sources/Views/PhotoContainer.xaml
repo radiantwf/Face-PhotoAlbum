@@ -12,6 +12,9 @@
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding SelectPhotoCommand}"/>
         </i:EventTrigger>
+        <i:EventTrigger EventName="MouseDoubleClick">
+            <i:InvokeCommandAction Command="{Binding EnterPhotoCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AlbumWindow}}}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
     
     <UserControl.Resources>

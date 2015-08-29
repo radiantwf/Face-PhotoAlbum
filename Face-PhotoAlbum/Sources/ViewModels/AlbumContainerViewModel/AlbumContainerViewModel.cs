@@ -16,6 +16,7 @@ namespace Face_PhotoAlbum.ViewModels {
         private bool _IsSelected = false;
         private int _ImageCount;
         private static ObservableCollection<AlbumContainerViewModel> _FaceAlbumViewModelList;
+
         private ICommand _SelectAlbumCommand;
         public ICommand SelectAlbumCommand {
             get {

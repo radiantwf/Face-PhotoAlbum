@@ -16,5 +16,11 @@ namespace Face_PhotoAlbum.Views {
 
             InitializeComponent();
         }
+
+        private void AlbumContainerViewModel_OnShowPhotoDetailWindow(object sender, EventArgs e) {
+            //MainWindow mainWindow = new MainWindow();
+            //this.Close();
+            //mainWindow.ShowDialog();
+        }
     }
 }
