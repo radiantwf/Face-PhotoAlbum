@@ -144,6 +144,7 @@
     <Compile Include="Sources\Views\AlbumWindow.xaml.cs">
       <DependentUpon>AlbumWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sources\Views\Commands\ShowDialogCommandBindingProxy.cs" />
     <Compile Include="Sources\Views\Commands\MoveCommandBindingProxy.cs" />
     <Compile Include="Sources\Views\Commands\MinimizedCommandBindingProxy.cs" />
     <Compile Include="Sources\Views\PhotoContainer.xaml.cs">
