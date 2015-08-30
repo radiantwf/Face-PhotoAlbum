@@ -11,23 +11,12 @@ namespace Face_PhotoAlbum {
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>
-    public partial class App : Application
-    {
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
+    public partial class App : Application {
+        protected override void OnStartup(StartupEventArgs e) {
+            base.OnStartup(e);
 
-            Application.Current.ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown;
-            Window top = new TopWindow();
-            bool? dialogResult = top.ShowDialog();
-            if ((dialogResult.HasValue == true) &&
-                (dialogResult.Value == true))
-            {
-                Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            }
-            else
-            {
-                this.Shutdown();
-            }
+            CommandingBootstrapper bootstrapper = new CommandingBootstrapper();
+            bootstrapper.Run();
         }
     }
 }
