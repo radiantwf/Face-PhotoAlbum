@@ -18,13 +18,8 @@ namespace Face_PhotoAlbum {
         protected override void InitializeShell() {
             base.InitializeShell();
 
-            Window top = new TopWindow();
-            bool? dialogResult = top.ShowDialog();
-            if ((dialogResult.HasValue == true) &&
-                (dialogResult.Value == true)) {
-                App.Current.MainWindow = (Window)this.Shell;
-                App.Current.MainWindow.Show();
-            }
+            App.Current.MainWindow = (Window)this.Shell;
+            App.Current.MainWindow.Show();
         }
 
         protected override void ConfigureModuleCatalog() {

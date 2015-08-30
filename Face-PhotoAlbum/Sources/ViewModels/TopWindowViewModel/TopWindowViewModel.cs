@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
+using Microsoft.Practices.Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +9,13 @@ using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace Face_PhotoAlbum.ViewModels {
-    public class TopWindowViewModel : ObservableObject, ITopWindowViewModel {
+    public class TopWindowViewModel : BindableBase, ITopWindowViewModel, INotification {
+        public TopWindowViewModel():base() {
+            Title = "TopWindow";
+        }
+        public object Content { get; set; }
+        public string Title { get; set; }
+
         private ICommand _WaitingCommand;
 
         public event EventHandler HasWaited;

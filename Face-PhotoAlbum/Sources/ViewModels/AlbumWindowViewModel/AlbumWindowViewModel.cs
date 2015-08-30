@@ -1,4 +1,6 @@
 ﻿using Face_PhotoAlbum.Models;
+using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
+using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +17,8 @@ namespace Face_PhotoAlbum.ViewModels {
         private ObservableCollection<PhotoContainerViewModel> _Photos = null;
         private int _CurrentAlbumNum = -1;
         private string _CurrentAlbumName = string.Empty;
-        
+        private InteractionRequest<INotification> _ShowTopWindowRequest = new InteractionRequest<INotification>();
+
         public enum ContentType { FaceAlbum, Photo }
         public ContentType _CurrentContentType = ContentType.FaceAlbum;
 
@@ -30,6 +33,13 @@ namespace Face_PhotoAlbum.ViewModels {
         private ICommand _ReadFaceAlbumsCommand;
         private ICommand _BackToAlbumsCommand;
         private ICommand _SearchPhotosCommand;
+
+        public IInteractionRequest ShowTopWindowRequest {
+            get { return this._ShowTopWindowRequest; }
+        }
+        public void ShowTopWindow() {
+            this._ShowTopWindowRequest.Raise(new TopWindowViewModel());
+        }
 
         public ContentType CurrentContentType {
             get {
