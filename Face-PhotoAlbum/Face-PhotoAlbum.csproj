@@ -143,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Views\PhotoDetailWindow.xaml">
+    <Page Include="Sources\Views\PhotoDetailControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -178,6 +178,7 @@
     <Compile Include="Sources\ViewModels\AlbumWindowViewModel\AlbumWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\AlbumContainerViewModel\AlbumContainerViewModel.cs" />
     <Compile Include="Sources\ViewModels\PhotoContainerViewModel\PhotoContainerViewModel.cs" />
+    <Compile Include="Sources\ViewModels\PhotoDetailViewModel\PhotoDetailViewModel.cs" />
     <Compile Include="Sources\Views\AlbumContainer.xaml.cs">
       <DependentUpon>AlbumContainer.xaml</DependentUpon>
     </Compile>
@@ -206,8 +207,8 @@
     <Compile Include="Sources\Views\PhotoContainer.xaml.cs">
       <DependentUpon>PhotoContainer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sources\Views\PhotoDetailWindow.xaml.cs">
-      <DependentUpon>PhotoDetailWindow.xaml</DependentUpon>
+    <Compile Include="Sources\Views\PhotoDetailControl.xaml.cs">
+      <DependentUpon>PhotoDetailControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\Views\TopWindow.xaml.cs">
       <DependentUpon>TopWindow.xaml</DependentUpon>

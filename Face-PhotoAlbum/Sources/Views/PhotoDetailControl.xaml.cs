@@ -16,8 +16,8 @@ namespace Face_PhotoAlbum.Views {
     /// <summary>
     /// PhotoDetailWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class PhotoDetailWindow : Window {
-        public PhotoDetailWindow() {
+    public partial class PhotoDetailControl : UserControl {
+        public PhotoDetailControl() {
             InitializeComponent();
         }
     }

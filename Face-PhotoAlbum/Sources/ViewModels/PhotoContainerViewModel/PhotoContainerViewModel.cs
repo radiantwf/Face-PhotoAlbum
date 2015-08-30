@@ -1,4 +1,5 @@
 ﻿using Face_PhotoAlbum.Models;
+using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
 using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -17,6 +19,12 @@ namespace Face_PhotoAlbum.ViewModels {
         private static ObservableCollection<PhotoContainerViewModel> _PhotoViewModelList;
         private ICommand _SelectPhotoCommand;
         private ICommand _EnterPhotoCommand;
+        private InteractionRequest<INotification> _ShowPhotoDetailWindowRequest = new InteractionRequest<INotification>();
+
+
+        public IInteractionRequest ShowPhotoDetailWindowRequest {
+            get { return this._ShowPhotoDetailWindowRequest; }
+        }
 
         public ICommand SelectPhotoCommand {
             get {
@@ -35,7 +43,6 @@ namespace Face_PhotoAlbum.ViewModels {
                 return this._EnterPhotoCommand;
             }
         }
-
         
         public int PhotoNum { private set; get; }
         public byte[] Image { private set; get; }
@@ -56,7 +63,7 @@ namespace Face_PhotoAlbum.ViewModels {
         }
         private void EnterPhoto(object parameter) {
             try {
-
+                this._ShowPhotoDetailWindowRequest.Raise(new PhotoDetailViewModel(_PhotoViewModelList, parameter as PhotoContainerViewModel));
             }
             catch (Exception ex) {
                 throw;

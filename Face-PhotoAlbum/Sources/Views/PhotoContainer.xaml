@@ -1,7 +1,9 @@
-﻿<UserControl x:Class="Face_PhotoAlbum.Views.PhotoContainer"
+﻿<UserControl x:Name="userControl" x:Class="Face_PhotoAlbum.Views.PhotoContainer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:prism="http://www.codeplex.com/prism"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
@@ -9,14 +11,23 @@
              mc:Ignorable="d" Margin="10" ContentTemplate="{DynamicResource PhotoTemplate}">
 
     <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger SourceObject="{Binding ShowPhotoDetailWindowRequest}">
+            <local:CustomPopupWindowAction CenterOverAssociatedObject="True"
+                                               IsModal="True">
+                <local:CustomPopupWindowAction.WindowContent>
+                    <local:PhotoDetailControl />
+                </local:CustomPopupWindowAction.WindowContent>
+            </local:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding SelectPhotoCommand}"/>
         </i:EventTrigger>
         <i:EventTrigger EventName="MouseDoubleClick">
-            <i:InvokeCommandAction Command="{Binding EnterPhotoCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AlbumWindow}}}"/>
+            <i:InvokeCommandAction Command="{Binding EnterPhotoCommand}" CommandParameter="{Binding Content, ElementName=userControl}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <UserControl.Resources>
         <vm:PhotoSelectStatusToBgPathConverter x:Key="photo_stb" />
         <DataTemplate x:Key="PhotoTemplate">

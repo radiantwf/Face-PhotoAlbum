@@ -38,11 +38,10 @@ namespace Face_PhotoAlbum.ViewModels {
         private void WaitingAction(object parameter) {
             DispatcherTimer timer = new DispatcherTimer();
 
-            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Interval = TimeSpan.FromSeconds(0);
             timer.Tick += (o, a) => {
                 timer.Stop();
                 OnWaited();
-
             };
 
             timer.Start();

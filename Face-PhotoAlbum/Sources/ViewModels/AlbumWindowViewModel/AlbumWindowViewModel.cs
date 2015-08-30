@@ -17,29 +17,14 @@ namespace Face_PhotoAlbum.ViewModels {
         private ObservableCollection<PhotoContainerViewModel> _Photos = null;
         private int _CurrentAlbumNum = -1;
         private string _CurrentAlbumName = string.Empty;
-        private InteractionRequest<INotification> _ShowTopWindowRequest = new InteractionRequest<INotification>();
 
         public enum ContentType { FaceAlbum, Photo }
         public ContentType _CurrentContentType = ContentType.FaceAlbum;
-
-        public event EventHandler ShowPhotoDetailWindowEventHandler;
-        protected virtual void OnShowPhotoDetailWindow() {
-            var handler = this.ShowPhotoDetailWindowEventHandler;
-            if (handler != null) handler(this, EventArgs.Empty);
-        }
-
 
         private AlbumWindowModel model = new AlbumWindowModel();
         private ICommand _ReadFaceAlbumsCommand;
         private ICommand _BackToAlbumsCommand;
         private ICommand _SearchPhotosCommand;
-
-        public IInteractionRequest ShowTopWindowRequest {
-            get { return this._ShowTopWindowRequest; }
-        }
-        public void ShowTopWindow() {
-            this._ShowTopWindowRequest.Raise(new TopWindowViewModel());
-        }
 
         public ContentType CurrentContentType {
             get {
