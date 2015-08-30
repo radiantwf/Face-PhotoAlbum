@@ -17,32 +17,46 @@ namespace Face_PhotoAlbum.Views {
         /// <param name="notification"></param>
         /// <returns></returns>
         protected override Window GetWindow(INotification notification) {
-            Window wrapperWindow;
 
-            if (this.WindowContent != null) {
-                wrapperWindow = new Window();
-
-                wrapperWindow.DataContext = notification;
-                wrapperWindow.Title = notification.Title;
-
-                ResourceDictionary langRd = null;
-                try {
-                    langRd = Application.LoadComponent(new Uri("Face-PhotoAlbum;component/Sources/Views/CustomPopupWindowStyle.xaml", UriKind.RelativeOrAbsolute)) as ResourceDictionary;
-                }
-                catch {
-                }
-                if (langRd != null) {
-                    if (wrapperWindow.Resources.MergedDictionaries.Count > 0) {
-                        wrapperWindow.Resources.MergedDictionaries.Clear();
-                    }
-                    wrapperWindow.Resources.MergedDictionaries.Add(langRd);
-
-                }
-                this.PrepareContentForWindow(notification, wrapperWindow);
+            Window wrapperWindow = base.GetWindow(notification);
+            ResourceDictionary langRd = null;
+            try {
+                langRd = Application.LoadComponent(new Uri("Face-PhotoAlbum;component/Sources/Views/CustomPopupWindowStyle.xaml", UriKind.RelativeOrAbsolute)) as ResourceDictionary;
             }
-            else {
-                wrapperWindow = this.CreateDefaultWindow(notification);
+            catch {
             }
+            if (langRd != null) {
+                if (wrapperWindow.Resources.MergedDictionaries.Count > 0) {
+                    wrapperWindow.Resources.MergedDictionaries.Clear();
+                }
+                wrapperWindow.Resources.MergedDictionaries.Add(langRd);
+            }
+
+            //if (this.WindowContent != null) {
+            //    wrapperWindow = new Window();
+
+            //    wrapperWindow.DataContext = notification;
+            //    wrapperWindow.Title = notification.Title;
+
+            //    ResourceDictionary langRd = null;
+            //    try {
+            //        langRd = Application.LoadComponent(new Uri("Face-PhotoAlbum;component/Sources/Views/CustomPopupWindowStyle.xaml", UriKind.RelativeOrAbsolute)) as ResourceDictionary;
+            //    }
+            //    catch {
+            //    }
+            //    if (langRd != null) {
+            //        if (wrapperWindow.Resources.MergedDictionaries.Count > 0) {
+            //            wrapperWindow.Resources.MergedDictionaries.Clear();
+            //        }
+            //        wrapperWindow.Resources.MergedDictionaries.Add(langRd);
+            //        wrapperWindow.Resources.MergedDictionaries.Add(langRd2);
+
+            //    }
+            //    this.PrepareContentForWindow(notification, wrapperWindow);
+            //}
+            //else {
+            //    wrapperWindow = this.CreateDefaultWindow(notification);
+            //}
 
             return wrapperWindow;
         }

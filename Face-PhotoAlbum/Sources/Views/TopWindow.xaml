@@ -6,18 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" x:Class="Face_PhotoAlbum.Views.TopWindow"
     xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
-    Height="500" 
-    Width="500" 
-    Background="Transparent">
+    Width="500" Height="500"
+    Background="Transparent" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
     <UserControl.Resources>
-        <Style TargetType="{x:Type Window}">
-            <Setter Property="Height" Value="500" />
-            <Setter Property="Width" Value="500" />
-            <Setter Property="Title" Value="Face-PhotoAlbum" />
-            <Setter Property="AllowsTransparency" Value="True" />
-            <!--<Setter Property="WindowStartupLocation" Value="CenterScreen" />
-            <Setter Property="MouseDown" Value="Window_MouseDown" />-->
-        </Style>
         <Storyboard x:Key="OnLoaded" RepeatBehavior="Forever" AutoReverse="True">
             <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(BlurEffect.Radius)"  Storyboard.TargetName="FunGrid" BeginTime="00:00:00" From="0" To="10" Duration="00:00:01.5"/>
             <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(DropShadowEffect.BlurRadius)"  Storyboard.TargetName="FunGrid" BeginTime="00:00:00" From="0" To="10" Duration="00:00:01"/>
@@ -35,9 +26,6 @@
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard  Storyboard="{StaticResource OnLoaded}"/>
         </EventTrigger>
-        <!--<EventTrigger RoutedEvent=>
-            --><!--<i:InvokeCommandAction Command="{Binding Waiting, Mode=OneWay}"/>--><!--
-        </EventTrigger>-->
     </UserControl.Triggers>
 
     <UserControl.DataContext>

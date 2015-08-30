@@ -21,25 +21,23 @@
                 ShadowDepth="1" Color="#FF424040" />
     </Window.Effect>
     <i:Interaction.Triggers>
-        <prism:InteractionRequestTrigger SourceObject="{Binding ShowTopWindowRequest}">
+        <!--<prism:InteractionRequestTrigger SourceObject="{Binding ShowTopWindowRequest}">
             <prism:PopupWindowAction IsModal="True">
                 <prism:PopupWindowAction.WindowContent>
                     <local:TopWindow />
                 </prism:PopupWindowAction.WindowContent>
             </prism:PopupWindowAction>
-        </prism:InteractionRequestTrigger>
+        </prism:InteractionRequestTrigger>-->
 
-
-        <!--<prism:InteractionRequestTrigger SourceObject="{Binding ShowTopWindowRequest}">
+        <prism:InteractionRequestTrigger SourceObject="{Binding ShowTopWindowRequest}">
             <local:CustomPopupWindowAction CenterOverAssociatedObject="True"
                                                IsModal="True">
-                --><!--作为容器的Window是添加了自定义样式的,重写了PopupWindowAction中的GetWindow方法--><!--
                 <local:CustomPopupWindowAction.WindowContent>
-                    --><!--使用了同一个弹出内容控件UserControl--><!--
                     <local:TopWindow />
                 </local:CustomPopupWindowAction.WindowContent>
             </local:CustomPopupWindowAction>
-        </prism:InteractionRequestTrigger>-->
+        </prism:InteractionRequestTrigger>
+        
         <i:EventTrigger EventName="Loaded">
             <ei:CallMethodAction TargetObject="{Binding}" MethodName="ShowTopWindow"/>
         </i:EventTrigger>

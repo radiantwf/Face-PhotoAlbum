@@ -11,20 +11,27 @@ namespace Face_PhotoAlbum.Views {
         public TopWindow() {
             InitializeComponent();
         }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
-            //if (e.ChangedButton == MouseButton.Left) this.DragMove();
-        }
-
-        private void TopWindowViewModel_HasWaited(object sender, EventArgs e) {
+        private Window GetRootWindow() {
             FrameworkElement parent = this;
-            for (parent = (FrameworkElement)parent.Parent;(parent!=null &&!(parent is Window)); parent = (FrameworkElement)parent.Parent) {
+            for (parent = (FrameworkElement)parent.Parent; (parent != null && !(parent is Window)); parent = (FrameworkElement)parent.Parent) {
 
             }
-            ((Window)parent).Close();
-            //Application.Current.Shutdown();
-            //this.DialogResult = true;
-            //this.Close();
+            return ((Window)parent);
+        }
+        private void TopWindowViewModel_HasWaited(object sender, EventArgs e) {
+            Window root = GetRootWindow();
+            if (root != null) {
+                root.DialogResult = true;
+                root?.Close();
+            }
+            else {
+                Application.Current.Shutdown();
+            }
+        }
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            Window root = GetRootWindow();
+            root?.DragMove();
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.Unity;
 using System.Windows;
 using Face_PhotoAlbum.Views;
+using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
 
 namespace Face_PhotoAlbum {
     public class CommandingBootstrapper : UnityBootstrapper {
