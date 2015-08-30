@@ -19,7 +19,7 @@ namespace Face_PhotoAlbum.ViewModels {
         private static ObservableCollection<PhotoContainerViewModel> _PhotoViewModelList;
         private ICommand _SelectPhotoCommand;
         private ICommand _EnterPhotoCommand;
-        private InteractionRequest<INotification> _ShowPhotoDetailWindowRequest = new InteractionRequest<INotification>();
+        private InteractionRequest<PhotoDetailViewModel> _ShowPhotoDetailWindowRequest = new InteractionRequest<PhotoDetailViewModel>();
 
 
         public IInteractionRequest ShowPhotoDetailWindowRequest {
@@ -50,12 +50,16 @@ namespace Face_PhotoAlbum.ViewModels {
 
         private void SelectPhoto(object parameter) {
             try {
+                PhotoContainerViewModel viewmodel = parameter as PhotoContainerViewModel;
                 foreach (var Element in _PhotoViewModelList) {
                     if (Element != this && Element.IsSelected) {
                         Element.IsSelected = false;
                     }
                 }
-                IsSelected = true;
+                if(viewmodel != null)
+                    viewmodel.IsSelected = true;
+                else
+                    IsSelected = true;
             }
             catch (Exception ex) {
                 throw;
@@ -63,7 +67,9 @@ namespace Face_PhotoAlbum.ViewModels {
         }
         private void EnterPhoto(object parameter) {
             try {
-                this._ShowPhotoDetailWindowRequest.Raise(new PhotoDetailViewModel(_PhotoViewModelList, parameter as PhotoContainerViewModel));
+                PhotoDetailViewModel photoDetailViewModel = new PhotoDetailViewModel(_PhotoViewModelList, parameter as PhotoContainerViewModel);
+                this._ShowPhotoDetailWindowRequest.Raise(photoDetailViewModel);
+                this.SelectPhoto(_PhotoViewModelList[photoDetailViewModel.CurrentIndex]);
             }
             catch (Exception ex) {
                 throw;

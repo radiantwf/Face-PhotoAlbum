@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Face_PhotoAlbum.Views"
+        xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
         Height="650" Width="850"
         RenderOptions.BitmapScalingMode="NearestNeighbor" >
-
     <UserControl.Background>
         <ImageBrush ImageSource="../../Resources/shootbg.png" />
     </UserControl.Background>
@@ -34,13 +34,13 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
-                <Image x:Name="curimage" Grid.Column="0" Grid.ColumnSpan="3" Margin="6,6" Stretch="Fill" />
-                <Button x:Name="btn_left" Grid.Column="0" Template="{StaticResource ButtonTemplate}" Width="37" Height="50">
+                <Image x:Name="curimage" Grid.Column="0" Grid.ColumnSpan="3" Margin="6,6" Stretch="Uniform" Source="{Binding CurrentImage}" />
+                <Button x:Name="btn_left" Grid.Column="0" Template="{StaticResource ButtonTemplate}" Width="37" Height="50" Command="{Binding PreviousPhotoCommand, Mode=OneWay}">
                     <Button.Background>
                         <ImageBrush ImageSource="../../Resources/左.png" Stretch="None" Viewbox="0,0,0.25,1"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_right" Grid.Column="3" Template="{StaticResource ButtonTemplate}" Width="37" Height="50">
+                <Button x:Name="btn_right" Grid.Column="3" Template="{StaticResource ButtonTemplate}" Width="37" Height="50" Command="{Binding NextPhotoCommand, Mode=OneWay}">
                     <Button.Background>
                         <ImageBrush ImageSource="../../Resources/右.png" Stretch="None" Viewbox="0,0,0.25,1"/>
                     </Button.Background>
@@ -50,7 +50,7 @@
         <TextBlock x:Name="tb_curimageindex" Grid.Row="3" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" />
         <StackPanel Grid.Row="4" Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
 
-            <Button x:Name="btn_back2" Grid.Column="3" Template="{StaticResource ButtonTemplate}" Width="112" Height="43" Margin="0,0,20,0">
+            <Button x:Name="btn_back2" Grid.Column="3" Template="{StaticResource ButtonTemplate}" Width="112" Height="43" Margin="0,0,20,0" Command="{Binding CloseWindowCommand, Mode=OneWay}">
                 <Button.Background>
                     <ImageBrush ImageSource="../../Resources/返回2.png" Stretch="None" Viewbox="0,0,0.25,1"/>
                 </Button.Background>
