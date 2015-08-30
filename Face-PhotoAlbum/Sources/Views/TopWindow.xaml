@@ -1,47 +1,21 @@
-﻿<UserControl
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" x:Class="Face_PhotoAlbum.Views.TopWindow"
-    xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
-    Width="500" Height="500"
-    Background="Transparent" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
-    <UserControl.Resources>
-        <Storyboard x:Key="OnLoaded" RepeatBehavior="Forever" AutoReverse="True">
-            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(BlurEffect.Radius)"  Storyboard.TargetName="FunGrid" BeginTime="00:00:00" From="0" To="10" Duration="00:00:01.5"/>
-            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(DropShadowEffect.BlurRadius)"  Storyboard.TargetName="FunGrid" BeginTime="00:00:00" From="0" To="10" Duration="00:00:01"/>
-            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(DropShadowEffect.ShadowDepth)"  Storyboard.TargetName="FunGrid" BeginTime="00:00:00" From="0" To="10" Duration="00:00:01"/>
-        </Storyboard>
-    </UserControl.Resources>
-
-    <i:Interaction.Triggers>
-        <i:EventTrigger>
-            <i:InvokeCommandAction Command="{Binding WaitingCommand, Mode=OneWay}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    
-    <UserControl.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard  Storyboard="{StaticResource OnLoaded}"/>
-        </EventTrigger>
-    </UserControl.Triggers>
-
-    <UserControl.DataContext>
-        <vm:TopWindowViewModel
-            HasWaited="TopWindowViewModel_HasWaited"/>
-    </UserControl.DataContext>
-    <Grid  x:Name="FunGrid" Height="450" Width="450" Background="{StaticResource BackgroundImage}" >
-        <!--<Grid.Effect>
-            <DropShadowEffect
-                BlurRadius="10" 
-                ShadowDepth="10" 
-                Opacity="0.6" 
-                Direction="321"/>
-        </Grid.Effect>-->
-        <Grid.Effect>
-            <BlurEffect Radius ="0" />
-        </Grid.Effect>
-    </Grid>
-</UserControl>
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Face_PhotoAlbum.Views"
+        x:Class="Face_PhotoAlbum.Views.TopWindow"
+        mc:Ignorable="d" 
+        Title="test"
+        xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
+        Height="500" 
+        Width="500" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CustomPopupWindowStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+        <local:TopControl/>
+</Window>

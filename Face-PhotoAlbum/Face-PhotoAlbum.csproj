@@ -163,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Sources\Views\TopControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -208,6 +212,9 @@
     </Compile>
     <Compile Include="Sources\Views\TopWindow.xaml.cs">
       <DependentUpon>TopWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Views\TopControl.xaml.cs">
+      <DependentUpon>TopControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

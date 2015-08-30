@@ -18,6 +18,8 @@ namespace Face_PhotoAlbum {
 
         protected override void InitializeShell() {
             base.InitializeShell();
+            TopWindow top = new TopWindow();
+            top.ShowDialog();
 
             App.Current.MainWindow = (Window)this.Shell;
             App.Current.MainWindow.Show();
