@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.Models {
-    public class AlbumWindowModel : ObservableObject {
+    public class AlbumWindowModel  {
         /// <summary>
         /// 获取相册数据
         /// </summary>

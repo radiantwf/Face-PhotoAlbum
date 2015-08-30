@@ -1,4 +1,5 @@
 ﻿using Face_PhotoAlbum.Models;
+using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
-    public class PhotoContainerViewModel : ObservableObject {
+    public class PhotoContainerViewModel : BindableBase {
 
         private bool _IsSelected = false;
         private static ObservableCollection<PhotoContainerViewModel> _PhotoViewModelList;
@@ -70,7 +71,7 @@ namespace Face_PhotoAlbum.ViewModels {
                 if (_IsSelected == value)
                     return;
                 _IsSelected = value;
-                RaisePropertyChanged(() => IsSelected);
+                this.OnPropertyChanged(() => this.IsSelected);
             }
         }
 

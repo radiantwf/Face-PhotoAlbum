@@ -193,7 +193,6 @@
     <Compile Include="Sources\Models\DAL\T_AlbumLabel.cs" />
     <Compile Include="Sources\Models\DAL\T_PhotoInfo.cs" />
     <Compile Include="Sources\Base_Mvvm\ViewModels\CommandProxy.cs" />
-    <Compile Include="Sources\Base_Mvvm\ObservableObject.cs" />
     <Compile Include="Sources\Models\AlbumWindowModel\AlbumWindowModel.cs" />
     <Compile Include="Sources\ViewModels\AlbumWindowViewModel\IAlbumWindowViewModel.cs" />
     <Compile Include="Sources\ViewModels\TopWindowViewModel\ITopWindowViewModel.cs" />

@@ -12,7 +12,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Face_PhotoAlbum.ViewModels {
-    public class AlbumWindowViewModel : ObservableObject, IAlbumWindowViewModel {
+    public class AlbumWindowViewModel : BindableBase, IAlbumWindowViewModel {
         private ObservableCollection<AlbumContainerViewModel> _FaceAlbums = null;
         private ObservableCollection<PhotoContainerViewModel> _Photos = null;
         private int _CurrentAlbumNum = -1;
@@ -51,8 +51,8 @@ namespace Face_PhotoAlbum.ViewModels {
                     _CurrentAlbumNum = -1;
                     _CurrentAlbumName = string.Empty;
                 }
-                RaisePropertyChanged(() => CurrentContentType);
-                RaisePropertyChanged(() => AlbumLabelContext);
+                this.OnPropertyChanged(() => this.CurrentContentType);
+                this.OnPropertyChanged(() => this.AlbumLabelContext);
             }
         }
         public string AlbumLabelContext {
@@ -66,7 +66,7 @@ namespace Face_PhotoAlbum.ViewModels {
             }
             set {
                 _FaceAlbums = value;
-                RaisePropertyChanged(() => FaceAlbums);
+                this.OnPropertyChanged(() => this.FaceAlbums);
             }
         }
         public ObservableCollection<PhotoContainerViewModel> Photos {
@@ -75,13 +75,13 @@ namespace Face_PhotoAlbum.ViewModels {
             }
             set {
                 _Photos = value;
-                RaisePropertyChanged(() => Photos);
-                RaisePropertyChanged(() => ComfirmMatchPhotos);
-                RaisePropertyChanged(() => PossibleMatchPhotos);
-                RaisePropertyChanged(() => UnknownPhotos);
-                RaisePropertyChanged(() => ComfirmMatchPhotosShownFlg);
-                RaisePropertyChanged(() => PossibleMatchShownFlg);
-                RaisePropertyChanged(() => UnknownShownFlg);
+                this.OnPropertyChanged(() => this.Photos);
+                this.OnPropertyChanged(() => this.ComfirmMatchPhotos);
+                this.OnPropertyChanged(() => this.PossibleMatchPhotos);
+                this.OnPropertyChanged(() => this.UnknownPhotos);
+                this.OnPropertyChanged(() => this.ComfirmMatchPhotosShownFlg);
+                this.OnPropertyChanged(() => this.PossibleMatchShownFlg);
+                this.OnPropertyChanged(() => this.UnknownShownFlg);
             }
         }
         public List<PhotoContainerViewModel> ComfirmMatchPhotos {

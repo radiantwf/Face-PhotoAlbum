@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.Models {
-    public class AlbumContainerModel : ObservableObject {
+    public class AlbumContainerModel {
         private string _AlbumLabel;
 
         public int AlbumNum { get; private set; }
@@ -21,7 +21,6 @@ namespace Face_PhotoAlbum.Models {
             }
             set {
                 _AlbumLabel = value;
-                RaisePropertyChanged(() => AlbumLabel);
             }
         }
 

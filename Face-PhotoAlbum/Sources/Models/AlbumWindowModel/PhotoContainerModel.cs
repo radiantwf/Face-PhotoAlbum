@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Face_PhotoAlbum.Models {
-    public class PhotoContainerModel : ObservableObject {
+    public class PhotoContainerModel  {
         public enum MatchTypeType { Unknown, Possible, Confirm }
         public int PhotoNum { private set; get; }
         public string ImagePath { private set; get; }
