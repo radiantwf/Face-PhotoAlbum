@@ -7,6 +7,48 @@
         xmlns:vm="clr-namespace:Face_PhotoAlbum.ViewModels"
         Height="650" Width="850"
         RenderOptions.BitmapScalingMode="NearestNeighbor" >
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="container">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="btn_left" Storyboard.TargetProperty="(UIElement.Visibility)">
+                        <DiscreteObjectKeyFrame KeyTime="00:00:0.001" >
+                            <DiscreteObjectKeyFrame.Value>
+                                <Visibility>Collapsed</Visibility>
+                            </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="btn_right" Storyboard.TargetProperty="(UIElement.Visibility)">
+                        <DiscreteObjectKeyFrame KeyTime="00:00:0.001" >
+                            <DiscreteObjectKeyFrame.Value>
+                                <Visibility>Collapsed</Visibility>
+                            </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="container">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="btn_left" Storyboard.TargetProperty="(UIElement.Visibility)">
+                        <DiscreteObjectKeyFrame KeyTime="00:00:0.001" >
+                            <DiscreteObjectKeyFrame.Value>
+                                <Visibility>Visible</Visibility>
+                            </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="btn_right" Storyboard.TargetProperty="(UIElement.Visibility)">
+                        <DiscreteObjectKeyFrame KeyTime="00:00:0.001" >
+                            <DiscreteObjectKeyFrame.Value>
+                                <Visibility>Visible</Visibility>
+                            </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
     <UserControl.Background>
         <ImageBrush ImageSource="../../Resources/shootbg.png" />
     </UserControl.Background>
@@ -24,7 +66,7 @@
             </Border.Background>
             <TextBlock Text="照   片" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20" FontWeight="Bold"/>
         </Border>
-        <Border Width="750" Height="500" Grid.Row="2">
+        <Border x:Name="container" Width="750" Height="500" Grid.Row="2">
             <Border.Background>
                 <ImageBrush ImageSource="../../Resources/bg4.png" ViewboxUnits="RelativeToBoundingBox" />
             </Border.Background>
@@ -34,13 +76,14 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
-                <Image x:Name="curimage" Grid.Column="0" Grid.ColumnSpan="3" Margin="6,6" Stretch="Uniform" Source="{Binding CurrentImage}" />
-                <Button x:Name="btn_left" Grid.Column="0" Template="{StaticResource ButtonTemplate}" Width="37" Height="50" Command="{Binding PreviousPhotoCommand, Mode=OneWay}">
+                <Image x:Name="curimage" Grid.Column="0" Grid.ColumnSpan="3" Margin="6,6" Stretch="Uniform" Source="{Binding CurrentImage}">
+                </Image>
+                <Button x:Name="btn_left" Grid.Column="0" Template="{StaticResource ButtonTemplate}" Width="37" Height="50" Command="{Binding PreviousPhotoCommand, Mode=OneWay}" Visibility="Collapsed">
                     <Button.Background>
                         <ImageBrush ImageSource="../../Resources/左.png" Stretch="None" Viewbox="0,0,0.25,1"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_right" Grid.Column="3" Template="{StaticResource ButtonTemplate}" Width="37" Height="50" Command="{Binding NextPhotoCommand, Mode=OneWay}">
+                <Button x:Name="btn_right" Grid.Column="3" Template="{StaticResource ButtonTemplate}" Width="37" Height="50" Command="{Binding NextPhotoCommand, Mode=OneWay}" Visibility="Collapsed">
                     <Button.Background>
                         <ImageBrush ImageSource="../../Resources/右.png" Stretch="None" Viewbox="0,0,0.25,1"/>
                     </Button.Background>
@@ -49,7 +92,6 @@
         </Border>
         <TextBlock x:Name="tb_curimageindex" Grid.Row="3" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" />
         <StackPanel Grid.Row="4" Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
-
             <Button x:Name="btn_back2" Grid.Column="3" Template="{StaticResource ButtonTemplate}" Width="112" Height="43" Margin="0,0,20,0" Command="{Binding CloseWindowCommand, Mode=OneWay}">
                 <Button.Background>
                     <ImageBrush ImageSource="../../Resources/返回2.png" Stretch="None" Viewbox="0,0,0.25,1"/>
