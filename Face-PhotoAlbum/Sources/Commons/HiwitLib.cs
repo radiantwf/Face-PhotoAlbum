@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Face_PhotoAlbum.Common {
@@ -116,148 +117,124 @@ namespace Face_PhotoAlbum.Common {
             public float qualityScore;              ///< 质量分数  
         };
 
-        public static int InitSDK(string libPath)
-        {
+        public static int InitSDK(string libPath) {
+            //int OSBit = Marshal.SizeOf(IntPtr.Zero) * 8;
+            //libPath = Path.Combine(libPath, "x" + OSBit.ToString());
             return HIWITSDKInit(libPath);
         }
 
-        public static int UnInitSDK()
-        {
+        public static int UnInitSDK() {
             return HIWITSDKUnInit();
         }
 
-        public static int FingerVerify(byte[] probeData, byte[] galleryData, ref float score)
-        {
+        public static int FingerVerify(byte[] probeData, byte[] galleryData, ref float score) {
             if (probeData == null || galleryData == null) return HIWIT_ERR_ILLEGAL;
             return HIWITFingerVerifyTwoImage(APPIP, APPKEY, probeData, probeData.Length, galleryData, galleryData.Length, ref score);
         }
 
-        public static int IrisVerify(byte[] probeData, byte[] galleryData, ref float score)
-        {
+        public static int IrisVerify(byte[] probeData, byte[] galleryData, ref float score) {
             if (probeData == null || galleryData == null) return HIWIT_ERR_ILLEGAL;
             return HIWITIrisVerifyTwoImage(APPIP, APPKEY, probeData, probeData.Length, galleryData, galleryData.Length, ref score);
         }
 
-        public static int FaceVerify(byte[] probeData, byte[] galleryData, ref float score, HIWITFaceInfo? probeInfo = null, HIWITFaceInfo? galleryInfo = null)
-        {
+        public static int FaceVerify(byte[] probeData, byte[] galleryData, ref float score, HIWITFaceInfo? probeInfo = null, HIWITFaceInfo? galleryInfo = null) {
             if (probeData == null || galleryData == null) return HIWIT_ERR_ILLEGAL;
             int size = Marshal.SizeOf(typeof(HiwitLib.HIWITFaceInfo));
 
             IntPtr probePtr = IntPtr.Zero;
             IntPtr galleryPtr = IntPtr.Zero;
 
-            try
-            {
-                if (probeInfo != null)
-                {
+            try {
+                if (probeInfo != null) {
                     probePtr = Marshal.AllocHGlobal(size);
                     Marshal.StructureToPtr(probeInfo, probePtr, false);
                 }
 
-                if (galleryInfo != null)
-                {
+                if (galleryInfo != null) {
                     galleryPtr = Marshal.AllocHGlobal(size);
                     Marshal.StructureToPtr(galleryInfo, galleryPtr, false);
                 }
 
                 return HIWITFaceVerifyTwoImage(APPIP, APPKEY, probeData, probeData.Length, probePtr, galleryData, galleryData.Length, galleryPtr, ref score);
             }
-            finally
-            {
+            finally {
                 Marshal.FreeHGlobal(probePtr);
                 Marshal.FreeHGlobal(galleryPtr);
             }
 
         }
 
-        public static int FaceDetect(byte[] image, HIWITFaceRegion[] faceRect, ref int faceNumber, int minFaceSize, int maxFaceSize, HIWITFaceRect? detectROI = null)
-        {
+        public static int FaceDetect(byte[] image, HIWITFaceRegion[] faceRect, ref int faceNumber, int minFaceSize, int maxFaceSize, HIWITFaceRect? detectROI = null) {
             if (image == null || faceRect == null) return HIWIT_ERR_ILLEGAL;
             IntPtr roiPtr = IntPtr.Zero;
             IntPtr faceRectPtr = IntPtr.Zero;
-            try
-            {
-                if (detectROI != null)
-                {
+            try {
+                if (detectROI != null) {
                     roiPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITFaceRect)));
                     Marshal.StructureToPtr(detectROI, roiPtr, false);
                 }
                 faceRectPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITFaceRegion)) * faceRect.Length);
 
                 int r = HIWITFaceDetect(APPIP, APPKEY, image, image.Length, faceRectPtr, faceRect.Length, ref faceNumber, minFaceSize, maxFaceSize, roiPtr);
-                if (r == HIWIT_ERR_NONE && faceNumber != 0)
-                {
-                    for (int i = 0; i < faceNumber; i++)
-                    {
+                if (r == HIWIT_ERR_NONE && faceNumber != 0) {
+                    for (int i = 0; i < faceNumber; i++) {
                         IntPtr tmPtr = new IntPtr(faceRectPtr.ToInt64() + Marshal.SizeOf(typeof(HiwitLib.HIWITFaceRegion)) * i);
                         faceRect[i] = (HiwitLib.HIWITFaceRegion)Marshal.PtrToStructure(tmPtr, typeof(HiwitLib.HIWITFaceRegion));
                     }
                 }
                 return r;
             }
-            finally
-            {
+            finally {
                 Marshal.FreeHGlobal(roiPtr);
                 Marshal.FreeHGlobal(faceRectPtr);
             }
         }
 
-        public static int FaceQuality(byte[] image, HIWITPoint eyePointLeft, HIWITPoint eyePointRight, ref float qualitySocre)
-        {
+        public static int FaceQuality(byte[] image, HIWITPoint eyePointLeft, HIWITPoint eyePointRight, ref float qualitySocre) {
             if (image == null) return HIWIT_ERR_ILLEGAL;
             IntPtr epl = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITPoint)));
             Marshal.StructureToPtr(eyePointLeft, epl, false);
             IntPtr epr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITPoint)));
             Marshal.StructureToPtr(eyePointRight, epr, false);
-            try
-            {
+            try {
                 return HIWITFaceQuality(APPIP, APPKEY, image, image.Length, epl, epr, ref qualitySocre);
             }
-            finally
-            {
+            finally {
                 Marshal.FreeHGlobal(epl);
                 Marshal.FreeHGlobal(epr);
             }
 
         }
 
-        public static int FaceAlignmentFromFaceRegion(byte[] image, HIWITFaceRegion faceRegion, ref HIWITFaceInfo faceInfo)
-        {
+        public static int FaceAlignmentFromFaceRegion(byte[] image, HIWITFaceRegion faceRegion, ref HIWITFaceInfo faceInfo) {
             if (image == null) return HIWIT_ERR_ILLEGAL;
             IntPtr regionPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITFaceRegion)));
             Marshal.StructureToPtr(faceRegion, regionPtr, false);
             IntPtr infoPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITFaceInfo)));
-            try
-            {
+            try {
                 int r = HIWITFaceAlignmentFromFaceRegion(APPIP, APPKEY, image, image.Length, regionPtr, infoPtr);
                 if (r == HIWIT_ERR_NONE) faceInfo = (HIWITFaceInfo)Marshal.PtrToStructure(infoPtr, typeof(HIWITFaceInfo));
                 return r;
             }
-            finally
-            {
+            finally {
                 Marshal.FreeHGlobal(regionPtr);
                 Marshal.FreeHGlobal(infoPtr);
             }
         }
 
-        public static int FaceAlignment(byte[] image, ref HIWITDetailFaceInfo[] faceInfo, ref int faceNumber, int minFaceSize, int maxFaceSize, HIWITFaceRect? detectROI = null)
-        {
+        public static int FaceAlignment(byte[] image, ref HIWITDetailFaceInfo[] faceInfo, ref int faceNumber, int minFaceSize, int maxFaceSize, HIWITFaceRect? detectROI = null) {
             if (image == null || faceInfo == null) return HIWIT_ERR_ILLEGAL;
             IntPtr roiPtr = IntPtr.Zero;
             IntPtr detailPtr = IntPtr.Zero;
-            try
-            {
-                if (detectROI != null)
-                {
+            try {
+                if (detectROI != null) {
                     roiPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITFaceRect)));
                     Marshal.StructureToPtr(detectROI, roiPtr, false);
                 }
                 detailPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(HIWITDetailFaceInfo)) * faceInfo.Length);
                 int r = HIWITFaceAlignment(APPIP, APPKEY, image, image.Length, detailPtr, faceInfo.Length, ref faceNumber, minFaceSize, maxFaceSize, roiPtr);
-                if (r == HIWIT_ERR_NONE && faceNumber != 0)
-                {
-                    for (int i = 0; i < faceNumber; i++)
-                    {
+                if (r == HIWIT_ERR_NONE && faceNumber != 0) {
+                    for (int i = 0; i < faceNumber; i++) {
                         IntPtr tmPtr = new IntPtr(detailPtr.ToInt64() + Marshal.SizeOf(typeof(HiwitLib.HIWITDetailFaceInfo)) * i);
                         faceInfo[i] = (HiwitLib.HIWITDetailFaceInfo)Marshal.PtrToStructure(tmPtr, typeof(HiwitLib.HIWITDetailFaceInfo));
                     }
@@ -265,8 +242,7 @@ namespace Face_PhotoAlbum.Common {
                 return r;
 
             }
-            finally
-            {
+            finally {
                 Marshal.FreeHGlobal(roiPtr);
                 Marshal.FreeHGlobal(detailPtr);
             }

@@ -287,83 +287,37 @@
     <Resource Include="Resources\退出系统.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Photos\1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\10.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\11.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\12.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\13.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\14.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\15.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\16.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\17.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\18.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\19.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\20.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\21.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\22.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\23.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="Photos\1.jpg" />
+    <None Include="Photos\10.jpg" />
+    <None Include="Photos\11.jpg" />
+    <None Include="Photos\12.jpg" />
+    <None Include="Photos\13.jpg" />
+    <None Include="Photos\14.jpg" />
+    <None Include="Photos\15.jpg" />
+    <None Include="Photos\16.jpg" />
+    <None Include="Photos\17.jpg" />
+    <None Include="Photos\18.jpg" />
+    <None Include="Photos\19.jpg" />
+    <None Include="Photos\2.jpg" />
+    <None Include="Photos\20.jpg" />
+    <None Include="Photos\21.jpg" />
+    <None Include="Photos\22.jpg" />
+    <None Include="Photos\23.jpg" />
     <Resource Include="Resources\标签.png" />
     <Resource Include="Resources\未知.png" />
-    <Resource Include="Photos\24.jpg" />
-    <Resource Include="Photos\25.jpg" />
-    <Resource Include="Photos\26.jpg" />
-    <Resource Include="Photos\27.jpg" />
-    <Resource Include="Photos\28.jpg" />
-    <Resource Include="Photos\29.jpg" />
-    <Content Include="Photos\3.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\4.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\5.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\6.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\7.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\8.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photos\9.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="Photos\24.jpg" />
+    <None Include="Photos\25.jpg" />
+    <None Include="Photos\26.jpg" />
+    <None Include="Photos\27.jpg" />
+    <None Include="Photos\28.jpg" />
+    <None Include="Photos\29.jpg" />
+    <None Include="Photos\3.jpg" />
+    <None Include="Photos\4.jpg" />
+    <None Include="Photos\5.jpg" />
+    <None Include="Photos\6.jpg" />
+    <None Include="Photos\7.jpg" />
+    <None Include="Photos\8.jpg" />
+    <None Include="Photos\9.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.97.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.97.0\build\net45\System.Data.SQLite.Core.targets')" />

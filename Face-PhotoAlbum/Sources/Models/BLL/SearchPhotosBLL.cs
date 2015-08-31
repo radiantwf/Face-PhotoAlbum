@@ -125,6 +125,11 @@ namespace Face_PhotoAlbum.Models {
                         int top = (int)faceRegion[i].faceVertex.Min(p => p.y);
                         int bottom = (int)faceRegion[i].faceVertex.Max(p => p.y);
 
+                        left = left < 0 ? 0 : (left > imageWidth ? imageWidth : left);
+                        right = right < 0 ? 0 : (right > imageWidth ? imageWidth : right);
+                        top = top < 0 ? 0 : (top > imageHeight ? imageHeight : top);
+                        bottom = bottom < 0 ? 0 : (bottom > imageHeight ? imageHeight : bottom);
+
                         var newRow = new T_Face();
                         newRow.PhotoNum = photoInfoRow.PhotoNum;
                         newRow.SequenceNum = i;
